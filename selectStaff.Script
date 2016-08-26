@@ -1,0 +1,54 @@
+/**
+ *  获取部门树
+ * @param from 表单对象
+ * @returns  查询结果
+ */
+function getOrgList(from){
+    var jsQuery = new JsQuery("select fid as id,name as name,code as code,parentid as pid from department where state=0");
+    var result = jsQuery.resultAsJson();
+    var jsResult = new JsResult();
+    if (result.length > 0){
+        var jsDatasource = new JsDatasource();
+        jsDatasource.addRows(jsQuery.resultAsStr());
+        jsResult.addDatasource(jsDatasource);
+        return jsResult.asString();
+    }
+}
+/**
+ * 获取部门id获取部门下所有的员工信息
+ * @param from 表单对象
+ * @returns 根节点信息
+ */
+
+
+function getStaffByOrg(form){
+
+ var jsQuery = new JsQuery("select us.name,us.fid from deptuser as dep ,userbase as us where dep.userid=us.fid and dep.deptid=:deptid");
+
+    jsQuery.setString("deptid",form.deptid);
+    var jsResult = new JsResult();
+    var jsDatasource = new JsDatasource();
+    jsDatasource.setDsName("userbase");
+    jsDatasource.addRows(jsQuery.resultAsStr());
+    jsResult.addDatasource(jsDatasource);
+    return jsResult.asString();
+}
+
+
+/**
+ *  获取部门树
+ * @param from 表单对象
+ * @returns  查询结果
+ */
+function getOrgListByName(from){
+     var jsQuery = new JsQuery("select us.name,us.fid from deptuser as dep ,userbase as us where dep.userid=us.fid and us.name=:name");
+    jsQuery.setString("name",form.name);
+    var result = jsQuery.resultAsJson();
+    var jsResult = new JsResult();
+    if (result.length > 0){
+        var jsDatasource = new JsDatasource();
+        jsDatasource.addRows(jsQuery.resultAsStr());
+        jsResult.addDatasource(jsDatasource);
+        return jsResult.asString();
+    }
+}

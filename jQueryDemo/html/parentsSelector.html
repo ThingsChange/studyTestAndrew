@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>parents 选择器</title>
+    <script type="text/javascript" src="../js/jquery-3.1.0.js"></script>
+
+</head>
+<body>
+<ul class="level-1 abc">
+    <li class="item-i">I</li>
+    <li class="item-ii abc">II
+        <ul class="level-2">
+            <li class="item-a dsf">A</li>
+            <li class="item-b">B
+                <ul class="level-3">
+                    <li class="item-1">1</li>
+                    <li class="item-2">2</li>
+                    <li class="item-3">3</li>
+                </ul>
+            </li>
+            <li class="item-c">C</li>
+        </ul>
+    </li>
+    <li class="item-iii">III</li>
+</ul>
+<script>
+    $('li.item-a').parents(".item-ii.abc").css('background-color', 'red');
+</script>
+</body>
+</html>

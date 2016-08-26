@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="script/angular.min.js"></script>
+    <script src="script/serviceTest.js"></script>
+</head>
+<body>
+    <div ng-controller="SubCtrl" >
+        值1<input ng-model="firstName" type="text">{{firstName}}<br>
+        值2<input ng-model="lastName" type="text">{{lastName}}<br>
+        <p>加法:{{resAdd}}</p></br>
+        <p>减法:{{resSub}}</p><br>
+        <p>乘法:{{resMul}}</p><br>
+        <p>除法:{{resDiv}}</p><br>
+        <p>余数:{{resMod}}</p><br>
+        <p>a+2b:{{resAdd2}}</p><br>
+        <p>a-2b:{{resSub2}}</p><br>
+    </div>
+   <!-- <ul ng-controller="SubCtrl2">
+        <li ng-repeat="item in obj.items.arr">{{item.name}}</li>
+    </ul>-->
+</body>
+</html>

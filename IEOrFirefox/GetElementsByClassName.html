@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>为 IE8- 的浏览器添加 getElementsByClassName 方法</h1>
+    <div>
+        <div class="one">
+            <span class="oneSpan">1</span>
+            <span class="oneSpan">2</span>
+            <span class="oneSpan">3</span>
+            <span class="oneSpan">4</span>
+        </div>
+        <div class="two">
+            <span class="twoSpan">一</span>
+            <span class="twoSpan">二</span>
+            <span class="twoSpan">三</span>
+            <span class="twoSpan">四</span>
+        </div>
+    </div>
+<div onclick="changeColor()">
+    <input class="oneRow" type="button" value="第一排">
+    <input class="twoRow" type="button" value="第二排">
+</div>
+</body>
+<script type="text/javascript" src="ForBug.js"></script>
+<script>
+    window.onload=function(){
+        //解决IE8之类不支持getElementsByClassName
+        document.getElementsByClassName("oneSpan")[0].style.backgroundColor="red";
+        document.getElementsByClassName("twoSpan")[1].style.backgroundColor="green";
+    }
+    function changeColor(e){
+        var e=window.getEvent();
+        alert(e.srcElement.tagName);
+        var x= e.srcElement.value;
+        alert(x);
+    }
+</script>
+</html>

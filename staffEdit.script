@@ -1,0 +1,131 @@
+/**
+ * staffEdit.script主要实现staffEdit.js即员工编辑页面涉及相关功能
+ * @Copyright: 	2016 www.quauq.com Inc. All rights reserved.
+ * @Date: 		    2016年04月22日
+ */
+
+
+//------------------------------Code Begin------------------------------------
+
+/**
+ * 根据id获取员工信息
+ * @param form 表单对象
+ * @returns {*} 添加结果
+ */
+function  getStaffById(form){
+    var jsQuery = new JsQuery("select * from userbase where fid=:fid");
+    var jsQueryDep=new JsQuery("select p.name,d.isleader,p.fid from userbase u,deptuser d,department p  where  d.deptid= p.fid and d.userid=u.fid and u.fid=:fid");
+    jsQuery.setString("fid",form.fid);
+    jsQueryDep.setString("fid",form.fid);
+    JsLog.print(form.fid);
+    var jsResult = new JsResult();
+    var jsDatasource = new JsDatasource();
+    jsDatasource.setDsName("userbase");
+    jsDatasource.addRows(jsQuery.resultAsStr());
+    jsResult.addDatasource(jsDatasource);
+    var jsDatasourceDep = new JsDatasource();
+    jsDatasourceDep.setDsName("departments");
+    jsDatasourceDep.addRows(jsQueryDep.resultAsStr());
+    jsResult.addDatasource(jsDatasourceDep);
+    return jsResult.asString();
+}
+
+/**
+ * 新增员工
+ * @param form 表单对象
+ * @returns {*} 查询结果
+ */
+function editStaff(form){
+    var sql=" update userbase set name=:name,email=:email,sex=:sex,phone=:phone,mobile=:mobile,isdispatch=:isdispatch,isseperate=:isseperate,fno=:fno,birthday=:birthday where fid=:fid";
+    JsLog.print(form.fid);
+    var jsQuery = new JsQuery(sql);
+    jsQuery.setString("fid",form.fid);
+    JsLog.print(form.name);
+    jsQuery.setString("name",form.name);
+    jsQuery.setString("email",form.email);
+    if(form.sex==0){
+        jsQuery.setBoolean("sex",JsQuery.NO);
+    }else{
+        jsQuery.setBoolean("sex",JsQuery.YES);
+    }
+    jsQuery.setString("phone",form.phone);
+    jsQuery.setString("mobile",form.mobile);
+    jsQuery.setBoolean("isdispatch",JsQuery.NO);
+    jsQuery.setBoolean("isseperate",JsQuery.NO);
+    jsQuery.setString("fno",form.fno);
+    jsQuery.setString("birthday",form.birthday);
+    jsQuery.execUpdate();
+
+    //删除用户部门
+    var sqldel="delete from  deptuser where userid=:userid";
+    var jsQueryDel = new JsQuery(sqldel);
+    jsQueryDel.setString("userid",form.fid);
+    jsQueryDel.execUpdate();
+
+    //保存用户部门
+    var sqldept="insert into deptuser(fid,deptid,userid,isleader) values(:fid,:deptid,:userid,:isleader)";
+    var deptusers=form.deptusers;
+    if(deptusers.length>0){
+        for(var i in deptusers){
+            var jsQueryDept = new JsQuery(sqldept);
+            jsQueryDept.setString("fid",deptusers[i].dfid);
+            jsQueryDept.setString("deptid",deptusers[i].deptid);
+            jsQueryDept.setString("userid",form.fid);
+            if(deptusers[i].leader==0){
+                jsQueryDept.setBoolean("isleader",JsQuery.NO);
+            }else{
+                jsQueryDept.setBoolean("isleader",JsQuery.YES);
+            }
+            jsQueryDept.execUpdate();
+        }
+
+    }
+    var jsResult = new JsResult();
+    return jsResult.asString();
+}
+
+/**
+ * 验证名字和编号是否重复
+ * @param form 表单对象
+ * @returns {*} 查询结果
+ */
+function getAccountByCondition (form){
+    var sql="select * from accountbase where 1=1";
+    var username=form.username;
+    if(username!=""&&username!=undefined){
+        sql+=" and account=:username";
+    }
+    var jsQuery = new JsQuery(sql);
+    if(username!=""&&username!=undefined){
+        jsQuery.setString("username",username);
+    }
+    var result = jsQuery.resultAsJson();
+    var jsResult = new JsResult();
+    JsLog.print(username);
+    if (result.length == 0){
+        jsResult.addFormValue("checked","false");
+    }else{
+        jsResult.addFormValue("checked","true");
+    }
+    return jsResult.asString();
+}
+/**
+ *
+ * @returns 所有角色
+ */
+function getAllRoles(){
+    var jsQuery = new JsQuery("select * from authorgroup");
+    var jsQueryCount = new JsQuery("select count(1) as count from authorgroup");
+    var result = jsQuery.resultAsJson();
+    var jsResult = new JsResult();
+    var jsDatasource = new JsDatasource();
+    jsDatasource.setDsName("roles");
+    jsDatasource.addRows(jsQuery.resultAsStr());
+    jsDatasource.setRowCount(jsQueryCount.resultAsJson()[0].count);
+    jsResult.addDatasource(jsDatasource);
+    return jsResult.asString();
+}
+
+
+//------------------------------Code End------------------------------------
+

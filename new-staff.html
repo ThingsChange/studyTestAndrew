@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>quauq 应用设计中心--员工管理-新增员工</title>
+    <link href="http://www.trekiz.com/favicon.ico" rel="shortcut icon"/>
+    <link href="../../css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../css/quauq.min.css" rel="stylesheet" type="text/css">
+    <link href="../../lib/jqueryUI/datepicker/themes/base/jquery.ui.all.css"   rel="stylesheet"/>
+    <link href="../../lib/jqueryUI/datepicker/datepicker/css/demos.css"   rel="stylesheet"/>
+
+    <script src="../../lib/jquery/jquery-1.10.2.js"></script>
+    <script src="../../lib/jqueryUI/datepicker/datepicker/js/jquery-ui-datepicker-zh-CN.js"></script>
+    <script src="../../lib/jqueryUI/datepicker/datepicker/js/jquery-1.10.2.js"></script>
+
+    <script src="../../lib/jqueryUI/datepicker/ui/jquery.ui.core.js"></script>
+    <script src="../../lib/jqueryUI/datepicker/ui/jquery.ui.widget.js"></script>
+    <script src="../../lib/jqueryUI/datepicker/ui/jquery.ui.datepicker.js"></script>
+    <script>
+        $(function() {
+            $.datepicker.regional["zh-CN"] = { closeText: "关闭", prevText: "&#x3c;上月", nextText: "下月&#x3e;", currentText: "今天", monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"], monthNamesShort: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"], dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"], dayNamesShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"], dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"], weekHeader: "周", dateFormat: "yy-mm-dd", firstDay: 1, isRTL: !1, showMonthAfterYear: !0, yearSuffix: "年" }
+            $.datepicker.setDefaults($.datepicker.regional["zh-CN"]);
+            $( "#birthDate" ).datepicker({
+                picker: "<img class='picker' align='middle'  alt=''>"
+            });
+        });
+    </script>
+    <style>
+        .picker{
+            height:16px;
+            width:16px;
+            background:url("../../lib/jqueryUI/datepicker/datepicker/images/calendar.gif") no-repeat;
+            margin-left:-19px;
+            cursor:pointer;
+            border:none;
+        }
+    </style>
+
+</head>
+
+<body style="position: relative;">
+<div class="main">
+    <!--右侧部分开始-->
+    <div class="main_frame">
+        <!--新增员工开始-->
+        <div class="list-item-content plat-from">
+            <!--面包屑开始-->
+            <div class="crumbs-quauq">
+                <i class="fa fa-map-marker"></i>
+                <a href="javascript:void(0);">员工管理</a> > <a class="active" href="javascript:void(0);">新增员工</a>
+            </div>
+            <!--面包屑结束-->
+            <!--操作标示开始-->
+                    <span class="marks marginbottom">
+                        新增员工
+                    </span>
+            <!--操作标示结束-->
+            <!--新增部门开始-->
+            <div class="widget-step extend">
+                <form action="">
+                   <div class="wd-nine">
+                       <ul>
+                           <!--<li><label for="">对象类型</label>游轮类库存</li>-->
+                           <li><label >员工编码</label><input  class="text-input-primary"  type="text"/></li>
+                           <li><label >姓名<em class="not-null">*</em></label><input  class="text-input-primary"  type="text"/></li>
+                           <li class="sex">
+                               <label >性别</label>
+                               <span class="first-child">
+                                   <input type="radio"/>
+                                   <em>男</em>
+                               </span>
+                               <span>
+                                   <input type="radio"/>
+                                   <em>女</em>
+                               </span>
+                           </li>
+                           <li><label >出生日期</label><input  class="text-input-primary input-data-sel"  type="text"  id="birthDate"/></li>
+                           <li><label >入职日期</label><input  class="text-input-primary input-data-sel"  type="text"/></li>
+                           <li><label >联系方式</label><input  class="text-input-primary"  type="text"/></li>
+                           <li><label >公司座机</label><input  class="text-input-primary"  type="text"/></li>
+                           <li><label >电子邮箱</label><input  class="text-input-primary"  type="text"/></li>
+                       </ul>
+                   </div>
+                    <div class="de-name">
+                        <span>所属部门</span>
+                        <span><i class="fa fa-plus-square"></i>添加更多</span>
+                    </div>
+                    <div class="dep-role-container">
+                        <div class="list-item-container">
+                            <div class="list-item">
+                                <div class="group-sel-qc">
+                                    <div class="simulate-text-container md">
+                                        <input type="text" value="北京总部 - 设计部-北京总部-设计部-北京总部-设计部-北京总部-设计部-北京总部-设计部-北京总部-设计部-123" readonly="readonly"/>
+                                        <em  class="fa fa-plus"></em>
+                                        <!--数据源下拉-->
+                                        <!--<div class="drop-down singleselection  display-none" >-->
+                                            <!--<div class="list-sel-text">-->
+                                                <!--<ul>-->
+                                                    <!--<li>数据源一</li>-->
+                                                    <!--<li>数据源一</li>-->
+                                                    <!--<li>数据源一</li>-->
+                                                    <!--<li>数据源一</li>-->
+                                                    <!--<li>数据源一</li>-->
+                                                    <!--<li>数据源一</li>-->
+                                                    <!--<li>数据源一</li>-->
+                                                    <!--<li>数据源一</li>-->
+                                                <!--</ul>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="simulate-checkbox-container">
+                                        <label class="native-checkbox"><input type="checkbox" /></label><label>设为负责人</label><i class="fa fa-times-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item">
+                                <div class="group-sel-qc">
+                                    <div class="simulate-text-container md">
+                                        <input type="text" value="北京总部-设计部-"   readonly="readonly"/>
+                                        <em  class="fa fa-plus"></em>
+                                    </div>
+                                    <div class="simulate-checkbox-container">
+                                        <label class="native-checkbox"><input type="checkbox" /></label><label>设为负责人</label><i class="fa fa-times-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item">
+                                <div class="group-sel-qc">
+                                    <div class="simulate-text-container md">
+                                        <input type="text" value="北京总部-设计部-"   readonly="readonly"/>
+                                        <em  class="fa fa-plus"></em>
+                                    </div>
+                                    <div class="simulate-checkbox-container">
+                                        <label class="native-checkbox"><input type="checkbox" /></label><label>设为负责人</label><i class="fa fa-times-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--新增权限-->
+                    <div class="log-name">
+                        <div class="list-role">
+                        <span  class="mulite-text">菜单权限</span>
+                        <div  class="simulate-right-container">
+                            <div class="extend-container">
+                                <div class="simulate-text-container multiple lg"  >
+                                    <div class="checkbox-container " >
+                                        <ul>
+                                            <li>超级计调员<em></em></li>
+                                            <li>超级计调员<em></em></li>
+                                            <li>超级计调员<em></em></li>
+                                            <li>超级计调员<em></em></li>
+                                            <li>超级计调员<em></em></li>
+                                            <li>超级计调员<em></em></li>
+                                        </ul>
+                                    </div>
+                                    <em  class="fa fa-angle-down"></em>
+                                </div>
+                                <div class="extend-container-in">
+                                    <div class="drop-down right-align  display-none">
+                                        <span>已选5/39</span>
+                                        <ul>
+                                            <li><label for='' class='simulate-checkbox protogenesis'><input type='checkbox'/></label><span>超级管理员</span></li>
+                                            <li><label for='' class='simulate-checkbox protogenesis'><input type='checkbox'/></label><span>超级管理员</span></li>
+                                            <li><label for='' class='simulate-checkbox protogenesis'><input type='checkbox'/></label><span>超级管理员</span></li>
+                                            <li><label for='' class='simulate-checkbox protogenesis'><input type='checkbox'/></label><span>超级管理员</span></li>
+                                            <li><label for='' class='simulate-checkbox protogenesis'><input type='checkbox'/></label><span>超级管理员</span></li>
+                                            <li><label for='' class='simulate-checkbox protogenesis'><input type='checkbox'/></label><span>超级管理员</span></li>
+                                            <li><label for='' class='simulate-checkbox protogenesis'><input type='checkbox'/></label><span>超级管理员</span></li>
+                                        </ul>
+                                        <span class="all">
+                                             <div class="sel-all">
+                                                   <input type="checkbox" class="checked" />
+                                                   <span>全选</span>
+                                             </div>
+                                             <div class="op-clear" >清除</div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<span class="mulite-text">操作权限</span>-->
+                        <!--<div  class="simulate-right-container">-->
+                            <!--<div class="extend-container">-->
+                                <!--<div class="simulate-text-container multiple lg"  >-->
+                                    <!--<div class="checkbox-container " >-->
+                                        <!--<ul>-->
+                                            <!--<li>超级计调员<em></em></li>-->
+                                            <!--<li>超级计调员<em></em></li>-->
+                                            <!--<li>超级计调员<em></em></li>-->
+                                            <!--<li>超级计调员<em></em></li>-->
+                                            <!--<li>超级计调员<em></em></li>-->
+                                            <!--<li>超级计调员<em></em></li>-->
+                                        <!--</ul>-->
+                                    <!--</div>-->
+                                    <!--<em  class="fa fa-angle-down"></em>-->
+                                <!--</div>-->
+                                <!--<div class="extend-container-in">-->
+                                    <!--<div class="drop-down  right-align " >-->
+                                        <!--<span>已选5/39</span>-->
+                                        <!--<ul>-->
+                                            <!--<li><label for='' class='simulate-checkbox protogenesis'><input type='checkbox'/></label><span>超级管理员</span></li>-->
+                                            <!--<li><label for='' class='simulate-checkbox protogenesis'><input type='checkbox'/></label><span>超级管理员</span></li>-->
+                                            <!--<li><label for='' class='simulate-checkbox protogenesis'><input type='checkbox'/></label><span>超级管理员</span></li>-->
+                                            <!--<li><label for='' class='simulate-checkbox protogenesis'><input type='checkbox'/></label><span>超级管理员</span></li>-->
+                                            <!--<li><label for='' class='simulate-checkbox protogenesis'><input type='checkbox'/></label><span>超级管理员</span></li>-->
+                                            <!--<li><label for='' class='simulate-checkbox protogenesis'><input type='checkbox'/></label><span>超级管理员</span></li>-->
+                                            <!--<li><label for='' class='simulate-checkbox protogenesis'><input type='checkbox'/></label><span>超级管理员</span></li>-->
+                                        <!--</ul>-->
+                                        <!--<span class="all">-->
+                                             <!--<div class="sel-all">-->
+                                                 <!--<input type="checkbox" class="checked"  />-->
+                                                 <!--<span>全选</span>-->
+                                             <!--</div>-->
+                                             <!--<div class="op-clear">清除</div>-->
+                                        <!--</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        </div>
+                    </div>
+                    <div class="log-name">
+                        <h2>快速生成账号</h2>
+                        <ul>
+                            <!--未填写数据验证添加verify的class-->
+                            <li>
+                                <label >登录用户名</label>
+                                <input  class="text-input-primary verify"  type="text"/>
+                                <span class="verify-tips">用户名已存在，请修改后再试</span>
+                            </li>
+                            <li>
+                                <label >登录密码</label>
+                                <input  class="text-input-primary"  type="password" value="000000"/>
+                                <span class="verify-r-tips">默认为“000000”</span>
+                            </li>
+                        </ul>
+                    </div>
+                     <div class="button-container">
+                            <button class="butn butn-default" type="button" onclick="javascript:window.location.href=''">保　存</button>
+                            <button class="butn butn-primary" type="button"  onclick="javascript:history.back()">返　回</button>
+                     </div>
+                </form>
+            </div>
+            <!--新增部门结束-->
+        </div>
+        <!--新增员工结束-->
+
+    </div>
+    <!--右侧部分结束-->
+    <!--主体部分结束-->
+</div>
+</body>
+
+</html>

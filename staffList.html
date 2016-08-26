@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>quauq 应用设计中心--员工管理-列表</title>
+    <link href="http://www.trekiz.com/favicon.ico" rel="shortcut icon"/>
+    <link href="../../css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../lib/layer/layer.css" rel="stylesheet" type="text/css">
+    <link href="../../lib/ztree/css/zTreeStyle/zTreeStyle.css"  rel="stylesheet"  type="text/css" />
+
+    <link href="../../css/quauq.min.css" rel="stylesheet" type="text/css">
+
+    <script src="../../lib/jquery/jquery-1.10.2.js"></script>
+    <script src="../../lib/jqueryUI/jquery-ui.min.js"></script>
+    <script src="../../lib/layer/layer.js"></script>
+    <script src="../../lib/ztree/jquery.ztree.all-3.5.min.js"></script>
+
+    <script src="../../lib/ajaxfileupload/ajaxfileupload.js" type="text/javascript"></script>
+    <script src="../../js/qc.common.js"></script>
+    <script type="text/javascript" src="../../html/staff/staffList.js"></script>
+    <style>
+        .divcss{position: relative;min-width:1186px; opacity: 0.5; overflow:hidden;}
+        /* 设置对象高度宽度，同时设置overflow:hidden */
+    </style>
+</head>
+
+<body style="position: relative;min-width:1186px;">
+
+<div class="main">
+
+    <!--右侧部分开始-->
+    <div class="main_frame">
+        <!--选项卡开始-->
+        <div  class="lib_tab1 extend-tabs">
+            <div class="lib-Menubox-extend">
+                <ul>
+                    <li class="hover" id="one1" onclick="setTab('one',1,3)">在职员工</li>
+                    <li id="one2" onclick="setTab('one',2,3)">无部门员工</li>
+                    <li id="one3" onclick="setTab('one',3,3)">离职员工</li>
+                </ul>
+            </div>
+            <input type="hidden" id="belongTo" value="userbase"/>
+            <div class="lib_Contentbox">
+                <!--员工管理选项卡在职员工开始-->
+                <div style="display: block;" id="con_one_1">
+                    <div class="dinner_ls">
+                        <!--在职列表开始-->
+                        <div class="list-item-content plat-from">
+                            <!--列表操作开始-->
+                            <div class="list-op">
+                                <div class="operation-group">
+                                    <button class="butn butn-default edge-small" type="button"
+                                            onclick="addDep()"><em
+                                            class="fa fa-plus"></em>新增部门
+                                    </button>
+                                    <button class="butn butn-default edge-small" type="button"
+                                            onclick="addStaff()"><em
+                                            class="fa fa-plus"></em>新增员工
+                                    </button>
+                                </div>
+                        <span>
+                            <div class="search-box">
+                                <input type="text" placeholder="员工姓名" id="staffna"/>
+                                <span class="fa fa-search" id="staffns"></span>
+                            </div>
+                            <!--<div class="display-set"><i class="fa fa-cog"></i>-->
+                            <!--</div>-->
+                        </span>
+                            </div>
+                            <!--列表操作结束-->
+                            <div class="level-container ex">
+                                <!--左侧副菜单开始-->
+                                <div class="list-item-content-left">
+                                    <div class="imitate-table-top">
+                                        公司组织
+                                    </div>
+                                    <div class="imitate-table-bottom">
+                                        <ul class="property-configuration organization ztree" id="orgTree">
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--左侧副菜单结束-->
+
+                                <!--列表展示开始-->
+                                <div   style="margin-left: 186px"  id="deptinfo">
+                                    <div class="table-container list-title no-table-list">
+                                        <div  class="title-top">
+                                            <div  class="list-title-header">
+                                                <div  class="left">部门基本信息</div>
+                                                <div  class="right">
+                                                   <input type="hidden" id="dfid"><input type="hidden" id="deptname">
+
+                                                    <button class="butn butn-primary clear-border" onclick="editDep(1)"><em  class="fa fa-pencil"></em>修改</button>
+                                                    <button class="butn butn-warning clear-border" onclick="delDep(1)"><em  class="fa fa-times"></em>删除</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="list-content" id="departInfo">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-container left-space list-title" id="deplist">
+                                    <div  class="list-title-header">
+                                        <div  class="left">下属部门</div>
+                                        <div  class="right">
+                                              <button class="deptlist butn butn-primary edit clear-border disable" onclick="editDep(2)"><em  class="fa fa-pencil"></em>修改</button>
+                                              <button class="deptlist butn butn-primary del clear-border disable" onclick="delDep(2)"><em  class="fa fa-times"></em>删除</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-container left-space deptlist">
+                                    <table class="table-list-lg qc-table-border" id="department">
+
+
+                                    </table>
+                                </div>
+                                <div class="table-container left-space list-title">
+                                    <div  class="list-title-header bottom-space">
+                                        <div  class="left">部门员工</div>
+                                        <div  class="right">
+                                            <button class="stafflist butn butn-primary edit clear-border disable" onclick="editstaff('checkdstaff')"><em  class="fa fa-pencil"></em>修改</button>
+                                            <button class="stafflist butn butn-primary change clear-border disable" onclick="changeDep()">更换部门 <em  class="fa fa-angle-down"></em></button>
+                                            <em class="th-dropdown-sel f-r display-none" id="depplugin">
+                                                <div class="filter-base extend-search r r-space">
+                                                    <div class="title">
+                                                            <span>
+                                                                <i class="fa fa-filter"></i>
+                                                                <em>筛选</em>
+                                                            </span>
+                                                        <em class="filter-close fa fa-times" onclick="changeDep()"></em>
+                                                        <div class="triangle">
+                                                        </div>
+                                                    </div>
+                                                    <div class="filter-body search-list-scroll">
+                                                        <div class="search-box search-sm">
+                                                            <input placeholder="搜索选项" type="text">
+                                                            <span class="fa fa-search"></span>
+                                                        </div>
+                                                        <ul>
+                                                            <li>
+                                                                待封装树插件
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="filter-bottom">
+                                                        <button class="butn butn-default butn-sm" type="button">确定</button>
+                                                    </div>
+                                                </div>
+                                            </em>
+                                            <button class="stafflist butn butn-stop clear-border disable" id="levDept"><em  class="fa fa-ban"></em>离职</button>
+                                            <input type="hidden" id="leaveDept" value="checkdstaff_leave_userbase"/>
+                                        </div>
+                                    </div>
+                                    <div class="table-container left-space stafflist"  style="padding-left:2px;">
+                                        <table class="table-list-lg qc-table-border" datasource="userbase" repeat="table">
+                                            <thead>
+                                            <tr>
+                                                <th class="table-th-sm-width"><em class="checkbox-table"><input type="checkbox" id="staffcheckall" onclick="checkAllStaff(this,'checkdstaff','stafflist')"/></em><span>序号</span></th>
+                                                <th class="table-th-sm-width"><span>员工编号</span></th>
+                                                <th class="table-th-xs-width"><span>姓名</span></th>
+                                                <th class="table-th-xs-width"><span>性别</span></th>
+                                                <th class="table-th-md-width"><span>所属部门</span></th>
+                                                <th class="table-th-sm-width"><span>角色</span></th>
+                                                <th class="table-th-sm-width"><span>联系电话</span></th>
+                                                <th class="table-th-lg-width"><span>邮箱</span></th>
+                                                <th class="table-th-xs-width"><span>状态</span></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody colname="fid" comptype="fid">
+                                            <tr >
+                                                <td ><em class="checkbox-table"><input type="checkbox" name="checkdstaff" id="#(fid)" onclick="checkInput('#(fid)',this,'checkdstaff','stafflist')"/></em><span  colname="index" comptype="textRead"></span></td>
+                                                <td onclick="getTrFid('#(fid)',this,'checkdstaff','stafflist')" colname="fno" comptype="textRead"></td>
+                                                <td ><a href="javascript:;" onclick="showPeople('#(fid)','userbase')"><span  colname="name" comptype="textRead"></span></a></td>
+                                                <td onclick="getTrFid('#(fid)',this,'checkdstaff','stafflist')" colname="sex" comptype="textRead"></td>
+                                                <td onclick="getTrFid('#(fid)',this,'checkdstaff','stafflist')" colname="dname" comptype="textRead">-</td>
+                                                <td onclick="getTrFid('#(fid)',this,'checkdstaff','stafflist')" colname="roler" comptype="textRead"></td>
+                                                <td onclick="getTrFid('#(fid)',this,'checkdstaff','stafflist')" colname="mobile" comptype="textRead"></td>
+                                                <td onclick="getTrFid('#(fid)',this,'checkdstaff','stafflist')" colname="email" comptype="textRead"></td>
+                                                <th onclick="getTrFid('#(fid)',this,'checkdstaff','stafflist')" class="table-th-xs-width" ><span colname="isseperate" comptype="textRead"></span></th>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!--列表表格开始-->
+
+                                <!--列表表格结束-->
+                                <!--分页开始-->
+                                <div class="page" datasource="userbase"></div>
+                                <!--分页结束-->
+                            </div>
+                            <!--列表展示结束-->
+                        </div>
+                    </div>
+                    <!--在职列表结束-->
+                    <div class="cls"></div>
+                </div>
+            </div>
+            <!--员工管理选项卡在职员工结束-->
+            <!--员工管理选项卡无部门员工开始-->
+            <div id="con_one_2" style="display: none;">
+                <div class="dinner_ls">
+                    <!--无部门员工列表开始-->
+                    <div class="list-item-content plat-from">
+                        <!--列表操作开始-->
+                        <div class="list-op">
+                            <div class="operation-group">
+                                <button class="butn butn-default edge-small" type="button"
+                                        onclick="addStaff()"><em
+                                        class="fa fa-plus"></em>新增员工
+                                </button>
+                                <button class="noDeptLev butn butn-primary edit edge-small" type="button"  onclick="editstaff('noStaffCheck')" ><em class="fa fa-pencil"></em>修改
+                                </button>
+                                <button class="noDeptLev butn  change butn-stop clear-border disable" id="noDept"><em class="fa fa-ban"></em>离职</button>
+                                <input type="hidden" id="noLeaveDept" value="noStaffCheck_leave_noUserBase"/>
+                            </div>
+                        <span>
+                            <div class="search-box">
+                                <input type="text" id="noDeptSearch" placeholder="姓名/联系电话"/>
+                                <span class="fa fa-search"  id="noDS"></span>
+                            </div>
+                        </span>
+                        </div>
+                        <!--列表操作结束-->
+                        <div class="level-container">
+                            <!--列表展示开始-->
+                            <div class="list-container platform none-left-sub-menu">
+                                <!--列表表格开始-->
+                                <div class="table-container">
+                                    <table class="table-list-lg qc-table-border" datasource="noUserBase" repeat="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="table-th-sm-width"><em class="checkbox-table"><input type="checkbox" id="" onclick="checkAllStaff(this,'noStaffCheck','noDeptLev')"/></em><span>序号</span></th>
+                                            <th class="table-th-sm-width"><span>员工编号</span></th>
+                                            <th class="table-th-xs-width"><span>姓名</span></th>
+                                            <th class="table-th-xs-width"><span>性别</span></th>
+                                            <th class="table-th-lg-width"><span>所属部门</span></th>
+                                            <th class="table-th-sm-width"><span>联系电话</span></th>
+                                            <th class="table-th-lg-width"><span>邮箱</span></th>
+                                            <th class="table-th-md-width"><span>角色</span></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody colname="fid" comptype="fid">
+                                        <!-- <input type="hidden" id="fid"> -->
+                                        <tr >
+                                            <td><em class="checkbox-table"><input type="checkbox" name="noStaffCheck" id="#(fid)" onclick="checkInput('#(fid)',this,'noStaffCheck','noDeptLev')"/></em><span  colname="index" comptype="textRead"></span></td>
+                                            <td onclick="getTrFid('#(fid)',this,'noStaffCheck','noDeptLev')" colname="fno" comptype="textRead" ></td>
+                                            <td ><a href="javascript:;"  onclick="showPeople('#(fid)','noUserBase')"><span  colname="name" comptype="textRead"></span></a></td>
+                                            <td onclick="getTrFid('#(fid)',this,'noStaffCheck','noDeptLev')" colname="sex" comptype="textRead"></td>
+                                            <td onclick="getTrFid('#(fid)',this,'noStaffCheck','noDeptLev')" colname="dname" comptype="textRead"></td>
+                                            <td onclick="getTrFid('#(fid)',this,'noStaffCheck','noDeptLev')" colname="phone" comptype="textRead"></td>
+                                            <td onclick="getTrFid('#(fid)',this,'noStaffCheck','noDeptLev')" colname="email" comptype="textRead"></td>
+                                            <td onclick="getTrFid('#(fid)',this,'noStaffCheck','noDeptLev')" colname="fname" comptype="textRead"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--列表表格结束-->
+                                <!--分页开始-->
+                                <div class="page" datasource="noUserBase"></div>
+                                <!--分页结束-->
+                            </div>
+                            <!--列表展示结束-->
+                        </div>
+                    </div>
+                    <!--无部门员工列表结束-->
+                    <div class="cls"></div>
+                </div>
+            </div>
+            <!--员工管理选项卡无部门员工结束-->
+            <!--员工管理选项卡离职员工开始-->
+            <div id="con_one_3" style="display: none;">
+                <div class="dinner_ls">
+                    <!--离职员工列表开始-->
+                    <div class="list-item-content plat-from">
+                        <!--列表操作开始-->
+                        <div class="list-op">
+                            <div class="operation-group">
+                                <button class="levstafflist butn butn-start edge-small disable" id="repDept" ><em class="fa fa-ban"></em>复职</button>
+                                <input type="hidden" id="rebackDept" value="levStaffCheck_reback_levUserBase"/>
+                            </div>
+                        <span>
+                            <div class="search-box">
+                                <input type="text" id="levDeptSearch" placeholder="姓名/联系电话/所属部门"/>
+                                <span class="fa fa-search" id="levDS"></span>
+                            </div>
+                        </span>
+                        </div>
+                        <!--列表操作结束-->
+                        <div class="level-container">
+                            <!--列表展示开始-->
+                            <div class="list-container platform none-left-sub-menu">
+                                <!--列表表格开始-->
+                                <div class="table-container">
+                                    <table class="table-list-lg qc-table-border" datasource="levUserBase" repeat="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="table-th-sm-width"><em class="checkbox-table"><input type="checkbox" id="levStaffCheckAll" onclick="checkAllStaff(this,'levStaffCheck','levstafflist')"/></em><span>序号</span></th>
+                                            <th class="table-th-sm-width"><span>员工编号</span></th>
+                                            <th class="table-th-xs-width"><span>姓名</span></th>
+                                            <th class="table-th-xs-width"><span>性别</span></th>
+                                            <th class="table-th-lg-width"><span>所属部门</span></th>
+                                            <th class="table-th-sm-width"><span>联系电话</span></th>
+                                            <th class="table-th-lg-width"><span>邮箱</span></th>
+                                            <th class="table-th-md-width"><span>角色</span></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody colname="fid" comptype="fid">
+                                        <input type="hidden" id="ids">
+                                        <tr >
+                                            <td><em class="checkbox-table"><input type="checkbox" name="levStaffCheck" id="#(fid)" onclick="checkInput('#(fid)',this,'levStaffCheck','levstafflist')"/></em><span  colname="index" comptype="textRead"></span></td>
+                                            <td onclick="getTrFid('#(fid)',this,'levStaffCheck','levstafflist')" colname="fno" comptype="textRead" ></td>
+                                            <td ><a href="javascript:;" onclick="showPeople('#(fid)','levUserBase')"><span  colname="name" comptype="textRead"></span></a></td>
+                                            <td onclick="getTrFid('#(fid)',this,'levStaffCheck','levstafflist')" colname="sex" comptype="textRead"></td>
+                                            <td onclick="getTrFid('#(fid)',this,'levStaffCheck','levstafflist')" colname="dname" comptype="textRead"></td>
+                                            <td onclick="getTrFid('#(fid)',this,'levStaffCheck','levstafflist')" colname="phone" comptype="textRead"></td>
+                                            <td onclick="getTrFid('#(fid)',this,'levStaffCheck','levstafflist')" colname="email" comptype="textRead"></td>
+                                            <td onclick="getTrFid('#(fid)',this,'levStaffCheck','levstafflist')" colname="fname" comptype="textRead"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--列表表格结束-->
+                                <!--分页开始-->
+                                <div class="page" datasource="levUserBase"></div>
+                                <!--分页结束-->
+                            </div>
+                            <!--列表展示结束-->
+                        </div>
+                    </div>
+                    <!--离职员工列表结束-->
+                    <div class="cls"></div>
+                </div>
+            </div>
+            <!--员工管理选项卡离职员工结束-->
+        </div>
+    </div>
+    <!--选项卡结束-->
+
+</div>
+<!--右侧部分结束-->
+<!--主体部分结束-->
+</div>
+<div class="layer" id="layerId"></div>
+<div class="suspension-layer  display-none" id="suspension-layer">
+    <input type="hidden" id="screenId" value="false" />
+    <div class="left">
+        <div  class="left-content" >
+            <div class="top">
+                <h3  class="top-title"><span  id="spname">小白</span></h3>
+                <label>账号：</label><span id="spaccount">baixinlei</span>
+                <span class="full-screen" id="full-screen-small" value="false"></span>
+                <input type="hidden" id="alongFid" />
+            </div>
+            <div class="bottom">
+                <div class="staff-info">
+                    <div class="info">员工资料</div>
+                    <div class="split-line"></div>
+                </div>
+                <div  class="info-container">
+                    <div class="base-info">
+                        <div class="info-title"><i class="fa fa-list-alt"></i>基本信息</div>
+                        <dl class="base-info-list">
+                            <dt>员工编号：</dt>
+                            <dd id="spfno" >EM00001</dd>
+                            <dt>姓名：</dt>
+                            <dd id="sppname">张章章</dd>
+                            <dt>性别：</dt>
+                            <dd id="spsex" >男</dd>
+                            <dt>出生日期：</dt>
+                            <dd id="spbirthday">1985-10-18</dd>
+                            <dt>联系方式：</dt>
+                            <dd id="spmobile">18374637373</dd>
+                            <dt>公司座机：</dt>
+                            <dd id="spphone" >010-58048545</dd>
+                            <dt>邮箱：</dt>
+                            <dd id="spmail">zhangzhang.zhang@263.com</dd>
+                        </dl>
+                    </div>
+                    <div class="dot-line"></div>
+                    <div class="base-info">
+                        <div class="info-title"><i class="fa fa-list-alt"></i>部门信息</div>
+                        <dl class="base-info-list">
+                            <dt >所属部门：</dt>
+                            <dd>
+                                    <ul class="first-leval" >
+                                            <ul class="second-level" >
+                                                <div id="deptHtml">
+                                                </div>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="dot-line">
+                        <!--<span style="display:inline-block;border-bottom: 1px dashed #d9d9d9;"></span>-->
+                    </div>
+                    <div class="base-info">
+                        <div class="info-title"><i class="fa fa-list-alt"></i>角色权限</div>
+                        <dl class="base-info-list">
+                            <dt >页面权限：</dt>
+                            <dd>
+                                <div  class="pri_sel" id="showPeopleRoler">
+                                    <span  class="per-charge">销售</span><span  class="per-charge">超级计调员</span><span   class="per-charge">超级计调员</span><span  class="per-charge">销售</span><span  class="per-charge">销售</span><span  class="per-charge">什么管理员啊名字这么长十五个字</span><span  class="per-charge">超级计调员</span><span  class="per-charge" >销售</span><span  class="per-charge">销售</span><span  class="per-charge">销售</span>
+                                </div>
+                            </dd>
+                            <!--
+                            <dt >操作权限：</dt>
+                            <dd>
+                                <div  class="pri_sel">
+                                    <span  class="per-charge">销售</span><span  class="per-charge">超级计调员</span><span   class="per-charge">超级计调员</span><span  class="per-charge">销售</span><span  class="per-charge">销售</span><span  class="per-charge">什么管理员啊名字这么长十五个字</span><span  class="per-charge">超级计调员</span><span  class="per-charge" >销售</span><span  class="per-charge">销售</span><span  class="per-charge">销售</span>
+                                </div>
+                            </dd>
+                             -->
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <a class="head-portrait">
+            <img src="/img/common/background/ygtx.png"  id="imageFile"/>
+        </a>
+        <form id="contentform" name="plugForm" method="post" enctype="multipart/form-data">
+            <div  class="display-none">
+                <input id="fileId" name="fileId" type="file"   value="浏览..."/>
+            </div>
+            <input type="hidden" id="userId">
+            <button type="button"  class="edit-btn" id="photoimg" onclick="fileId.click()" >上传头像</button>
+            <button type="button" class="edit-btn" onclick="editstaffShowMess()" id="editAlong"><em  class="fa fa-pencil"></em>修改</button>
+    </form>
+        <button class="edit-btn quit" id="alongLev"><em  class="fa fa-ban" ></em>离职</button>
+    </div>
+</div>
+</body>
+
+</html>

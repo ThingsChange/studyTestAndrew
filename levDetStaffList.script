@@ -1,0 +1,216 @@
+/**
+ * //无部门员工列表信息
+ * @param form
+ */
+function findNoDeptStaffInfos(form){
+    JsLog.print("-------------------------- 离职员工列表信息 --------------------- ");
+    //查询出已经离职的员工信息 DB表deptuser  字段isseperate = 1;  这个SQL需要改动一下,一个人的部门会有多个;
+    var sql ="SELECT IFNULL(g.fname,'') as fname,u.fid as fid,(case when u.sex=0 then '男' else '女' end) as sex,u.name as name, u.email as email, u.phone as phone , u.mobile as mobile, u.isdispatch as isdispatch, u.isseperate as isseperate, u.fno as fno,IFNULL(GROUP_CONCAT(p.name),'') as dname FROM userbase u LEFT JOIN deptuser d on u.fid = d.userid LEFT JOIN  department p on d.deptid=p.fid LEFT JOIN authorgroupuser a on u.fid = a.userid LEFT JOIN authorgroup g on a.groupid = g.fid where u.isseperate=0 and u.isdispatch=1 ";
+    var sqlCount="SELECT count(1) as count  FROM userbase u LEFT JOIN deptuser d on u.fid = d.userid LEFT JOIN  department p on d.deptid=p.fid where u.isseperate=0 and u.isdispatch=1 ";
+    var name=form.name;
+    var pageNo=form.pageNo;
+    var pageSize=form.pageSize;
+    if(name!=""){
+        sql+=" and ((u.name like :name or u.phone like :phone))";
+        sqlCount+=" and ((u.name like :name or u.phone like :phone))";
+    }
+    sql+=" GROUP BY u.fid ORDER BY u.fno asc";
+   // sql+=" limit "+(pageNo-1)*pageSize+","+pageSize";
+    var jsQuery = new JsQuery(sql);
+    var jsQueryCount = new JsQuery(sqlCount);
+    if(name!=""){
+            jsQuery.setString("name","%"+form.name+"%");
+            jsQuery.setString("phone","%"+form.name+"%");
+            //jsQuery.setString("dname","%"+form.name+"%");
+            jsQueryCount.setString("name","%"+form.name+"%");
+            jsQueryCount.setString("phone","%"+form.name+"%");
+            //jsQueryCount.setString("dname","%"+form.name+"%");
+    }
+    if(pageNo!=""&&pageSize!=""){
+            jsQuery.setFirstResult((pageNo-1)*pageSize);
+            jsQuery.setMaxResult(pageSize);
+    }
+    JsLog.print("无部门员工sql------ "+sql);
+    var result = jsQuery.resultAsJson();
+    var jsResult = new JsResult();
+    var jsDatasource = new JsDatasource();
+    jsDatasource.setDsName("noUserBase");
+    jsDatasource.addRows(jsQuery.resultAsStr());
+    jsDatasource.setRowCount(jsQueryCount.resultAsJson()[0].count);
+    jsResult.addDatasource(jsDatasource);
+    return jsResult.asString();
+}
+
+/**
+ * 离职员工列表信息
+ * @param form
+ */
+function findLevDeptStaffInfos(form){
+    JsLog.print("-------------------------- 离职员工列表信息 --------------------- ");
+    //查询出已经离职的员工信息 DB表deptuser  字段isseperate = 1;  这个SQL需要改动一下,一个人的部门会有多个;
+    var sql ="SELECT IFNULL(g.fname,'') as fname,u.fid as fid,(case when u.sex=0 then '男' else '女' end) as sex," +
+        "u.name as name, u.email as email, u.phone as phone , u.mobile as mobile, u.isdispatch as isdispatch," +
+        " u.isseperate as isseperate, u.fno as fno,IFNULL(GROUP_CONCAT(p.name),'') as dname FROM userbase u " +
+        "LEFT JOIN deptuser d on u.fid = d.userid LEFT JOIN  department p on d.deptid=p.fid LEFT JOIN " +
+        "authorgroupuser a on u.fid = a.userid LEFT JOIN authorgroup g on a.groupid = g.fid where u.isseperate=1 ";
+    var sqlCount="SELECT count(1) as count,IFNULL(GROUP_CONCAT(p.name),'') as dname FROM userbase u LEFT JOIN deptuser d on u.fid = d.userid LEFT JOIN  department p on d.deptid=p.fid  where u.isseperate=1 ";
+    var name=form.name;
+    var pageNo=form.pageNo;
+    var pageSize=form.pageSize;
+    if(name!=""){
+        sql+=" and (p.name like '%"+name+"%' or u.name like '%"+name+"%' or u.phone like '%"+name+"%')";
+        sqlCount+=" and (p.name like '%"+name+"%' or u.name like '%"+name+"%' or u.phone like '%"+name+"%')";
+    }
+    sql+=" GROUP BY u.fid ORDER BY u.fno asc";
+    sqlCount+=" GROUP BY u.fid ";
+   // sql+=" limit "+(pageNo-1)*pageSize+","+pageSize";
+    var jsQuery = new JsQuery(sql);
+    var jsQueryCount = new JsQuery(sqlCount);
+    //if(name!=""){
+    //        jsQuery.setString("name","%"+form.name+"%");
+    //        jsQuery.setString("phone","%"+form.name+"%");
+    //        jsQuery.setString("dname","%"+form.name+"%");
+    //        jsQueryCount.setString("name","%"+form.name+"%");
+    //        jsQueryCount.setString("phone","%"+form.name+"%");
+    //        jsQueryCount.setString("dname","%"+form.name+"%");
+    //}
+    if(pageNo!=""&&pageSize!=""){
+            jsQuery.setFirstResult((pageNo-1)*pageSize);
+            jsQuery.setMaxResult(pageSize);
+    }
+    JsLog.print("离职员工sql------ "+sql);
+    var result = jsQuery.resultAsJson();
+    var jsResult = new JsResult();
+    var jsDatasource = new JsDatasource();
+    jsDatasource.setDsName("levUserBase");
+    jsDatasource.addRows(jsQuery.resultAsStr());
+    jsDatasource.setRowCount(jsQueryCount.resultAsJson()[0].count);
+    jsResult.addDatasource(jsDatasource);
+    return jsResult.asString();
+}
+/**
+ * 员工复职,离职
+ * @param form
+ */
+function reLiveStaff(form){
+    var value = form.fid.split(",");
+    var ids = "";
+    if(value.length > 0){
+       for(var i=0;i<value.length;i++){
+           if(i>0){
+                ids += ",'"+value[i]+"'";
+           }else{
+                ids +="'"+value[i]+"'";
+           }
+       }
+    }
+    var sql = "update userbase set isseperate=0 where fid in("+ids+")";//员工复职
+    if(form.flag == "leave"){//员工离职
+        sql = "update userbase set isseperate=1 where fid in("+ids+")";
+    }
+    var jsQuery = new JsQuery(sql);
+    jsQuery.execUpdate();
+    var jsResult = new JsResult();
+    return jsResult.asString();
+}
+
+/**
+ * 查询一个员工的基本信息
+ * @param form
+ */
+function showPeople(form){
+    JsLog.print(" &&&&&&&&&&&&&&&&& 查询一个员工的基本信息  &&&&&&&&&&&&&&&");
+    var fid = form.fid;
+    var jsQuery = new JsQuery("SELECT f.filepath as filepath,u.fid as fid,(case when u.sex=0 then '男' else '女' end) as sex,ifnull(u.birthday,'无') as birthday,ifnull(u.name,'无') as name, ifnull(u.email,'无') as email, ifnull(u.phone,'无') as phone , ifnull(u.mobile,'无') as mobile,  u.fno as fno,a.account as account FROM userbase u LEFT JOIN accountbase a on u.fid  = a.userid LEFT JOIN uploadfile f on u.fid = f.relateid where u.fid=:fid");
+    jsQuery.setString("fid",fid);
+
+    //--------------页面权限--------------------------
+    var param = {};
+    param.userId = form.userId;
+    var jsService = new JsService();
+    var serviceResult = jsService.invokeCommonService("com.quauq.plugin.RolerServicePlugin","createSessionRole",param);
+    var serviceResultRoler = eval("("+serviceResult.asJson().formDataset.menuTree+")");//取出菜单树的json串
+    //--------查出authorgroupmodule表里都有哪些菜单ID
+    var sqlMenu = "select a.fid as fid,a.groupid as groupid,a.moduleid as moduleid from authorgroupmodule a LEFT JOIN authorgroupuser u on a.groupid = u.groupid  where  u.userid =:userid";
+    //JsLog.print("展现一个角色信息以及菜单功能 sqlCount: "+sqlMenu);
+    var jsQueryMenu = new JsQuery(sqlMenu);
+    jsQueryMenu.setString("userid",fid);
+    var resultMenu = jsQueryMenu.resultAsJson();
+    var resultRoler = [];
+    if(serviceResultRoler != null && serviceResultRoler != ''){
+        for(var values in serviceResultRoler){
+            for(var n in resultMenu){
+                if(serviceResultRoler[values].fid == resultMenu[n].moduleid){
+                    resultRoler.push(serviceResultRoler[values]);
+                }
+            }
+        }
+    }
+    //---------------查找出全部的部门信息------------------------
+    var jsQuery1 = new JsQuery("select t.* from department t");
+    var deptResult = jsQuery1.resultAsJson();
+    var jsQuery2 = new JsQuery("select t.*,u.deptid,u.userid,u.isleader from department t LEFT JOIN deptuser u  on u.deptid=t.fid where u.userid=:userid");
+    jsQuery2.setString("userid",fid);
+    var theDeptResult = jsQuery2.resultAsJson();
+    var deptHtml = [];
+    if(theDeptResult != null && theDeptResult != ''){
+        for(var x in theDeptResult){
+            var deptArray =[];
+            var s = "";
+            var cache = [];
+            deptArray.push(theDeptResult);
+            var bool = true;
+            var values=theDeptResult[x];
+            cache.push(theDeptResult[x].name);
+            do{
+                values = recursion(deptResult,values);
+                if(values != false){
+                    cache.push(values.name);
+                }else{
+                    bool = values;
+                }
+            }while(bool)
+
+            if(cache != null && cache.length>0){
+                  for(var i=cache.length-1;i>=0;i--){
+                      if(i==0){
+                          s+=cache[i];
+                          if(theDeptResult[x].isleader){
+                              s+="( 负责人 )";
+                          }
+                      }else{
+                          s+=cache[i]+"/";
+                      }
+
+                  }
+            }
+            deptHtml.push(s.toString());
+        }
+
+    }
+    var jsResult = new JsResult();
+    jsResult.addFormValue("peopleTree",JSON.stringify(resultRoler));
+    jsResult.addFormValue("deptHtml",JSON.stringify(deptHtml));
+    var jsDatasource = new JsDatasource();
+    jsDatasource.setDsName(form.datasource);
+    jsDatasource.addRows(jsQuery.resultAsStr());
+    jsResult.addDatasource(jsDatasource);
+    return jsResult.asString();
+}
+
+/**
+ * 类似递归查找 一个人员的子父部门
+ * @param param   所有部门数据
+ * @param paramOne  父级数据 单条
+ * @returns {*}
+ */
+function recursion(param,paramOne){
+    if(param != null && param != ''){
+        for(var n in param){
+            if(param[n].fid == paramOne.parentid){
+                return param[n];
+            }
+        }
+    }
+    return false;
+}
