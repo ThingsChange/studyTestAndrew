@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />-->
+	<meta charset="utf-8">
+	<script charset="utf-8" id="seajsnode" src="js/three.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="js/imgpreview.js" type="text/javascript"></script>
+<title>网友yang分享图片左右旋转在线裁剪jquery插件</title>
+  <link rel="stylesheet" type="text/css" href="css/imgareaselect-default.css" />
+
+  <script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script>
+  <script type="text/javascript" src="scripts/jQueryRotate.js"></script>
+  <style>
+	  .cropit-preview {
+		  background-color: #f8f8f8;
+		  background-size: cover;
+		  border: 5px solid #ccc;
+		  border-radius: 3px;
+		  margin-top: 7px;
+		  width: 250px;
+		  height: 250px;
+	  }
+
+	  .cropit-preview-image-container {
+		  cursor: move;
+	  }
+
+	  .cropit-preview-background {
+		  opacity: .2;
+		  cursor: auto;
+	  }
+
+	  .image-size-label {
+		  margin-top: 10px;
+	  }
+
+	  input, .export {
+		  /* Use relative position to prevent from being covered by image background */
+		  position: relative;
+		  z-index: 10;
+		  display: block;
+	  }
+
+	  button {
+		  margin-top: 10px;
+	  }
+
+
+
+
+
+
+
+
+	  #imgcollection{
+		  margin-top: 30px;
+	  }
+	.portrait_left{float: left; height: auto; width: 306px;}
+	#avatar{height: 280px;}
+	.portrait_revolve{height: auto; padding-top: 15px; width: 306px;}.revolve_left{background: url("images/setup.gif") repeat scroll -128px -55px rgba(0, 0, 0, 0); float: left; height: 22px; width: 22px;}.revol_left_txt{color: #FF6699; float: left; height: 22px; line-height: 22px; text-align: left; width: 110px;}
+	.revol_left_txt{color: #FF6699;float: left;height: 22px;line-height: 22px;text-align: left;width: 110px;}
+	.revol_right_txt{color: #FF6699;float: left;height: 22px;line-height: 22px;text-align: right;width: 131px;}
+	.revolve_right{background: url("images/setup.gif") repeat scroll -128px -77px rgba(0, 0, 0, 0); float: left; height: 22px; width: 22px;}
+	.setup_but{height: 28px; padding-left: 93px; padding-top: 40px; width: auto;}
+	.baseinf_but1{background: url("images/secondary.gif") repeat scroll -194px -96px rgba(0, 0, 0, 0); border: medium none; color: #FFFFFF; font-size: 14px; font-weight: bold; height: 28px; line-height: 28px; margin-right: 22px; outline: medium none; width: 78px;}
+	.portrait_right{float: left; font-size: 12px; height: 280px; padding-left: 80px; width: 320px;}
+	.portrait_right_bottom{color: #666666; height: 220px; width: 310px;}
+	.portrait1{float: left; height: 200px; width: 180px;}
+	#img_big_preview{height: 180px; margin: 0 auto; width: 180px;}.img_preview{border: 1px solid #000000; overflow: hidden; position: relative;}.img_preview img{margin: 0; position: relative;}.portrait2{float: left; height: auto; padding-left: 40px; width: 68px;}
+	#img_small_preview{height: 49px; margin: 0 auto; width: 49px;}.img_preview{border: 1px solid #000000; overflow: hidden; position: relative;}
+  </style>
+</head>
+<body>
+
+<script type="text/javascript" language='javascript'>
+	function adjust(el, selection) {
+		var scaleX = $(el).width() / (selection.width || 1);
+		var scaleY = $(el).height() / (selection.width || 1);
+		$(el+' img').css({
+			width: Math.round(scaleX*$('#imgcollection').find("img").width() ) + 'px',
+			height: Math.round(scaleY*$('#imgcollection').find("img").height() ) + 'px',
+			marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+			marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+		});
+	}
+	function preview(img, selection) {
+//			adjust('#img_small_preview', selection);
+		adjust('#img_big_preview', selection);
+	}
+
+	define("jquery", [], function(require, exports, module) {
+		module.exports = window.jQuery;
+	});
+	define("$", [], function(require, exports, module) {
+		module.exports = window.jQuery;
+	});
+
+	seajs.use('arale/upload/1.1.1/upload', function(Uploader) {
+
+		var uploader = new Uploader({
+			trigger: '#uploader-2',
+			action: '/',
+			name: 'swz'
+		}).change(function() {
+			var fileinput = $('input[name=swz]');
+
+			var imgpreview = imgPreview(200, 200);
+			imgpreview.preview(fileinput, function($obj) {
+//				console.log($obj[0].src);
+//				$('#avatar').attr("src",$obj[0].src);
+				$('#imgcollection').empty().append($obj);
+//				$('#imgcollection').children().first().css("zoom","100%");
+				$('div#imgcollection').imgAreaSelect({
+					aspectRatio: "1:1",
+					x1: 60,
+					y1:60,
+					x2: 200,
+					y2: 200,
+					onSelectEnd:function(img, selection) {
+						$('#id_top').val(selection.y1);
+						$('#id_left').val(selection.x1);
+						$('#id_right').val(selection.x2);
+						$('#id_bottom').val(selection.y2);
+					},
+					onSelectChange: preview
+				});
+			});
+			var imgpreviewBig = imgPreview(200, 200);
+			imgpreviewBig.preview(fileinput, function($obj) {
+				$('#img_big_preview').empty().append($obj);
+			});
+
+		});
+	});
+
+</script>
+<script>
+	// 缩放图片
+	function imgToSize(oBool) {
+		var oImg = $('#imgcollection').find("img")[0];
+		oImg.style.zoom = parseInt(oImg.style.zoom) + (oBool ? 2 : -2) + '%';
+	}
+
+	function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+		var param = {top:0, left:0, width:width, height:height};
+		if(maxWidth){
+			rateWidth = width / maxWidth;
+			rateHeight = height / maxHeight;
+
+			if( rateWidth > rateHeight )
+			{
+				param.width =  maxWidth;
+				param.height = Math.round(height / rateWidth);
+			}else
+			{
+				param.width = Math.round(width / rateHeight);
+				param.height = maxHeight;
+			}
+			param.left = Math.round((maxWidth - param.width) / 2);
+			param.top = Math.round((maxHeight - param.height) / 2);
+		}
+		return param;
+	}
+
+</script>
+
+<div class="portrait_left">
+	<button id="uploader-2">upload2</button>
+	<!--<input type="file" onchange="previewImage(this)" />-->
+	<div id="imgcollection" style="border: 1px solid #000000;overflow: hidden;position: relative;height: auto;width: 280px;margin: 0 auto;">
+	<!--	<img id="avatar" width="280" alt="请上传头像" src="images/Koala_cropped.jpg">-->
+	</div>
+	<form id="crop_form" method="post" action=".">
+		<!--通过生成尺寸和旋转角度 后台获取尺寸和旋转角度再进行裁剪-->
+		<input id="id_top" type="hidden" name="top" value="90">
+		<input id="id_left" type="hidden" name="left" value="61">
+		<input id="id_right" type="hidden" name="right" value="201">
+		<input id="id_bottom" type="hidden" name="bottom" value="200">
+		<input id="rotation" type="hidden" value="0" name="rotation">
+	</form>
+	<div class="portrait_revolve">
+		<div class="revolve_left"></div>
+		<input type="button" value="放大" onClick="imgToSize(1);">
+		<input type="button" value="缩小" onClick="imgToSize(0);">
+		<input type="range" class="cropit-image-zoom-input">
+			<a href="javascript:;" class="revol_left_txt" onClick="avatarrotateleft();">向左旋转</a>
+			<a href="javascript:;" class="revol_right_txt" onClick="avatarrotateright();">向右旋转</a>
+		<div class="revolve_right"></div>
+	</div>
+	<div class="setup_but">
+		<button class="baseinf_but1" onClick="submit_avatar();">确定</button>
+	</div>
+</div>
+
+
+<div class="portrait_right">
+	<p class="portrait_right_txt">您上传的头像会自动生成小尺寸头像，请注意小尺寸的头像是否清晰</p>
+	<div class="portrait_right_bottom">
+		<div class="portrait1">
+			<div id="img_big_preview" class="img_preview">
+				<!--<img id="avatar1" alt="头像预览" src="http://oss.aliyuncs.com/media360yuer/avatars/admin/Koala_cropped.jpg" style="width: 360px; height: 360px; margin-left: -117px; margin-top: -44px;">-->
+			</div>
+			<p>大尺寸头像，180×180</p>
+		</div>
+	</div>
+	<div class="portrait2">
+		<div id="img_small_preview" class="img_preview">
+			<img id="avatar2" alt="预览" src="http://oss.aliyuncs.com/media360yuer/avatars/admin/Koala_cropped.jpg" style="width: 98px; height: 98px; margin-left: -32px; margin-top: -12px;">
+			</div>
+			<p>中尺寸头像</p>
+			<p>50×50</p>
+		</div>
+	</div>
+</div>
+<center>
+  <span style="font-size:15px; font-weight:bold; text-align:center; line-height:25px; color:#000; width:100%">网友yang分享图片左右旋转在线裁剪jquery插件<br />
+  <a href="http://www.jq-school.com" target="_blank" style="color:#000">JquerySchool</a>网站出品（<a href="http://www.jq-school.com" style="color:#000" target="_blank">http://www.jq-school.com</a>）<br />
+   （<a href="http://www.jq-school.com/shop/" target="_blank" style="color:#000">www.jq-school.com网站旗下的一个9.9元全国包邮商店</a>） <br />
+  <a target="_blank" href="http://wp.qq.com/wpa/qunwpa?idkey=6fcb83942dc3630777ae7745bd5093a1a5917f915f4e95cfc498633379ebfbb4">官方网站学习交流QQ群<img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" style="width:90px; height:22px;" alt="Jquery学堂QQ⑤群" width="90" height="22" title="Jquery学堂QQ⑤群"></a></span>
+</center>
+
+</body>
+
+<script type="text/javascript">
+
+	var value = 0;
+	function avatarrotateleft(){
+		value -=90;
+		alert($('#imgcollection').find("img").attr("src"));
+		$('#imgcollection').find("img").rotate({ animateTo:value});
+		$('#img_big_preview').find("img").rotate({ animateTo:value});
+		$('#avatar2').rotate({ animateTo:value});
+	}
+	function avatarrotateright(){
+		value +=90;
+		$('#imgcollection').find("img").rotate({ animateTo:value});
+		$('#img_big_preview').find("img").rotate({ animateTo:value});
+		$('#avatar2').rotate({ animateTo:value});
+	}
+	function select_avatar(){
+		$('#avatar_id').click();
+	}
+	function uploadavatar(){
+		$('#avatar_form').submit();
+	}
+	function submit_avatar(){
+		$('#rotation').val(value);
+		alert('y1=='+$('#id_top').val()+"x1==="+$('#id_left').val()+"x2==="+$('#id_right').val()+"y2===="+$('#id_bottom').val()+"旋转了==="+$('#rotation').val());
+//		$('#crop_form').submit();
+
+	} 
+</script>
+</html>

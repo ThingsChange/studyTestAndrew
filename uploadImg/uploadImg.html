@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="css/jquery.Jcrop.min.css" rel="stylesheet" />
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/jquery.Jcrop.min.js"></script>
+    <script src="js/jQueryRotate.js"></script>
+    <script src="js/imageCropperUpload.js"></script>
+    <script>
+
+        $(function () {
+
+            $.fn.cropit = function(method) {
+                if (methods[method]) {
+                    return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+                }
+                else if (['imageState', 'imageSrc', 'offset', 'previewSize', 'imageSize', 'zoom',
+                            'initialZoom', 'exportZoom', 'minZoom', 'maxZoom'].indexOf(method) >= 0) {
+                    return prop(this,arguments);
+                }
+                else if (['rotateCW', 'rotateCCW', 'disable', 'reenable'].indexOf(method) >= 0) {
+                    return delegate(this,arguments);
+                }
+                else {
+                    return methods.init.apply(this, arguments);
+                }
+            }
+
+            var btn = $("#Button1");
+
+            btn.cropperUpload({
+                url: "WebForm1.aspx",
+                fileSuffixs: ["jpg", "png", "bmp"],
+                errorText: "{0}",
+                onComplete: function (msg) {
+                    $("#testimg").attr("src", msg);
+                },
+                cropperParam: {//Jcrop参数设置，除onChange和onSelect不要使用，其他属性都可用
+                    maxSize: [195, 325],//不要小于50，如maxSize:[40,24]
+                    minSize: [95, 125],//不要小于50，如minSize:[40,24]
+//                    bgColor: "black",
+                    bgOpacity: .4,
+                    allowResize: true,// 允许选框缩放
+                    allowSelect: true,
+                    animationDelay:50,
+                    handleOpacity:0.5,//缩放按钮透明度
+                    handleSize:9, //缩放按钮大小
+                    handleOffset:5,//缩放按钮与边框的距离
+                    cornerHandles:true,
+                    sideHandles:true,
+                    aspectRatio:95/125,
+                    dragEdges:true
+                },
+                perviewImageElementId: "fileList", //设置预览图片的元素id
+                perviewImgStyle: { width: '700px', height: '500px', border: '1px solid #ebebeb' }//设置预览图片的样式
+            });
+
+            var upload = btn.data("uploadFileData");
+
+            $("#files").click(function () {
+                upload.submitUpload();
+            });
+
+
+        });
+
+    </script>
+</head>
+<body>
+<div style="width: 400px; height: 300px; float:left">
+    <input id="Button1" type="button" value="选择文件" />
+    <input id="files" type="button" value="上传截图" />
+    <a href="javascript:;" class="revol_left_txt" onClick="avatarrotateleft();">向左旋转</a>
+    <a href="javascript:;" class="revol_right_txt" onClick="avatarrotateright();">向右旋转</a>
+    <div id="fileList" style="margin-top: 10px; padding-top:10px; border-top:1px solid #C0C0C0;font-size: 13px; width:400px">
+
+    </div>
+</div>
+
+<div id="testdiv" style="padding-top: 580px">
+    <img alt="" src="" id="testimg"/>
+</div>
+<script>
+    var value = 0;
+    function avatarrotateleft(){
+        value -=90;
+        $('.jcrop-tracker').next().next().rotate({ animateTo:value});
+        $('#avatar1').rotate({ animateTo:value});
+        $('#avatar2').rotate({ animateTo:value});
+    }
+    function avatarrotateright(){
+        value +=90;
+        $('.jcrop-tracker').next().next().rotate({ animateTo:value});
+        $('#avatar1').rotate({ animateTo:value});
+        $('#avatar2').rotate({ animateTo:value});
+    }
+</script>
+</body>
+</html>

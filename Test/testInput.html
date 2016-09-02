@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function(){
+            var ua = navigator.userAgent.toLowerCase();
+            var isIE = /msie/.test(ua);
+            var node = document.getElementById('input');
+            var func = function(){
+                //TODO
+                document.getElementById('input2').value=node.value;
+
+            }
+            if(isIE){
+                node.attachEvent('onpropertychange', function(){
+                    if(window.event.propertyName == 'value'){
+                        //func();
+                        document.getElementById('input2').value=node.value;
+                    }
+                });
+            } else{
+                node.addEventListener('input',func, false);
+            }
+        }
+
+    </script>
+</head>
+<body>
+<form action="testInput.html">
+    请输入：<input type="text" id="input" value="123">
+   你输入的： <input type="text" id="input2" value="">
+    提交：<input type="submit" value="妹的">
+</form>
+</body>
+</html>

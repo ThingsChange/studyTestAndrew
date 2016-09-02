@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<title>兼容性非常好的jQuery图片裁剪插件CropZoom</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="JS代码网" />
+<meta name="keywords" content="jQuery图片裁剪插件,CropZoom,图片裁剪,JS图片裁剪插件,JS头像裁剪,jQuery头像裁剪,CropZoom裁剪" />
+<meta name="description" content="提供jQuery图片裁剪插件,JS图片裁剪代码下载" />
+<link rel="stylesheet" type="text/css" href="../css/main.css" />
+<link href="css/jquery-ui-1.7.2.custom.css" rel="Stylesheet" type="text/css" /> 
+<style type="text/css">
+*{margin:0px;font-size:12px}
+.crop{width:680px; margin:20px auto; border:1px solid #d3d3d3; padding:4px; background:#fff}
+#cropzoom_container{float:left; width:500px}
+#preview{float:left; width:150px; height:200px; border:1px solid #999; margin-left:10px; padding:4px; background:#f7f7f7;}
+.page_btn{float:right; width:150px;  margin-top:20px; line-height:30px; text-align:center}
+.clear{clear:both}
+.btn{cursor:pointer}
+</style>
+<!--JS代码网顶部CSS-->
+<link href="http://www.js-css.cn/jscode/jscode.css" rel="stylesheet" />
+<!--JS代码网顶部CSS-->
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery.cropzoom.js"></script>
+<script type="text/javascript">
+$(function() {
+     var cropzoom = $('#cropzoom_container').cropzoom({
+          width: 500,
+          height: 360,
+          bgColor: '#ccc',
+          enableRotation: true,
+          enableZoom: true,
+          selector: {
+			   w:150,
+			   h:200,
+			   showPositionsOnDrag:true,
+			   showDimetionsOnDrag:false,
+               centered: true,
+			   bgInfoLayer:'#fff',
+               borderColor: 'blue',
+			   animated: false,
+			   maxWidth:150,
+			   maxHeight:200,
+               borderColorHover: 'yellow'
+           },
+           image: {
+               source: 'http://www.js-css.cn/jscode/focus/focus19/images/b2.jpg',
+               width: 450,
+               height: 300,
+               minZoom: 30,
+               maxZoom: 150
+            }
+      });
+	 $("#crop").click(function(){
+		  cropzoom.send('resize_and_crop.php', 'POST', {}, function(imgRet) {
+               $("#generated").attr("src", imgRet);
+          });			   
+	 });
+	 $("#restore").click(function(){
+		  $("#generated").attr("src", "tmp/head.gif");
+		  cropzoom.restore();					  
+	 });
+});
+</script>
+
+</head>
+
+<body>
+<!--JS代码网头部-->
+<div class="back" style="margin-bottom:20px;"> 
+  <div class="pl10">
+    <ul class="ulcls">
+	<li class="logowidth">
+	<a href="http://www.js-css.cn" title="JS代码网"><img src="http://www.js-css.cn/images/toplogo.png" border="0"/></a>	
+	</li>
+	<li style="width:800px;">
+	<div class="menupos">
+	<ul style="list-style:none;">
+	<li class="firstli"><a href="http://www.js-css.cn" class="lia">首页</a></li>
+	<li class="sencli"><a href="http://www.js-css.cn/a/jscode/" class="lia">JS代码大全</a></li>
+	<li class="threeli"><a href="http://www.js-css.cn/a/openframe/jqueryapi/" class="lia">jQuery插件</a></li>
+	<li class="threeli"><a href="http://www.js-css.cn/a/css/" class="lia">DIV+CSS</a></li>
+	<li class="threeli"><a href="http://www.js-css.cn/a/html5/" class="lia">HTML5+CSS3</a></li>
+	<li class="threeli"><a href="http://www.js-css.cn/a/openframe/" class="lia">开源项目</a></li>
+	<li class="threeli"><a href="http://www.js-css.cn/a/tools/" class="lia">资源工具</a></li>	
+	</ul>
+	</div>
+	</li>     
+    </ul>
+  </div>
+  <div class="textpos">整理：<a href="http://www.js-css.cn" class="texta">JS代码网</a><br>来源：<a href="#" class="texta">互联网</a> <br>本站QQ交流学习群：<a href="#" class="texta">281362453</a> <br> 赞助网店：<a href="http://wuhaodian.taobao.com" class="texta">http://wuhaodian.taobao.com</a></div>
+</div>
+<!--JS代码网头部-->
+<div id="main">
+ 
+<div class="crop">
+   <div id="cropzoom_container"></div>
+   <div id="preview"><img id="generated" src="tmp/head.gif"  /></div>
+   <div class="page_btn">
+      <input type="button" class="btn" id="crop" value="剪切照片" />
+      <input type="button" class="btn" id="restore" value="照片复位" />
+   </div>
+   <div class="clear"></div>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://a.alipayobjects.com/alice/one/1.1.0/one-debug.css">
+    <script charset="utf-8" id="seajsnode" src="http://static.alipayobjects.com/seajs/??seajs/2.1.1/sea.js,seajs-combo/1.0.0/seajs-combo.js,seajs-style/1.0.0/seajs-style.js"></script>
+    <script src="http://libs.baidu.com/jquery/1.10.1/jquery.min.js"></script>
+
+
+    <style>
+
+        .figure-upload {
+            width: 180px;
+            margin-right: 20px;
+        }
+        .crop-main{
+            width: 360px;
+            height: 360px;
+            border: 1px solid #6d6d6d;
+            text-align: center;
+            position: relative;
+            background: rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+        #crop-main-img{
+            width: auto;
+            height: auto;
+
+        }
+
+        .crop-aside{
+            margin-left: 10px;
+            width: 67px;
+            max-height: 400px;
+            overflow: hidden;
+        }
+        .crop-aside-slidedown{
+            background-color: #e1e1e1;
+            height: 17px;
+            color: #fff;
+            text-align: center;
+            line-height: 19px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .crop-aside-slidedown:hover{
+            background: #7d7d7d;
+        }
+        .crop-aside-imglists{
+            /*        height: 400px;*/
+
+        }
+
+        .figure-upload-img{
+            width: 180px;
+            height: 162px;
+            border: 1px solid white;
+        }
+        .figure-upload-img:hover{
+            border: 1px solid #f60;
+        }
+
+        .padding-top-10{
+            padding-top: 10px;
+        }
+
+        .upload-btn input {
+            top: -5px;
+            right: -5px;
+            z-index: 2;
+            position: absolute;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            font-size: 30px;
+            width: 120px;
+        }
+        .upload-btn{
+            position: relative;
+        }
+
+        .crop-img-title{
+            font-size: 14px;
+            font-weight: bold;
+            height: 35px;
+            line-height: 35px;
+            text-indent: 20px;
+            background-color: #f60;
+            color: #fff;
+        }
+        .crop-img-content{
+            padding: 13px 19px;
+        }
+        .crop-img-content p{
+            font-size: 12px;
+            line-height: 22px;
+        }
+
+        .crop-img-content .edit-wrap-btn-group .ui-button-grey{
+            height: 32px;
+            line-height: 32px;
+            margin-left: 15px;
+        }
+        .edit-wrap-btn-group{
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+        .edit-wrap-btn-group .pixel-content{
+            height: 32px;
+            line-height: 32px;
+            margin-left: 10px;
+            font-family: Arial;
+        }
+        .edit-wrap-btn-group .pixel-content .pixel-width,    .edit-wrap-btn-group .pixel-content .pixel-height{
+            width: 45px;
+        }
+        .edit-wrap-btn-group .pixel-content .font-weight-bold {
+            width: 20px;
+            font-size: 16px;
+        }
+
+        #edit-comfirm-btns .ui-button{
+            width: 80px;
+        }
+        #edit-comfirm-btns{
+            margin-top: 20px;
+        }
+        #edit-comfirm-btns .ui-button-grey{
+            margin-left: 5px;
+        }
+        .img-preview{
+            border: 1px solid #dbdbdb;
+        }
+        .crop-aside-slidedown-wrap{
+            height: 25px;
+            background: #fff;
+            z-index: 10;
+            position: relative;
+        }
+
+        .center-align-inline{
+            text-align: center;
+        }
+        a{
+            color: #999;
+            text-decoration: none;
+        }
+
+
+
+
+
+
+    </style>
+
+    <script>
+
+        //如果有seajs define一次 ,使用seajs
+        if (typeof define === "function") {
+
+            define("jquery", [], function(require, exports, module) {
+                module.exports = window.jQuery;
+            });
+            define("$", [], function(require, exports, module) {
+                module.exports = window.jQuery;
+            });
+
+        }
+
+        var confirmBox = (function() {
+            var args = [];
+
+            function applymethod(method) {
+                return function() {
+                    args = Array.prototype.slice.call(arguments);
+                    seajs.use(['arale/dialog/1.2.3/confirmbox'], function(ConfirmBox) {
+                        ConfirmBox[method].apply(this, args);
+                    });
+                };
+            };
+
+            return {
+                show: applymethod('show'),
+                alert: applymethod('alert'),
+                confirm: applymethod('confirm')
+            };
+        })();
+
+    </script>
+
+</head>
+<body>
+<div class="js-fileapi-wrapper upload-btn ui-button ui-button-lblue" id="choose">
+    <div class="upload-btn__txt">Choose files</div>
+    <input name="files" type="file" multiple id="fileupload"/>
+</div>
+
+
+<div class="fn-hide">
+    <div id="edit-wrap">
+        <!--            <a href="javascript:;" class="ui-button ui-button-lblue" id="reloadbtn">reloadbtn</a>-->
+        <h3 class="crop-img-title">上传模板图片</h3>
+        <div class="crop-img-content">
+            <p class="font-weight-bold">模板图片剪裁</p>
+            <p>为了保证您的模板展示图不会失真，请对模板进行剪裁</p>
+
+            <div class="fn-clear edit-wrap-btn-group">
+                <div class="js-fileapi-wrapper upload-btn ui-button ui-button-lblue fn-left" id="reload-img">
+                    <div class="upload-btn__txt">重新上传</div>
+                    <input name="files" type="file" />
+                </div>
+                <a  href="javascript:;" class="ui-button ui-button-lwhite ui-button-grey fn-left" id="set-front">设为封面</a>
+            </div>
+
+            <div class="fn-clear">
+                <div class="fn-left crop-main">
+                    <div class="crop-main-imgwrap">
+                    </div>
+                </div>
+
+                <div class="fn-left crop-aside">
+                    <div class="crop-aside-slidedown-wrap">
+                        <div class="crop-aside-slidedown ">&#9660;</div>
+                    </div>
+
+                    <div class="crop-aside-imglists">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="center-align-inline" id="edit-comfirm-btns">
+                <a href="javascript:;" class="ui-button ui-button-lorange">保存</a>
+                <a href="javascript:;" class="ui-button ui-button-lwhite ui-button-grey">取消</a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="imglistbox" class="fn-clear figure-upload-wrapper">
+    <script id="img-list-template" type="text/x-handlebars-template">
+        <div class="figure-upload fn-left">
+            <div class="figure-upload-img"></div>
+            <div class="figcaption fn-clear">
+                <div class="fn-left fn-clear">
+                    <i class="chk checked fn-left"></i>
+                    <span class="fn-left">设为封面</span>
+                </div>
+                <div class="fn-right">
+                    <a href="#" class="edit-figure">修改</a>
+                    <a href="#" class="delete-figure">删除</a>
+                </div>
+            </div>
+        </div>
+    </script>
+</div>
+
+
+<script>window.FileAPI = {staticPath: 'fileapi/2.0.3/' ,debug: false };</script>
+<script src="fileapi/2.0.3/FileAPI.min.js"></script>
+
+<link href="css/jcrop.css" rel="stylesheet" type="text/css">
+<script src="js/jcrop.js"></script>
+
+<script src="js/ImgCropUtil.js"></script>
+<script src="js/fileupload.js"></script>
+
+
+</body>
+</html>

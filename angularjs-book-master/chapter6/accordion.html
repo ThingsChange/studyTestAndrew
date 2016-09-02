@@ -28,6 +28,7 @@
     ];
   }
 
+
   var appModule = angular.module('appModule', []);
 
   appModule.directive('accordion', function() {
@@ -64,13 +65,13 @@
           '<div class="title" ng-click="toggle()">{{title}}</div>' +
           '<div class="body" ng-show="showMe" ng-transclude></div>' +
           '</div>',
-      link: function(scope, element, attrs, ac1cordion1Controller) {
+      link: function(scope, element, attrs, ac) {
         scope.showMe = false;
-        ac1cordion1Controller.addExpander(scope);
+        ac.addExpander(scope);
 
         scope.toggle = function toggle() {
           scope.showMe = !scope.showMe;
-          ac1cordion1Controller.gotOpened(scope);
+          ac.gotOpened(scope);
         }
       }
     }

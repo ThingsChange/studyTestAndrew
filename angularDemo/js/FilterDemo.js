@@ -42,7 +42,7 @@ MyMoudle1.service("serviceService",function () {
 /*    this.query=function(){
         return "this is service made with service2";
 }*/
-//其实和上边的道理一样
+//其实和上边的道理一样  只是上面的写法是构造函数的写法，而下面这样写相当于对这个类 进行重构（Java中的重载?）
     var title={};
     title.query=function(){
         return "this is service made with factory2";
