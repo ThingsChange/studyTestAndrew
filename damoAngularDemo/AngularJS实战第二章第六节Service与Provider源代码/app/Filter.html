@@ -5,11 +5,12 @@
 		<script src="Filter.js"></script>
 	</head>
 	<body>
-		{{ 1304375948024 | date }}
-		<br>
-		{{ 1304375948024 | date:"MM/dd/yyyy @ h:mma" }}
-		<br>
-		{{ 1304375948024 | date:"yyyy-MM-dd hh:mm:ss" }}
-		<br>
+	<div  ng-controller="bookController">
+		<ul >
+			<li ng-repeat="book in bookList">{{book.name|bNameLength}}</li>
+		</ul>
+	</div>
+	资源：<input type="text" ng-model="resourseUrl" >
+
 	</body>
 </html>
