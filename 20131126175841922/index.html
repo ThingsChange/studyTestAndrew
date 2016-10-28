@@ -111,7 +111,7 @@
 //				console.log($obj[0].src);
 //				$('#avatar').attr("src",$obj[0].src);
 				$('#imgcollection').empty().append($obj);
-//				$('#imgcollection').children().first().css("zoom","100%");
+				$('#imgcollection').children().first().css("zoom","100%");
 				$('div#imgcollection').imgAreaSelect({
 					aspectRatio: "1:1",
 					x1: 60,
@@ -228,8 +228,21 @@
 	var value = 0;
 	function avatarrotateleft(){
 		value -=90;
-		alert($('#imgcollection').find("img").attr("src"));
-		$('#imgcollection').find("img").rotate({ animateTo:value});
+		if($('#imgcollection').find("img").length>0){
+			$('#imgcollection').find("img").rotate({ animateTo:value});
+
+
+
+		}else{
+//			document.getElementById("crop_form").previousSibling.style.transform="rotate("+0+"deg)";;
+//			$('#imgcollection').find("div").rotate({ animateTo:value});
+
+//			$('#imgcollection').find("DIV").attr("style","FILTER:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='F:\截屏\a33c472ae904af726d6dcbbf0b55b8e9_b.jpg' ,rotation='1', sizingMethod= 'scale');MARGIN: 0px; WIDTH: 200px; ZOOM: 100%; DISPLAY: block; HEIGHT: 200px");
+
+			document.getElementById("crop_form").previousSibling.style.filter="progid:DXImageTransform.Microsoft.BasicImage(rotation="+value+");";
+		}
+
+
 		$('#img_big_preview').find("img").rotate({ animateTo:value});
 		$('#avatar2').rotate({ animateTo:value});
 	}
@@ -248,7 +261,7 @@
 	function submit_avatar(){
 		$('#rotation').val(value);
 		alert('y1=='+$('#id_top').val()+"x1==="+$('#id_left').val()+"x2==="+$('#id_right').val()+"y2===="+$('#id_bottom').val()+"旋转了==="+$('#rotation').val());
-//		$('#crop_form').submit();
+		$('#crop_form').submit();
 
 	} 
 </script>
