@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+    <script type="text/javascript" src="../js/scopeTest2.js"></script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myController">
+        <div class="result">
+            <div>父scope：
+                <div>Say：{{name}}<br>改变父scope的name：<input type="text" value="" ng-model="name"/></div>
+            </div>
+            <div>隔离scope：
+                <div isolated-directive name="{{name}}"></div>
+            </div>
+            <div>隔离scope（不使用父scope {{name}}）：
+                <div isolated-directive name="name"></div>
+            </div>
+        </div>
+    </div>
+    <div ng-controller="myController2">
+        <div class="result">
+            <div>父scope：
+                <div>Say：{{userBase.name}}<br>改变父scope的name：<input type="text" value="" ng-model="userBase.name"/></div>
+            </div>
+            <div>隔离scope：
+                <div isolated-directive2 user="userBase"></div>
+            </div>
+        </div>
+    </div>
+    <div ng-controller="myController3">
+        <div class="result">
+            <div>父scope：
+                <div>Say：{{value}}</div>
+            </div>
+            <div>隔离scope：
+                <div isolated-directive3 max="{{max}}" min="{{min}}" action="click(min,max)"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -31,7 +31,11 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                 },
                 'main@index': {
                     templateUrl: 'tpls/loginForm.html'
+                },
+                'third@index':{
+                    templateUrl:'tpls/testThirdView.html'
                 }
+
             }
         })
         .state('booklist', {
@@ -40,7 +44,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                 '': {
                     templateUrl: 'tpls/bookList.html'
                 },
-                'booktype@booklist': {
+                    'booktype@booklist': {
                     templateUrl: 'tpls/bookType.html'
                 },
                 'bookgrid@booklist': {

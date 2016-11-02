@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<html>
+<head>
+</head>
+<body>
+<button onclick="fun()">请点击这里</button>
+<script>
+    var test = outfun(2);
+    function fun(){
+        test(10);
+    }
+    function outfun(x) {
+        var tmp = 1;
+
+        return  function infun(y) {
+            console.log("x==="+x+"y====="+y+"tmp===="+tmp);
+            alert(x + y + (++tmp));
+        } //这样才是闭包
+    }
+</script>
+</body>
+</html>
