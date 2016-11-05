@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+    <script type="text/javascript" src="../js/scopeTest1.js"></script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller='MainController'>
+        父亲:{{name}}<input ng-model="name" />
+        <div my-directive></div>
+        <div my-directive2></div>
+        <div my-directive3></div>
+    </div>
+</body>
+</html>
