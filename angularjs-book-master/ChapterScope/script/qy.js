@@ -3,10 +3,17 @@
  */
 var qc = angular.module('qc', []);
 qc.provider('qcMessage', function () {
-    var messageOptions = {
+    this.messageOptions = {
         infoShowTime: 2,//默认5s
         tipShowTime: 5//默认5s
     };
+    this.setMessageOptions=function(newMessageOptions){
+        if(newMessageOptions){
+            this.messageOptions.infoShowTime=newMessageOptions.infoShowTime;
+            this.messageOptions.tipShowTime=newMessageOptions.tipShowTime;
+        }
+    }
+    var self=this;
     this.$get = ['$timeout', '$q', function ($timeout, $q) {
         var isDef = angular.isDefined;
         var style = (document.body || document.documentElement).style;
@@ -97,7 +104,7 @@ qc.provider('qcMessage', function () {
             $container.append($content);
             return defer.promise;
         };
-        var tip = function (msg,option) {
+        var tip = function (msg) {
             var tipContainer = angular.element(document.querySelector('.qc-message-container.tip'));
             if (!tipContainer.length) {
                 tipContainer = angular.element('<div class="qc-message-container tip"></div>');
@@ -107,7 +114,7 @@ qc.provider('qcMessage', function () {
             tipContainer.prepend($tip);
             $timeout(function () {
                 closeAnimateElement($tip);
-            }, messageOptions.tipShowTime * 1000);
+            }, self.messageOptions.tipShowTime * 1000);
         };
         var info = function (msg) {
             var infoContainer = angular.element(document.querySelector('.qc-message-container.info'));
@@ -136,12 +143,12 @@ qc.provider('qcMessage', function () {
                 $removeEl.remove();
             }
         };
-        var  setOptions=function (option){
+        /*var  setOptions=function (option){
             messageOptions=angular.extend(messageOptions,option);
             return this;
-        }
+        }*/
         return {
-            setOptions:setOptions,
+            /*setOptions:setOptions,*/
             warning: warning,
             error: error,
             confirm: confirm,
