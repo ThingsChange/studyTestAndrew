@@ -28,7 +28,20 @@ var app=angular.module("mainApp",[])
  * 这个方法的参数呢，可以是一个构造函数，也可以是一个对象（紧跟着下面的就是一个对象）
  */
 app.provider("operation",function(){
+    this.a=1;
+    this.b=2;
+    //为了调用他的地方可以进行配置，即
+    //module.config(function(operationProvider){  //注意这个地方的命名，传入的参数是providerName+"Provider" 驼峰式名
+    //  var ab={"a":2,"b":3}
+    // operationProvider.setAB(ab);
+    // })   这样后续在调用的时候即会改变默认的a b的值
+    this.setAB=function(ab){
+        this.a=ab.a;
+        this.b=ab.b;
+    }
+
     //此处其实没有必要注入，只是说明这种写法而已
+    //并且这里的注入的服务必须在$get 这里注入
     this.$get=['$timeout','$q',function($timeout,$q){
         var addition=function(a,b){
             return Number(a)+Number(b);

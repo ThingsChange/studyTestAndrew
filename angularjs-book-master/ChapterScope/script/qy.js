@@ -1,8 +1,8 @@
 /**
  * Created by wanglijun on 2016/11/8.
  */
-var qc = angular.module('qc', []);
-qc.provider('qcMessage', function () {
+var qc2 = angular.module('qc', []);//此处故意写出qc2，返回值是代表的这个模块，qc是这个模块的name属性值，而别的模块写依赖列表的时候写的是name值，即qc
+qc2.provider('qcMessage', function () {
     this.messageOptions = {
         infoShowTime: 2,//默认5s
         tipShowTime: 5//默认5s
