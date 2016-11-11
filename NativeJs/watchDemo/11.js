@@ -18,8 +18,8 @@
         alert('myvin is handsome.');
     }*/
 
-    sayTruth();<!-- 函数表达式 -->//sayTruth is not a function(…)
+ /*   sayTruth();<!-- 函数表达式 -->//sayTruth is not a function(…)
     var sayTruth=function(){
         alert('myvin is handsome.');
-    }
+    }*/
 })();
