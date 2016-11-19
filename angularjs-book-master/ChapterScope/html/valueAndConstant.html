@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../script/angular.min.js"></script>
+    <script type="text/javascript" src="../script/qcAg.js"></script>
+    <script type="text/javascript" src="../script/valueAndConstant.js"></script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myController">
+        <ul>
+            <li ng-repeat="peo in people">
+              社会属性：  {{peo}}
+            </li>
+            <li>
+                姓名：  {{name}}
+                年龄：  {{age}}
+                性别：  {{sex}}
+            </li>
+        </ul>
+        <p>
+          {{state}}
+        </p>
+        <input type="button" ng-click="showPeople()" value="show">
+        <div change-child changePeo="changePeople()"></div>
+    </div>
+
+</body>
+</html>
