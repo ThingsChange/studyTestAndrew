@@ -1,0 +1,47 @@
+String a='{
+"groupSelected": {
+"groupId": "SBXC123",
+month: "20161117",
+detail: []
+},
+"startToEnd": {
+"startMonth": {"year": "201612"},
+"endMonth": {"year": "201712"}
+},
+"groupDate": [{ //如果detail的长度为0 ，则表示该月份 无团期
+'proOrGroup': 1,//来自于产品点击，还是团期点击  0： 产品，默认展示最近月；1： 是团期点击，默认展示所选团期所在月份的信息
+"month": "201612",
+"detail": [
+{"date": "30", "groupPrice": "￥1234", "freeSeat": -1, "selectedGroup": ""},//余位为-1的显示汉字现询
+{"date": "25", "groupPrice": "￥2345", "freeSeat": 0, "selectedGroup": "1"}// selectedGroup  为1的时候 默认选中
+]
+}, { //如果detail的长度为0 ，则表示该月份 无团期
+'proOrGroup': 1,//来自于产品点击，还是团期点击  0： 产品，默认展示最近月；1： 是团期点击，默认展示所选团期所在月份的信息
+"month": "201611",
+"detail": [
+{"date": "30", "groupPrice": "￥3523", "freeSeat": -1, "selectedGroup": ""},//余位为-1的显示汉字现询
+{"date": "25", "groupPrice": "￥2345", "freeSeat": 0, "selectedGroup": ""}// selectedGroup  为1的时候 默认选中
+]
+}, {
+'proOrGroup': 0,
+"month": "201701",
+"detail": [
+{"date": "30", "groupPrice": "￥14", "freeSeat": 12, "selectedGroup": ""},
+{"date": "1", "groupPrice": "￥20", "freeSeat": 0, "selectedGroup": ""}
+]
+}, { //如果detail的长度为0 ，则表示该月份 无团期
+'proOrGroup': 1,//来自于产品点击，还是团期点击  0： 产品，默认展示最近月；1： 是团期点击，默认展示所选团期所在月份的信息
+"month": "201605",
+"detail": [
+{"date": "12", "groupPrice": "￥122334", "freeSeat": -1, "selectedGroup": ""},//余位为-1的显示汉字现询
+{"date": "15", "groupPrice": "￥23445", "freeSeat": 0, "selectedGroup": ""}// selectedGroup  为1的时候 默认选中
+]
+}, { //如果detail的长度为0 ，则表示该月份 无团期
+'proOrGroup': 1,//来自于产品点击，还是团期点击  0： 产品，默认展示最近月；1： 是团期点击，默认展示所选团期所在月份的信息
+"month": "201604",
+"detail": [
+{"date": "28", "groupPrice": "￥1234", "freeSeat": -1, "selectedGroup": ""},//余位为-1的显示汉字现询
+{"date": "23", "groupPrice": "￥2345", "freeSeat": 0, "selectedGroup": ""}// selectedGroup  为1的时候 默认选中
+]
+}]
+}'

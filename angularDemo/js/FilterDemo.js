@@ -27,7 +27,7 @@ MyMoudle1.filter("TitleFilter",function(){
         for (var i=0,j=titleArr.length;i<j;i++){
             returnArr[i]=titleArr[i].charAt(0).toUpperCase()+titleArr[i].slice(1);
         }
-        return returnArr.join(" ");
+        return returnArr.join("");
     }
     return testFilter;
 });
@@ -87,7 +87,7 @@ MyMoudle1.directive("titleTest",["providerService2","providerService",function(p
         restrict   : 'A',
         scope      : {
             order           : '=',
-            spreadSubTableId: '='
+            expandertitle: '=expanderTitle'
         },
         templateUrl: '../staticHtml/title-test.html',
         link       : function (scope, ele, attrs) {
