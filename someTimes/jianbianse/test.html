@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <div id="fade" style="width:600px;height:200px;"></div>
+</body>
+<script type="text/javascript">
+    var node=document.getElementById("fade");
+    var color="#1234";
+    var level=2;
+
+    window.onload=function fading(){
+                node.style.background=color+level.toString()+level.toString();
+                level++;
+                if(level>16){
+                    clearTimeout(fading);
+                }else{
+                    setTimeout(fading,300);
+                }
+            }
+            </script>
+</html>

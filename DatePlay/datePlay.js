@@ -39,7 +39,7 @@
             "month": "201612",
             "detail": [
                 {"date": "30", "groupPrice": "￥1234", "freeSeat": -1, "selectedGroup": ""},//余位为-1的显示汉字现询
-                {"date": "25", "groupPrice": "￥2345", "freeSeat": 0, "selectedGroup": "1"}// selectedGroup  为1的时候 默认选中
+                {"date": "25", "groupPrice": "￥2345", "freeSeat": 0, "selectedGroup": ""}// selectedGroup  为1的时候 默认选中
             ]
         }, { //如果detail的长度为0 ，则表示该月份 无团期
             'proOrGroup': 1,//来自于产品点击，还是团期点击  0： 产品，默认展示最近月；1： 是团期点击，默认展示所选团期所在月份的信息
@@ -60,7 +60,7 @@
             "month": "201605",
             "detail": [
                 {"date": "12", "groupPrice": "￥122334", "freeSeat": -1, "selectedGroup": ""},//余位为-1的显示汉字现询
-                {"date": "15", "groupPrice": "￥23445", "freeSeat": 0, "selectedGroup": ""}// selectedGroup  为1的时候 默认选中
+                {"date": "15", "groupPrice": "￥23445", "freeSeat": 0, "selectedGroup": "1"}// selectedGroup  为1的时候 默认选中
             ]
         }, { //如果detail的长度为0 ，则表示该月份 无团期
             'proOrGroup': 1,//来自于产品点击，还是团期点击  0： 产品，默认展示最近月；1： 是团期点击，默认展示所选团期所在月份的信息
@@ -488,7 +488,7 @@
         var t_c_l = displayMNo;
         var t_y = 0;
         for (var i = start_m; i < t_c_l + start_m; i++) {
-            if (i % 12 == 1) {//说明换年了
+            if (i>1&&i % 12 == 1) {//说明换年了
                 t_y++;
             }
             var tem_m = ((i % 12 == 0 ? 12 : i % 12) + "").length == 2 ? (i % 12 == 0 ? 12 : i % 12) : "0" + (i % 12 == 0 ? 12 : i % 12);
@@ -506,10 +506,13 @@
         if($prevAll.length>=2){//说明前面有不低于两个月份
             $prevAll.eq("1").prevAll().addClass("top_hide");
         }
+        if($nextAll.length>=2){
+            $nextAll.eq("1").nextAll().addClass("top_hide");
+        }
     }
 
     //测试数据入口
-    createGroupDate("2016-02-17", "2017-05-01", '2016-12-25', testData);
+    createGroupDate("2016-01-17", "2016-06-01", '2016-05-25', testData);
     /**
      * 格式化日期
      * @constructor
@@ -565,8 +568,63 @@
         activeMonth.removeClass("active").prev().addClass("active");
         changeMonthDisplay(activeMonth.attr("id"));
 
+    /*    //获取目前显示出来的月份
+        var displayTab=$("div.date_top_center>.date_top_use:not(.top_hide)");
+        displayTab.each(function(v){
+            $(this).hasClass("active");
+        })
+        displayTab.length;
+        var activeMonth= $(".date_top_center>.date_top_use.active");
+        var $prev=activeMonth.prevAll();
+        var $next=activeMonth.nextAll();
+        var prevlen=$prev.length;
+        var nextlen=$next.length;
+        if (prevlen == 0) {
+            return;
+        }
+        if (prevlen>0){//1  2  N
+            if(prevlen>2){
+                $prev.eq(2).removeClass("top_hide");
+                if(nextlen>=2){
+                    $next.eq(1).addClass("top_hide");
+                }else{
+
+                }
+            }
+            activeMonth.removeClass("active").prev().addClass("active");
+            changeMonthDisplay(activeMonth.prev().attr("id"));
+        }*/
     });
     $(".date_top_right").bind("click", function () {
+/*
+        var activeMonth= $(".date_top_center>.date_top_use.active");
+
+        $(".date_top_center>.date_top_use :not(:has(top_hide))");
+
+
+
+
+
+        var $prev=activeMonth.prevAll();
+        var $next=activeMonth.nextAll();
+        var prevlen=$prev.length;
+        var nextlen=$next.length;
+        if (nextlen == 0) {
+            return;
+        }
+        if (nextlen>0){//1  2  N
+            if(nextlen>2){
+                $next.eq(2).removeClass("top_hide");
+                if(prevlen>=2){
+                    $prev.eq(1).addClass("top_hide");
+                }else{
+
+                }
+            }
+            activeMonth.removeClass("active").next().addClass("active");
+            changeMonthDisplay(activeMonth.next().attr("id"));
+        }*/
+
         var activeMonth= $(".date_top_center>.date_top_use.active");
         if (activeMonth.next().length == 0) {
             return;

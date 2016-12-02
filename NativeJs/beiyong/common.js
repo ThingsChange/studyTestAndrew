@@ -2,13 +2,13 @@
  * Created by wanglijun on 2016/10/27.
  */
 (function(window,document,undefined){
-    if(!String.prototype.trim){
+   /* if(!String.prototype.trim){
         String.prototype.trim=function(){
             return this.replace(/^\s+|\s+$/g,"");
         }
     }
     if (!Array.prototype.indexOf){//IE8的数组是不支持indexof方法的
-        Array.prototype.indexOf = function(elt /*, from*/)
+        Array.prototype.indexOf = function(elt /!*, from*!/)
         {
             var len = this.length >>> 0;
             var from = Number(arguments[1]) || 0;
@@ -25,6 +25,7 @@
             }
             return -1;
         };
-    };
+    };*/
+
 
 })(window,document);
