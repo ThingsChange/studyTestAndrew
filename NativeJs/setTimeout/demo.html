@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="sssss"></div>
+　　</body>
+　　<script language="javascript">
+    obj=document.getElementById('sssss');
+    function test(obj)
+    {
+        alert(obj.id);
+        setTimeout("test('"+ obj +"')",1000);
+    }
+    test(obj)
+</script>
+</html>

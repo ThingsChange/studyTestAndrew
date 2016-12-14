@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NG中的作用域小结</title>
+    <script src="../js/angular.min.js" type="text/javascript"></script>
+    <script src="../js/ngScope.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div ng-controller="SomeController">
+    {{ someBareValue }}
+    <button ng-click="someAction()">Communicate to child</button>
+    <div ng-controller="ChildController">
+        {{ someBareValue }}
+        <button ng-click="childAction()">Communicate to parent</button>
+    </div>
+</div>
+angular.module('myApp', [])
+.controller('SomeController', function($scope) {
+// 反模式，裸值
+$scope.someBareValue = 'hello computer';
+// 设置 $scope 本身的操作，这样没问题
+$scope.someAction = function() {
+// 在SomeController和ChildController中设置{{ someBareValue }}
+$scope.someBareValue = 'hello human, from parent';
+};
+})
+.controller('ChildController', function($scope) {
+$scope.childAction = function() {
+// 在ChildController中设置{{ someBareValue }}
+$scope.someBareValue = 'hello human, from child';
+};
+});
+```
+
+</body>
+</html>

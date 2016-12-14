@@ -6,6 +6,11 @@
 var MyMoudle1=angular.module("Mya",[]);
 MyMoudle1.controller("MyController",function($scope,providerService,factoryService,serviceService,providerService2){
     $scope.title="is a good test ?";
+    $scope.today=new Date();
+    $scope.testArray=[1,2,3,5,6,4,"qingyun","qingyun123","qingy",{"qy":"biming"},{"qy2":"biming2"}];
+    $scope.typeFuc=function (str) {
+        return "Object"==Object.prototype.toString.call(str).slice(8,-1);
+    };
     if(factoryService.query()){
         $scope.title= factoryService.query();
     };
@@ -20,12 +25,12 @@ MyMoudle1.controller("MyController",function($scope,providerService,factoryServi
 })
 
 MyMoudle1.filter("TitleFilter",function(){
-    var testFilter=function(input){
-        var titleArr=input.split(" ");
+    var testFilter=function(input1){
+        var titleArr=input1.split(" ");
         var returnArr=[];
         var returnTitle="";
         for (var i=0,j=titleArr.length;i<j;i++){
-            returnArr[i]=titleArr[i].charAt(0).toUpperCase()+titleArr[i].slice(1);
+            returnArr[i]=titleArr[i].charAt(0).toUpperCase()+titleArr[i].slice(1)+'\t';
         }
         return returnArr.join("");
     }

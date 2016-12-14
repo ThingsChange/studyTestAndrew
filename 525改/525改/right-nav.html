@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="right-nav.js"></script>
+<script src="jquery.nicescroll.js"></script>
+<script src="underscore-1.8.3-analysis.js"></script>
+<link rel="stylesheet" href="right-nav.css"/>
+
+</head>
+<body>
+
+
+<!-- 右侧导航 S -->
+<!-- 导航 S -->
+<div id="right">
+
+    <div id="right-nav" >
+        <div id="nav-content">
+			<span id="group-inquiry">
+				<span class="right-icon"></span>
+				<span>询团
+                    <span id="right-nav-hover">
+
+                        <ul>
+                            <span></span>
+                            <li class="inquiry-pop"><i></i>我要询团</li>
+                            <li class="inquiry-show-records" onclick="show()"><i></i>询团记录</li>
+                        </ul>
+
+                    </span>
+                </span>
+			</span>
+            <a href="#" id="auth">
+                <span class="right-icon"></span>
+                <span>认证</span>
+            </a>
+        </div>
+        <div class="to-top right-icon"></div>
+    </div>
+    <!-- 导航 E -->
+    <!-- 询团记录 S -->
+    <div id="inquiry-records">
+        <div id="records-top">询团记录<span class="right-icon" onclick="rightClose()"></span></div>
+        <div id="records-list">
+            <div id="add-more"  onclick="rightReadRecords(10)">加载更多</div>
+        </div>
+    </div>
+    <!-- 询团记录 E -->
+</div>
+</body>
+</html>

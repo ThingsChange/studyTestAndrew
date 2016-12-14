@@ -9,6 +9,12 @@
 <body>
     <div ng-app="Mya" ng-controller="MyController">
             <h1>{{title|TitleFilter}}</h1>
+            <h1>{{today|date:"yyyy-MM-dd hh:mm:ss"}}</h1>
+            <h1>{{testArray|filter:"!qingyun" }}</h1>
+            <h1>{{testArray|filter:"qingyun" }}</h1><!--传递字符串的形式-->
+            <h1>{{testArray|filter:{'qy':'biming'} }}</h1><!--传递对象的形式-->
+            <h1>{{testArray|filter:typeFuc }}</h1><!--传递函数的形式-->
+            <h1>{{testArray|json }}</h1><!--传递函数的形式-->
         <div title-test expander-title='title' ></div>
     </div>
 
