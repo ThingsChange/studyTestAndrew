@@ -3,11 +3,7 @@
  * Created by wanglijun on 2016/11/15.
  * 产品的团期信息以日历形式展现
  */
-function test(){
-    var testData = sessionStorage.getItem("groupDate");
-    createGroupDate("2016-01-17", "2016-06-01", '2016-05-25', testData);
-}
-;(function (window,$) {
+;(function ($) {
     if (!Array.prototype.indexOf)
     {
         Array.prototype.indexOf = function(elt /*, from*/)
@@ -75,8 +71,6 @@ function test(){
             ]
         }]
     }
-
-
     sessionStorage.setItem("groupDate", JSON.stringify(result.groupDate));
     sessionStorage.setItem("startToEnd", JSON.stringify(result.startToEnd));
     var testData = sessionStorage.getItem("groupDate");
@@ -375,17 +369,17 @@ function test(){
                     }
                 }
                 //根据标志判断当前的日期是否为所点击的日期，如果是，就默认选中 border_orange
-                var _borderHtml = _tempHtml ? (selectedFlag ? '<div class="divChild_absolute border_orange "></div></div>' : '<div class="divChild_absolute border_gray " onclick="test()"></div></div>') : '<div class="divChild_absolute "></div></div>';
+                var _borderHtml = _tempHtml ? (selectedFlag ? '<div class="divChild_absolute border_orange"></div></div>' : '<div class="divChild_absolute border_gray "></div></div>') : '<div class="divChild_absolute "></div></div>';
                 if (whichMonth == -1) {
-                    dateHtml += '<div class="divChild dc_2 otherMonth"  onclick="test()"><p class="p_top">' + t_d + '</p>' + _tempHtml + _borderHtml;
+                    dateHtml += '<div class="divChild dc_2 otherMonth"><p class="p_top">' + t_d + '</p>' + _tempHtml + _borderHtml;
                 } else if (whichMonth == 0) {
                     if (selectedFlag) {
-                        dateHtml += '<div class="divChild dc_2 background_orange"  onclick="test()"><p class="p_top">' + t_d + '</p>' + _tempHtml + _borderHtml;
+                        dateHtml += '<div class="divChild dc_2 background_orange"><p class="p_top">' + t_d + '</p>' + _tempHtml + _borderHtml;
                     } else {
-                        dateHtml += '<div class="divChild dc_2"  onclick="test()"><p class="p_top">' + t_d + '</p>' + _tempHtml + _borderHtml;
+                        dateHtml += '<div class="divChild dc_2"><p class="p_top">' + t_d + '</p>' + _tempHtml + _borderHtml;
                     }
                 } else if (whichMonth == 1) {
-                    dateHtml += '<div class="divChild dc_2 otherMonth"  onclick="test()"> <p class="p_top">' + t_d + '</p>' + _tempHtml + _borderHtml;
+                    dateHtml += '<div class="divChild dc_2 otherMonth"><p class="p_top">' + t_d + '</p>' + _tempHtml + _borderHtml;
                 }
             }
         }
@@ -560,7 +554,7 @@ function test(){
         });
     }
 
-    window.createGroupDate=createGroupDate;
+
     $(".date_top_left").bind("click", function () {
         var activeMonth= $(".date_top_center>.date_top_use.active");
         if (activeMonth.prev().length == 0) {
@@ -656,4 +650,4 @@ function test(){
         $("#divParent>.divChild.dc_2").remove();
         $("#divParent").append(displayHtml);
     }
-})(window,jQuery);
+})(jQuery);
