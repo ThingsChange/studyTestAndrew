@@ -52,7 +52,7 @@ var CheckObject = function () {
 var loginCheck=new CheckObject();
 loginCheck.checkName();
 //但是这样每次检测你都得去创建一个对象，对象用的方法确实各自的，相对来说有点奢侈
-//可以考虑把方法放到原型上，原型上一般放公用的方法，而具体多肽  就是说各自的方法以及属性在自己实现类中实现
+//可以考虑把方法放到原型上，原型上一般放公用的方法，而具体多态  就是说各自的方法以及属性在自己实现类中实现
 
 var  checkObject=function () {};
 checkObject.prototype={

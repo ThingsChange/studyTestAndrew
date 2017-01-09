@@ -20,12 +20,12 @@ require.config({
         },
         'notAmd':{
             //该写法适用于只有一个方法的js
-            // exports:'notAmd',
+            //  exports:'notAmd',
             //该写法适用于有n个方法的js  如果两种写法同时存在，init的优先级较高，以init为准
             init:function () {
                 return{
                     old:old1,//此处old1是不需要加引号的，因为引用的是全局变量
-                    old2:old2
+                    old2:old2,
                 }
             }
         }

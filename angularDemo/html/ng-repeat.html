@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">-->
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+    <script src="../js/ng-repeat.js" type="text/javascript"></script>
+    <style>
+
+        .show-grid {
+
+            border: 1px solid #000;
+            height: 100%;
+        }
+
+        .container {
+            height: 900px;
+        }
+
+        .left {
+            float: left;
+            height: 100px;
+            width: 30%;
+            background: #333;
+        }
+
+        .right {
+            float: right;
+            background: #eee;
+            height: 500px;
+            width: 30%;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .main:after {
+            clear: left;
+            content: "";
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div ng-app="myApp" ng-init="someProperty = 'some data'">
+<div ng-init="siblingProperty = 'more data'">
+    Inside Div Two: {{ aThirdProperty }}
+    <div ng-init="aThirdProperty = 'data for 3rd property'" ng-controller="SomeCtrl">
+        Inside Div Three: {{ aThirdProperty }}
+        <div ng-controller="SecondCtrl"> Inside Div Four: {{ aThirdProperty }}<br>
+            Outside myDirective: {{ myProperty }}
+            <div my-directive ng-init="myProperty = 'wow, this is cool'">Inside myDirective: {{ myProperty }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-controller="nameController">
+    <direct get-title="title" get-content="contents"></direct>
+</div>
+
+
+<div class="left"></div>
+<div>wwwwww</div>
+<div class="right"></div>
+</div>
+<!--<div class="clear"></div>-->
+<foot>sssssss</foot>
+</div>
+</body>
+</html>

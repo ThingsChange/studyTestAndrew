@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+ <script>
+//     var f = (function(){
+//
+//         return function(a){
+//             console.log(arguments[0]);
+//             return function(c){
+//                 console.log(arguments[0]);
+//             }
+//
+//         }
+//     });
+//     console.log(f(1)(2)(123213213));
+//  var xxx = 123;
+//  var h = function(){
+//      var xxx= 567;
+//      console.log(xxx);
+//  }
+//var j = (function(){
+ ;(function(){
+   var cache = [];
+    return j = {
+        cache: cache,
+        add : function(a){
+            this.cache.push(a);
+           // console.log(this.cache);
+            return 9999;
+        }
+    }
+     return window.j = j;
+})();
+
+j.add(1) && j.add(2) && console.log(j.cache);
+
+
+[1,2,3,4,5].forEach(function (item,index,array) {
+    if(item<=3){
+        console.log(item);
+    }else{
+        return;
+//        break;
+    }
+})
+
+
+
+
+//     var g = (function(y){
+//
+//         return (function(x){
+//             console.log(arguments[0]);
+//         })(y);
+//     })(1);
+//     console.log(g);
+
+
+
+
+
+
+Function.prototype.bind=function (context){
+    var self=this,
+            outArgs=Array.prototype.slice(arguments,1);
+    function F(){};
+    var bound=function (){
+        var innerArgs=Array.prototype.slice(arguments);
+        var args=outArgs.concat(innerArgs);
+        console.log("this===="+this);
+        return self.apply(this instanceof F?this:context,args);
+    }
+    F.prototype=self.prototype;
+    bound.prototype=new F();
+    return bound;
+}
+
+ </script>
+</body>
+</html>

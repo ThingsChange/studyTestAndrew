@@ -1,0 +1,10 @@
+.box{
+    width: 1190px;
+    margin:0 auto;
+}
+#btn {
+    width: 40px;height: 40px; position:fixed; right:65px; bottom:10px; display:none; background:url(../backToTop/top_bg.png) no-repeat left top;
+}
+#btn:hover{
+    background:url(../backToTop/top_bg.png) no-repeat 0-40px;
+}

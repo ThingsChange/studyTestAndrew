@@ -6,16 +6,18 @@
     <script>
         function f1(){
             var n=999;
-            nAdd=function(){n+=1}//所有的变量，如果不加上var关键字，则默认的会添加到全局对象的属性上去
+             nAdd=function(){n+=1}//所有的变量，如果不加上var关键字，则默认的会添加到全局对象的属性上去
             function f2(){
                 alert(n);
+                return n;
             }
             return f2;
         }
         var result=f1();
-        result(); // 999
+        console.log(result());
         nAdd();
-        result(); // 1000
+        console.log(result());
+        console.log(f1()());
     </script>
 </head>
 <body>

@@ -27,9 +27,18 @@
         };
     };*/
 
+if(true){
+    function  A(){
+        alert("first")
+    }
+}else{
+    function A(){
+        alert("two")
+    }
+}
+A();
 
 
 
-
-    alert("1,2,3,4,5,6".split(",")[2])
+    // alert("1,2,3,4,5,6".split(",")[2])
 })(window,document);

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+渠道分析详情接口
+所需参数：orderType,searchDate,analysisType:从首页跳转时必须携带
+{
+    orderType://产品线(0:全部 1：单团 2：散拼 3：游学 4：大客户 5：自由行 6：签证 7：机票 10：游轮)，
+    searchDate: //时间 （1：今日 2：本周 3：本月 4：全部 自定义："2016-01-01+2016-02-08"），
+    analysisType://分析类型（1：订单数，2：收客人数，3：订单金额）
+    productName://产品名称
+    orderNum://订单数（0-3）
+    orderPersonNum://收客人数（1-5）
+    orderMoney://订单金额（100-200 如果100以下 显示 -100）
+    pageNo://当前页码
+    orderBy://1：订单数倒序 2：订单数正序 3：收客人数倒序 4：收客人数正序 5订单金额倒序 6：订单金额正序
+    pageSize:总页码
+}
+返回数据
+returnData:{
+    productName://产品名称
+    orderNum://订单数（0-3）
+    orderPersonNum://收客人数（1-5）
+    orderMoney://订单金额（100-200 如果100以下 显示 -100）
+    searchDate://时间（1：今日 2：本周 3：本月 4：全部 自定义："2016-01-01+2016-02-08"），
+    orderTotalNum://订单总数，
+    orderTotalPersonNum://收客总人数，
+    orderTotalMoney://订单总金额,
+    list:[{
+            agentName://渠道名称,中国体育旅行社有限公司渠门营业部，
+            orderNum://订单数 30，
+            orderPersonNum://收客人数 20，
+            orderMoney://订单金额
+        },
+        {
+            agentName://渠道名称,中国体育旅行社有限公司渠门营业部，
+            orderNum://订单数 30，
+            orderPersonNum://收客人数 20，
+            orderMoney://订单金额
+}],
+pageNo://当前页码
+orderBy://1：订单数倒序 2：订单数正序 3：收客人数倒序 4：收客人数正序 5订单金额倒序 6：订单金额正序
+pageSize:总页码
+count://总条数
+}
+
+
+首页中渠道部分
+{
+orderType://产品线(0:全部 1：单团 2：散拼 3：游学 4：大客户 5：自由行 6：签证 7：机票 10：游轮)，
+searchDate: //时间 （1：今日 2：本周 3：本月 4：全部 自定义："2016-01-01+2016-02-08"），
+analysisType://分析类型（1：订单数，2：收客人数，3：订单金额）
+}
+returnData:{
+list:[{
+agentName://渠道名称
+orderNum://订单数
+percent：//百分比
+}]，
+orderOtherNum://其他总数
+}
+
+
+销售统计分析：
+1.首页ajax请求：
+url：${ctx}/statistic/getSaleTop
+param:
+orderType://产品线(0:全部 1：单团 2：散拼 3：游学 4：大客户 5：自由行 6：签证 7：机票 10：游轮)，
+searchDate: //时间 （1：今日 2：本周 3：本月 4：全部 自定义："2016-01-01+2016-02-08"），
+analysisType://分析类型（1：订单数，2：收客人数，3：订单金额）
+
+return：
+
+{
+"saleData": [{
+"saleName": "张三",
+"saleId": 1001,
+"saleNum": 24
+},
+{
+"saleName": "李四",
+"saleId": 1002,
+"saleNum": 10
+},
+{
+"saleName": "王五",
+"saleId": 1003,
+"saleNum": 6
+}],
+"otherData":500(number)
+}
+
+2.跳转到销售统计详情页面：
+url：${ctx}/statistic/saleList
+param:
+orderType://产品类型（类似：0:全部 1：单团 2：散拼 3：游学 4：大客户 5：自由行 6：签证 7：机票 10：游轮）
+searchDate: //时间 （1：今日 2：本周 3：本月 4：全部 自定义："2016-01-01+2016-02-08"）
+analysisType://分析类型（1：订单数，2：收客人数，3：订单金额）
+saleName:销售名称
+orderNumBegin:订单数开始
+orderNumEnd：订单数结束
+personNumBegin：收客人数开始
+personNumEnd：收客人数结束
+orderMoneyBegin：订单金额开始
+orderMoneyEnd：订单金额结束
+orderByType：按什么排序，1订单数，2收客人数，3订单金额。（此处取值与分析类型的值对应：1：订单数，2：收客人数，3：订单金额）
+orderByVal：0升序，1降序
+
+return：
+{
+param:{ -- 参数回显
+dateType:时间范围类别：0或者不传,1,2,3,4,5,6 --> 全部，今天，本周，本月，本年，自定义;
+-- 如果时间类别是自定义需传入下面两个参数：
+beginDate:
+endDate:
+saleName:销售名称
+orderNumBegin:订单数开始
+orderNumEnd：订单数结束
+personNumBegin：收客人数开始
+personNumEnd：收客人数结束
+orderMoneyBegin：订单金额开始
+orderMoneyEnd：订单金额结束
+},
+list:[{ -- 列表数据数组
+saleName：销售名称
+orderNum：订单数
+personNum：收客人数
+orderMoney：订单金额
+}],
+sumData:{ -- 合计信息
+orderNumTotal：订单总数
+personNumTotal：收客总人数
+orderMoneyTotal：订单总金额
+}
+pageInfo：{
+pageNo:当前页
+pageSize：每页几条
+totalTount：总记录数
+}
+}
+
+
+</body>
+</html>

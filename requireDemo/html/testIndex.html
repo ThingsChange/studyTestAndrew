@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <!-- data-main 是异步加载-->
-    <script data-main="../main.js" src="../require.js"></script>
+    <script defer async="true" data-main="../main.js" src="../require.js"></script>
 </head>
 <body>
 <ul class="fa-ul">
@@ -22,7 +22,8 @@
 </body>
 <script>
     function test() {
-        require(['jquery','angular','underscore','util','notAmd'],function ($,angular,_,ut_il,notAmd) {
+        //require()异步加载数组中的模块，浏览器不会失去响应；它指定的回调函数，只有前面的模块都加载成功后，才会运行，解决了依赖性的问题。
+        require(['angular','underscore','util','notAmd','jquery'],function (angular,_,ut_il,notAmd,$) {
             $('body').css('backgroundColor','green');
             ut_il.show();
 //            ut_il.message();
