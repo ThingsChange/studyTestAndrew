@@ -15,6 +15,15 @@
             <li><strong>{{staff.first}}</strong></li>
             <li><strong class="" ng-class="{'red':isRed,'lessblack':!isRed}">{{staff.second}}</strong>&nbsp;&nbsp;&nbsp;<strong ng-class="{'green':isGreen,'lessblack':!isGreen}">{{staff.secondEnd}}</strong></li>
             <li><strong ng-click="tip()" >{{staff.third}}</strong></li>
+            <li><strong ng-class="{'yellow':isYellow}" >{{staff.fourth}}</strong></li>
+        </ul>
+    </div>
+    <div ng-controller="myCtrl2">
+        <ul>
+            <li><strong>{{staff.first}}</strong></li>
+            <li><strong class="" ng-class="{'red':isRed,'lessblack':!isRed}">{{staff.second}}</strong>&nbsp;&nbsp;&nbsp;<strong ng-class="{'green':isGreen,'lessblack':!isGreen}">{{staff.secondEnd}}</strong></li>
+            <li><strong ng-click="tip()" >{{staff.third}}</strong></li>
+            <li><strong >{{staff.fourth}}</strong></li>
         </ul>
     </div>
 </body>

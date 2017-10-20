@@ -3,8 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .class1{
+            background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+            width:220px;
+            line-height: 30px;
+        }
+        .class2{
+            text-indent:15px;
+        }
+        .class3{
+            text-indent:30px;
+        }
+        .class4{
+            text-indent:50px;
+        }
+
+       /* .box {
+            position: relative;
+            width: 59%;
+            height: 85px;
+            text-align: center;
+            color: #fff;
+            !*background-color: #27ae60;*!
+            background-image: linear-gradient(120deg, #fbc2eb 0%, #a6c1ee 100%);
+        }*/
+        .box:after {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -100px;
+            z-index: -1;
+            content: ' ';
+            height: 200px;
+            width: 100%;
+            border-radius: 0 0 50% 50%;
+            background-image: linear-gradient(120deg, #fbc2eb 0%, #a6c1ee 100%);
+        }
+
+        /*.self-center{
+            font-size: 20px;
+            float: left;
+            text-align: left;
+        }*/
+        /*.self-center p span:first-child{
+            width: 75px;
+            display: inline-block;
+            text-align: right;
+        }*/
+        /*.poem-right{
+            float:right;
+            margin: 0px 38px 0 0;
+            text-align: right;
+            top:20px;
+        }*/
+        /*.poem-left{
+            float: left;
+            text-align: left;
+            padding-left: 36px;
+        }*/
+       /* .clear{
+            clear: both;
+        }*/
+    </style>
 </head>
+<script type="text/javascript" src="jsErrorRecord.js"></script>
+<script type="text/javascript" src="jsencrypt.min.js"></script>
+
 <body>
-qweq
+<!--<div class="class1">&nbsp;&nbsp;树林美丽、幽暗而深邃</BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但我有诺言尚待实现</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;还要奔行百里方可沉睡</div>
+
+
+
+<div style="background-image:linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);width:960px;line-height:30px;">
+    <p style="text-indent:15px;">
+        树林美丽、幽暗而深邃
+    </p>
+    <p style="text-indent:30px;">
+        但我有诺言尚待实现
+    </p>
+    <p style="text-indent:50px;">
+        还要奔行百里方可沉睡
+    </p>
+</div>-->
+
+
+
+
+<div style="position: relative;width: 59%; height: 85px;text-align: center;color: #fff;background-image: linear-gradient(120deg, #fbc2eb 0%, #a6c1ee 100%);">
+    <div style="float: left;text-align: left;padding-left: 36px;">
+        <p style="margin-right: 99px">The woods are lovely, dark and deep</p>
+        <p style="margin-right: 79px">But I have promises to keep</p>
+        <p style="margin-right: 29px">And miles to go before I sleep</p>
+    </div>
+
+    <div style="font-size: 20px;float: left;text-align: left;">
+        <p><span style="text-align: center;width: 75px;display: inline-block;text-align: right;">王利军</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span>JS开发工程师</span></p>
+        <p><span  style="text-align: center;width: 75px;display: inline-block;text-align: right;">Andrew</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span>Develop</span></p>
+    </div>
+
+    <div  style="float:right; margin: 0px 38px 0 0;text-align: right;top:20px;">
+        <p style="margin-right: 99px">树林美丽、幽暗而深邃</p>
+        <p style="margin-right: 79px">但我有诺言尚待实现</p>
+        <p style="margin-right: 29px">还要奔行百里方可沉睡</p>
+    </div>
+    <div style="clear: both;"></div>
+    <div style="position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -100px;
+            z-index: -1;
+            content: ' ';
+            height: 200px;
+            width: 100%;
+            border-radius: 0 0 50% 50%;
+            background-image: linear-gradient(120deg, #fbc2eb 0%, #a6c1ee 100%);"></div>
+
+</div>
+
+<button id="btn">点我</button>
+<script type="text/javascript" src="who.js"></script>
 </body>
 </html>

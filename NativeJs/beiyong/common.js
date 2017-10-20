@@ -39,6 +39,28 @@ if(true){
 A();
 
 
+    function f () {
+        console.log(1)
+    }
+
+    (function () {
+        if (false) {
+            function f() {
+                console.log(2)
+            }
+        }
+        f();
+    }());
+
+
+    const foo=Object.freeze({a:{x:1},b:2})
+    foo.b=3;
+    foo.a.x=2
+
+    ;
+    ;
+
+
 
     // alert("1,2,3,4,5,6".split(",")[2])
 })(window,document);

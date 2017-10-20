@@ -54,6 +54,8 @@ MyMoudle1.service("serviceService",function () {
     }
     return title;
 });
+
+
 //这是provider的构造函数的写法
 MyMoudle1.provider("providerService",function(){
     //此处做展示用，注入了其他的服务，还可以注入$http,用来与服务器做交互，比如从服务器取得数据
