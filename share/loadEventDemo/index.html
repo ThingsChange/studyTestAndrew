@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../jquery-3.1.0.min.js"></script>
+</head>
+<body>
+        <div id="lixiu"><span>礼秀</span></div>
+        <div id="lixiuhuang"><span>礼秀.黄</span></div>
+</body>
+<script>
+    //依次执行，神奇不
+    //所以，无论是否在同一元素上注册ready事件，都是按照注册的先后顺序执行。
+        $(window).ready(function () {
+            console.log("I'm window ");
+        })
+        $(document).ready(function () {
+            console.log("document");
+        })
+        $("#lixiu").ready(function () {
+            console.log("I'm lixiu ");
+        })
+        $("#lixiuhuang").ready(function () {
+            console.log("I'm lixiuhuang ");
+        })
+
+</script>
+
+
+</html>

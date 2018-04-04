@@ -90,7 +90,7 @@ var unboundSlice = Array.prototype.slice;
 var slice = Function.prototype.call.bind(unboundSlice);
 // ...
 slice(arguments);
-
+Array.prototype.slice.call(arguments);
 
 
 
@@ -226,34 +226,35 @@ addCurrying(1)(2)(3)()//
 //bind实现
 
 
-Function.prototype.bind=function(context){
-    if(typeof this !=='function'){
+Function.prototype.bind = function (context) {
+    if (typeof this !== 'function') {
         throw new Error('what is trying to be bound is not callable')
     }
-    var  outArg=[...arguments].slice(1);
-    var   that=this; //保存this，即调用bind方法的目标函数
-    var fNop=function(){};
-    var  bund=function(){
-        var  insideArg=[...arguments];
-        var  arg=outArg.concat(insideArg);
-        return  that.apply(this instanceof fNop && context ? this : context || window,arg);//这里的this是指的 新生成的函数调用的this 考虑到了构造函数这一说
+    var outArg = [...arguments].slice(1);
+    var that = this; //保存this，即调用bind方法的目标函数
+    var fNop = function () {
+    };
+    var bund = function () {
+        var insideArg = [...arguments];
+        var arg = outArg.concat(insideArg);
+        return that.apply(this instanceof fNop && context ? this : context || window, arg);//这里的this是指的 新生成的函数调用的this 考虑到了构造函数这一说
     }
-    fNop.prototype=this.prototype;
-    bund.prototype=new fNop();
-    return  bund;
+    fNop.prototype = this.prototype;
+    bund.prototype = new fNop();
+    return bund;
 }
 
 
 var func = {
-    func1: function(x,y) {
+    func1: function (x, y) {
         this.func2();
     },
-    func2: function() {
+    func2: function () {
         console.log("Im func2");
     }
 };
 
 // setTimeout(func.func1, 1000);
 // setTimeout(func.func1.bind(func), 2000);
-var gouzao=func.func1.bind(func);
+var gouzao = func.func1.bind(func);
 new gouzao();

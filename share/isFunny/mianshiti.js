@@ -28,3 +28,9 @@ getName();     //1
 new Foo.getName();//2
 new Foo().getName();//3
 new new Foo().getName();//3
+var x={ o : {
+    fn:() => {
+        console.log(this)
+    }
+}}
+x
