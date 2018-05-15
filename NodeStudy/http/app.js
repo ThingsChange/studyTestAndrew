@@ -3,6 +3,7 @@
  */
 var express = require('express');
 var url=require('url');
+let fs=require('fs');
 var  doSomeThing=function () {
     new Date().getTime();
 }
@@ -23,10 +24,23 @@ app.get('/qy',function (req,res) {
 })
 
 app.get('/qyNative',function (req,res) {
-    // res.setHeader("Access-Control-Allow-Origin", "http://www.lnckk.com");
+     res.setHeader("Access-Control-Allow-Origin", "http://www.lnckk.com");
     let callback=req.query['callback'];
     console.log(req.query['callback']);
     res.send(callback+'('+new Date().getTime()+',2)');
 })
 
+app.get('/admin/api/staging/companyAudit',function (req,res) {
+/*    console.log(1234);
+    // res.setHeader("Access-Control-Allow-Origin", "http://www.lnckk.com");
+    let callback=req.query['callback'];
+    console.log(req.query['callback']);
+    res.send(callback+'('+new Date().getTime()+',2)');*/
+    fs.readFile('./FeHelper-20180508163419.json','utf8',function (err, data) {
+        console.log(123);
+        if(err) console.log(err);
+        var test1=JSON.parse(data);
+        res.send(test1);
 
+    })
+})

@@ -15,5 +15,9 @@
         setTimeout("test('"+ obj +"')",1000);
     }
     test(obj)
+
+    setTimeout(function () {while(true){}},6000)
+    setTimeout(function () {console.log(1);},10000)
+    setTimeout(function () {console.log(2) },5000)
 </script>
 </html>

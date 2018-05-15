@@ -1,0 +1,141 @@
+{
+    "code": 10000,
+    "status_code": 0,
+    "message": "",
+    "data": {
+        "list": [
+            {
+                "id": 211,
+                "phonenum": "16820080125",
+                "userType": "公司类",
+                "storeName": "白堆子企业",
+                "relation": "",
+                "busineseeLienceNo": "998098976754565412",
+                "legalName": "齐梦香",
+                "commitAuthDate": "2018-04-24 17:32:06",
+                "isStaging": "审核通过",
+                "status": "未查询到结果",
+                "completeAuthDate": "2018-04-25 10:56:54"
+            },
+            {
+                "id": 210,
+                "phonenum": "16845450202",
+                "userType": "公司类",
+                "storeName": "企业测试202",
+                "relation": "",
+                "busineseeLienceNo": "345456465756776867",
+                "legalName": "规范化个",
+                "commitAuthDate": "2018-01-26 14:26:52",
+                "isStaging": "审核通过",
+                "status": "未查询到结果",
+                "completeAuthDate": "2018-01-26 14:27:20"
+            },
+            {
+                "id": 209,
+                "phonenum": "16845450206",
+                "userType": "公司类",
+                "storeName": "",
+                "relation": "",
+                "busineseeLienceNo": "",
+                "legalName": "",
+                "commitAuthDate": "2018-01-26 13:51:48",
+                "isStaging": "审核通过",
+                "status": "未查询到结果",
+                "completeAuthDate": "2018-01-26 13:54:02"
+            },
+            {
+                "id": 208,
+                "phonenum": "16820180223",
+                "userType": "公司类",
+                "storeName": "支持分期企业",
+                "relation": "",
+                "busineseeLienceNo": "110108005666547",
+                "legalName": "袁冰海",
+                "commitAuthDate": "2018-01-15 15:15:11",
+                "isStaging": "审核通过",
+                "status": "未查询到结果",
+                "completeAuthDate": "2018-01-15 15:26:34"
+            },
+            {
+                "id": 207,
+                "phonenum": "16891273149",
+                "userType": "公司类",
+                "storeName": "张雪公司",
+                "relation": "总部",
+                "busineseeLienceNo": "158964256958741",
+                "legalName": "张雪",
+                "commitAuthDate": "2018-01-09 15:09:18",
+                "isStaging": "审核通过",
+                "status": "未查询到结果",
+                "completeAuthDate": "2018-01-09 15:11:09"
+            },
+            {
+                "id": 206,
+                "phonenum": "16891273147",
+                "userType": "公司类",
+                "storeName": "第一个商户账号",
+                "relation": "总部",
+                "busineseeLienceNo": "AAAAAABBBBBBB",
+                "legalName": "商户账号",
+                "commitAuthDate": "2018-01-09 13:57:24",
+                "isStaging": "审核通过",
+                "status": "未查询到结果",
+                "completeAuthDate": "2018-01-09 13:59:45"
+            },
+            {
+                "id": 205,
+                "phonenum": "16891273146",
+                "userType": "公司类",
+                "storeName": "第一号企业",
+                "relation": "总部",
+                "busineseeLienceNo": "SSSSSSSSSS",
+                "legalName": "一号企业法人",
+                "commitAuthDate": "2018-01-09 12:38:17",
+                "isStaging": "审核通过",
+                "status": "未查询到结果",
+                "completeAuthDate": "2018-01-09 12:42:01"
+            },
+            {
+                "id": 204,
+                "phonenum": "16895410004",
+                "userType": "公司类",
+                "storeName": "一号企业No.1",
+                "relation": "",
+                "busineseeLienceNo": "FESWSFSADGFDSGDS45",
+                "legalName": "温志霞",
+                "commitAuthDate": "2018-01-03 11:29:25",
+                "isStaging": "审核通过",
+                "status": "未查询到结果",
+                "completeAuthDate": "2018-01-03 11:34:21"
+            },
+            {
+                "id": 203,
+                "phonenum": "16895410003",
+                "userType": "公司类",
+                "storeName": "三号企业",
+                "relation": "总部",
+                "busineseeLienceNo": "54SD5FDSGDSGSDFSDG",
+                "legalName": "三号企业法人",
+                "commitAuthDate": "2017-12-29 16:35:40",
+                "isStaging": "审核通过",
+                "status": "未查询到结果",
+                "completeAuthDate": "2017-12-29 16:37:51"
+            },
+            {
+                "id": 202,
+                "phonenum": "16895410001",
+                "userType": "公司类",
+                "storeName": "一二三四五",
+                "relation": "总部",
+                "busineseeLienceNo": "SFSDFSD45521215DSD",
+                "legalName": "张小一",
+                "commitAuthDate": "2017-12-29 14:48:31",
+                "isStaging": "审核通过",
+                "status": "未查询到结果",
+                "completeAuthDate": "2017-12-29 14:54:04"
+            }
+        ],
+        "count": 157,
+        "total": 10
+    }
+}

@@ -9,6 +9,11 @@
 
 <div id="app">
     <p>{{ message }}</p>
+    <ul>
+        <comment :is="currentView"></comment>
+        <abc></abc>
+    <!--    <li is="abc"></li>-->
+    </ul>
 </div>
 
 <script type="text/javascript">
@@ -16,7 +21,19 @@
     var app = new Vue({
         el: '#app',
         data: {
-            message : "xuxiao is boy"
+            message : "",
+            currentView:'aaa'
+        },
+        components:{
+            aaa:{
+                template:'<p>你好，这是一个示例</p>'
+            },
+            abc:{
+                data:function(){
+                  return {message:'别烦我'}
+                },
+                template:'<h1>{{message}}</h1>'
+            }
         },
         beforeCreate: function () {
             console.group('beforeCreate 创建前状态===============》');
@@ -43,6 +60,10 @@
             console.log(this.$el);
             console.log("%c%s", "color:red","data   : " + this.$data); //已被初始化
             console.log("%c%s", "color:red","message: " + this.message); //已被初始化
+            let self=this;
+            setTimeout(function () {
+                self.message='xuxiao is boy';
+            },3000)
         },
         beforeUpdate: function () {
             console.group('beforeUpdate 更新前状态===============》');
