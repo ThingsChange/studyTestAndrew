@@ -24,7 +24,16 @@ app.get('/qy',function (req,res) {
 })
 
 app.get('/qyNative',function (req,res) {
-     res.setHeader("Access-Control-Allow-Origin", "http://www.lnckk.com");
+    console.log(req);
+    res.set({
+        "Access-Control-Allow-Origin":"http://localhost:8080",
+        "Access-Control-Allow-Methods":"*",
+        "Access-Control-Allow-Headers":"X-Custom-Header",
+        "Access-Control-Allow-Credentials": true
+    })
+     // res.setHeader("Access-Control-Allow-Origin", "http://www.lnckk.com");
+     // res.setHeader("Access-Control-Allow-Origin","http://localhost:8080");
+
     let callback=req.query['callback'];
     console.log(req.query['callback']);
     res.send(callback+'('+new Date().getTime()+',2)');

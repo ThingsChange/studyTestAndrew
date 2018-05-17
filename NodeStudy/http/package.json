@@ -4,6 +4,7 @@
   "author": "qingyun",
   "description": "晴云在学习node.js过程中的demo",
   "devDependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "hotnode": "0.0.8"
   }
 }
