@@ -8,6 +8,7 @@
     "hotnode": "0.0.8"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "http": "0.0.0",
     "socket.io": "^2.1.1"
   }

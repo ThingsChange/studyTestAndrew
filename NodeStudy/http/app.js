@@ -2,17 +2,38 @@
  * Created by wanglijun on 2016/12/29.
  */
 var express = require('express');
+var bodyParser=require("body-parser");
 var url=require('url');
 let fs=require('fs');
 var  doSomeThing=function () {
     new Date().getTime();
 }
 var app=new express();
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json())
 app.use(express.static(__dirname + '/public'))
 
 app.get('/',function (req,res) {
     res.send('hello, qingyun');
 });
+app.post('/login',function(req,res){
+    console.log(req.query);
+    console.log(req.body);
+    let params=req.body;
+    if(params.name=='q'&&params.pwd=='123'){
+        res.send({
+            loginStatus:true,
+            code:10000,
+            message:'登陆成功'
+        })
+    }else{
+        res.send({
+            loginStatus:false,
+            code:10001,
+            message:'用户名或密码错误'
+        })
+    }
+})
 app.get('/lewen',function (req,res) {
     res.send('hello, Lewen,do you finish your work?');
 });
@@ -25,7 +46,7 @@ app.get('/qy',function (req,res) {
     res.send(callback+'('+new Date().getTime()+')');
 })
 app.all('*', function(req, res, next) {
-    // res.set("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.set("Access-Control-Allow-Origin", "http://localhost:8080");
     res.set("Access-Control-Allow-Headers", "X-Custom-Header");
     res.set("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.set("X-Powered-By",' 3.2.1')
