@@ -1,0 +1,15 @@
+{
+  "name": "lesson1",
+  "version": "0.0.1",
+  "author": "qingyun",
+  "description": "晴云在学习node.js过程中的demo",
+  "devDependencies": {
+    "express": "^4.16.3",
+    "koa": "^2.5.1",
+    "koa-router": "^7.4.0",
+    "request": "^2.85.0"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security"
+  }
+}

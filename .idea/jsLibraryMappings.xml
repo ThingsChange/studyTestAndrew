@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{angular, angular-DefinitelyTyped}" />
+    <excludedPredefinedLibrary name="studyTestAndrew/Demo/angularDemo/damoAngularDemo/AngularJS实战第二章第七节综合应用BookStore源代码/BookStore/node_modules" />
+    <excludedPredefinedLibrary name="studyTestAndrew/Demo/angularDemo/damoAngularDemo/AngularJS实战第二章第三节双向数据绑定源代码-BookStore/node_modules" />
+    <excludedPredefinedLibrary name="studyTestAndrew/Demo/angularDemo/damoAngularDemo/AngularJS实战第二章第二节路由、模块、依赖注入源代码-BookStore/node_modules" />
   </component>
 </project>

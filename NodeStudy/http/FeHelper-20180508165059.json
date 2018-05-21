@@ -1,0 +1,372 @@
+/* https://ult-admin.chekk.com/admin/api/staging/companyAudit/211 */
+{
+    "data": {
+        "id": 211,
+        "userId": 1469,
+        "isStaging": 2,
+        "hasAllPledge": 1,
+        "runStatus": 1,
+        "allPledgeRunStatus": 1,
+        "isOpenMstag": 1,
+        "classifyId": 1,
+        "maxStagingLimit": 300000,
+        "usedStagingLimit": 0,
+        "stagingScale": 0,
+        "maxStagingAmount": 0,
+        "stagPledgePeriods": "{\"12\":[2,3,4,5,6,7,8,9,10,11]}",
+        "stagingFailMessage": "",
+        "stagingOffMessage": "",
+        "tel": "16888880001",
+        "authImg": [
+            "https://ult-file.chekk.com/uploads/5b/7d/88/5a/1c/45/8d/18/5b127dfd884d5a821cf645fe8d0f1881.jpeg"
+        ],
+        "commitAuthDate": "2018-04-24 17:32:06",
+        "completeAuthDate": "2018-04-25 10:56:54",
+        "firstAuthDate": "2018-04-25 10:56:54",
+        "pledgeAllAuditTime": "0000-00-00 00:00:00",
+        "createdTime": "2018-04-24 17:32:06",
+        "lastModTime": "2018-04-25 10:56:54",
+        "userType": "公司类",
+        "has_one_company": {
+            "id": 584,
+            "userId": 1469,
+            "userType": "company",
+            "storeName": "白堆子企业",
+            "storeShortName": "",
+            "relation": "",
+            "busineseeLienceNo": "998098976754565412",
+            "countryId": 1,
+            "provinceId": 0,
+            "cityId": 0,
+            "regionId": 0,
+            "address": "",
+            "profile": "",
+            "businessMark": "",
+            "legalFile": [
+                "http://ult-admin.chekk.com/image/26244baa-8592-4b6b-b524-363ec5b956dc"
+            ],
+            "legalName": "齐梦香",
+            "idCardCode": "513437198108316546",
+            "mark": "",
+            "isStaging": 0,
+            "stagingScale": 0,
+            "maxStagingAmount": 0,
+            "stagingFailMessage": "",
+            "guid": "",
+            "updateTime": "2018-04-27 11:21:10"
+        }
+    },
+    "group": [
+        {
+            "id": 1,
+            "name": "测试分组",
+            "stagingScale": 30,
+            "maxStagingAmount": 60000,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 00:00:00",
+            "lastModTime": "2017-04-17 10:28:17"
+        },
+        {
+            "id": 2,
+            "name": "aaaa",
+            "stagingScale": 1,
+            "maxStagingAmount": 1,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 16:54:37",
+            "lastModTime": "2017-04-14 16:54:37"
+        },
+        {
+            "id": 3,
+            "name": "1222",
+            "stagingScale": 22,
+            "maxStagingAmount": 2222,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 16:56:24",
+            "lastModTime": "2017-04-14 16:56:24"
+        },
+        {
+            "id": 4,
+            "name": "33",
+            "stagingScale": 66,
+            "maxStagingAmount": 66,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 16:57:43",
+            "lastModTime": "2017-04-14 16:57:43"
+        },
+        {
+            "id": 5,
+            "name": "334",
+            "stagingScale": 22,
+            "maxStagingAmount": 22,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 17:00:07",
+            "lastModTime": "2017-04-14 17:00:07"
+        },
+        {
+            "id": 6,
+            "name": "12345678901234567890",
+            "stagingScale": 40,
+            "maxStagingAmount": 100000,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 17:01:16",
+            "lastModTime": "2017-04-14 17:01:16"
+        },
+        {
+            "id": 7,
+            "name": "很快就会",
+            "stagingScale": 36,
+            "maxStagingAmount": 600000,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 17:12:18",
+            "lastModTime": "2017-04-14 17:16:26"
+        },
+        {
+            "id": 8,
+            "name": "888",
+            "stagingScale": 28,
+            "maxStagingAmount": 70000,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 17:20:05",
+            "lastModTime": "2017-04-14 17:20:05"
+        },
+        {
+            "id": 9,
+            "name": "1",
+            "stagingScale": 3,
+            "maxStagingAmount": 3,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 17:20:59",
+            "lastModTime": "2017-04-14 17:20:59"
+        },
+        {
+            "id": 10,
+            "name": "2",
+            "stagingScale": 2,
+            "maxStagingAmount": 2,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 17:21:06",
+            "lastModTime": "2017-04-14 17:21:06"
+        },
+        {
+            "id": 11,
+            "name": "333",
+            "stagingScale": 33,
+            "maxStagingAmount": 33,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 17:21:15",
+            "lastModTime": "2017-04-14 17:21:15"
+        },
+        {
+            "id": 12,
+            "name": "44",
+            "stagingScale": 4,
+            "maxStagingAmount": 4,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 17:21:22",
+            "lastModTime": "2017-04-14 17:21:22"
+        },
+        {
+            "id": 13,
+            "name": "55test",
+            "stagingScale": 66,
+            "maxStagingAmount": 555555,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 17:22:50",
+            "lastModTime": "2017-04-17 15:05:41"
+        },
+        {
+            "id": 14,
+            "name": "6",
+            "stagingScale": 6,
+            "maxStagingAmount": 600000,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 17:22:58",
+            "lastModTime": "2017-04-14 17:22:58"
+        },
+        {
+            "id": 15,
+            "name": "7",
+            "stagingScale": 6,
+            "maxStagingAmount": 23,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 17:23:06",
+            "lastModTime": "2017-04-18 10:36:32"
+        },
+        {
+            "id": 16,
+            "name": "66",
+            "stagingScale": 5,
+            "maxStagingAmount": 6,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-14 17:23:15",
+            "lastModTime": "2017-04-14 17:23:15"
+        },
+        {
+            "id": 17,
+            "name": "12312",
+            "stagingScale": 11,
+            "maxStagingAmount": 1111111,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-17 09:58:58",
+            "lastModTime": "2017-04-17 09:58:58"
+        },
+        {
+            "id": 18,
+            "name": "test111111111111111",
+            "stagingScale": 30,
+            "maxStagingAmount": 60000,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-17 10:34:37",
+            "lastModTime": "2017-04-17 15:04:15"
+        },
+        {
+            "id": 19,
+            "name": "886",
+            "stagingScale": 45,
+            "maxStagingAmount": 60000,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-18 11:22:02",
+            "lastModTime": "2017-04-18 13:33:13"
+        },
+        {
+            "id": 20,
+            "name": "56456",
+            "stagingScale": 30,
+            "maxStagingAmount": 60000,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-18 13:31:59",
+            "lastModTime": "2017-04-18 13:31:59"
+        },
+        {
+            "id": 21,
+            "name": "jjjjj",
+            "stagingScale": 10,
+            "maxStagingAmount": 1000,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-18 13:36:03",
+            "lastModTime": "2017-04-18 13:36:03"
+        },
+        {
+            "id": 22,
+            "name": "matthew的分期政策",
+            "stagingScale": 35,
+            "maxStagingAmount": 80000,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-18 14:39:45",
+            "lastModTime": "2017-04-18 14:42:37"
+        },
+        {
+            "id": 23,
+            "name": "11",
+            "stagingScale": 1,
+            "maxStagingAmount": 100,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-18 14:39:58",
+            "lastModTime": "2017-04-18 14:39:58"
+        },
+        {
+            "id": 24,
+            "name": "1111",
+            "stagingScale": 60,
+            "maxStagingAmount": 50000,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-04-19 11:00:08",
+            "lastModTime": "2017-04-19 11:00:08"
+        },
+        {
+            "id": 25,
+            "name": "121323434",
+            "stagingScale": 66,
+            "maxStagingAmount": 111111,
+            "maxStagingLimit": 1000000,
+            "createdTime": "2017-04-24 11:46:50",
+            "lastModTime": "2017-05-17 15:29:32"
+        },
+        {
+            "id": 26,
+            "name": "ult-matthew",
+            "stagingScale": 30,
+            "maxStagingAmount": 60000,
+            "maxStagingLimit": 300000,
+            "createdTime": "2017-05-17 15:08:43",
+            "lastModTime": "2017-05-17 15:22:00"
+        },
+        {
+            "id": 27,
+            "name": "ffftest",
+            "stagingScale": 60,
+            "maxStagingAmount": 80000,
+            "maxStagingLimit": 1000000,
+            "createdTime": "2017-05-17 15:13:20",
+            "lastModTime": "2017-05-17 15:13:20"
+        },
+        {
+            "id": 28,
+            "name": "ffftest1",
+            "stagingScale": 30,
+            "maxStagingAmount": 8000,
+            "maxStagingLimit": 100000000,
+            "createdTime": "2017-05-17 15:17:16",
+            "lastModTime": "2017-05-17 15:17:16"
+        },
+        {
+            "id": 29,
+            "name": "ffftest2",
+            "stagingScale": 80,
+            "maxStagingAmount": 1000000,
+            "maxStagingLimit": 100000,
+            "createdTime": "2017-05-17 15:31:00",
+            "lastModTime": "2017-05-17 15:31:00"
+        },
+        {
+            "id": 30,
+            "name": "ffftest3",
+            "stagingScale": 60,
+            "maxStagingAmount": 5000000,
+            "maxStagingLimit": 80000000,
+            "createdTime": "2017-05-17 17:20:01",
+            "lastModTime": "2017-05-17 17:20:01"
+        },
+        {
+            "id": 31,
+            "name": "ffffftest",
+            "stagingScale": 60,
+            "maxStagingAmount": 10000000,
+            "maxStagingLimit": 10000000,
+            "createdTime": "2017-05-18 09:55:59",
+            "lastModTime": "2017-05-18 09:59:05"
+        },
+        {
+            "id": 32,
+            "name": "111",
+            "stagingScale": 10,
+            "maxStagingAmount": 50000,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-08-08 14:15:37",
+            "lastModTime": "2017-11-07 10:07:41"
+        },
+        {
+            "id": 33,
+            "name": "3343",
+            "stagingScale": 95,
+            "maxStagingAmount": 100000,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-09-05 14:17:11",
+            "lastModTime": "2017-09-05 14:17:11"
+        },
+        {
+            "id": 34,
+            "name": "测试",
+            "stagingScale": 50,
+            "maxStagingAmount": 100000,
+            "maxStagingLimit": 0,
+            "createdTime": "2017-12-29 14:51:29",
+            "lastModTime": "2017-12-29 14:51:29"
+        }
+    ],
+    "defaultSupportPledgeList": [
+        2,
+        10,
+        11
+    ]
+}
