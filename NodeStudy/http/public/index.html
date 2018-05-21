@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <body>
+            <div>
+                <span id="abc">postMessage传来的消息如下</span>
+            </div>
+    </body>
+
+<script>
+    window.addEventListener('message', function(e) {
+    // window.document.write('收到消息：'+e.data);
+        window.document.getElementById('abc').innerHTML=e.data.text;
+    window.parent.postMessage("{'data':'hello demo1'}", 'http://localhost:8080');
+    }, false);
+</script>
+</html>

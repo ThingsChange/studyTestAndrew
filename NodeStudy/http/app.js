@@ -8,6 +8,8 @@ var  doSomeThing=function () {
     new Date().getTime();
 }
 var app=new express();
+app.use(express.static(__dirname + '/public'))
+
 app.get('/',function (req,res) {
     res.send('hello, qingyun');
 });
@@ -22,23 +24,28 @@ app.get('/qy',function (req,res) {
     console.log(req.query['callback']);
     res.send(callback+'('+new Date().getTime()+')');
 })
-
-app.get('/qyNative',function (req,res) {
+app.all('*', function(req, res, next) {
+    // res.set("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.set("Access-Control-Allow-Headers", "X-Custom-Header");
+    res.set("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.set("X-Powered-By",' 3.2.1')
+    res.set("Content-Type", "application/json;charset=utf-8");
+    next();
+});
+app.put('/qyNative',function (req,res) {
     console.log(req);
-    res.set({
-        "Access-Control-Allow-Origin":"http://localhost:8080",
-        "Access-Control-Allow-Methods":"*",
-        "Access-Control-Allow-Headers":"X-Custom-Header",
-        "Access-Control-Allow-Credentials": true
-    })
-     // res.setHeader("Access-Control-Allow-Origin", "http://www.lnckk.com");
-     // res.setHeader("Access-Control-Allow-Origin","http://localhost:8080");
-
     let callback=req.query['callback'];
     console.log(req.query['callback']);
+    console.log(res);
     res.send(callback+'('+new Date().getTime()+',2)');
 })
-
+app.get('/qyNativeJquery',function (req,res) {
+    res.set("Access-Control-Allow-Origin", "http://localhost:8080");
+    let callback=req.query['callback'];
+    console.log(callback);
+    // console.log(res);
+    res.send(callback+'('+new Date().getTime()+',2)');
+})
 app.get('/admin/api/staging/companyAudit',function (req,res) {
 /*    console.log(1234);
     // res.setHeader("Access-Control-Allow-Origin", "http://www.lnckk.com");
