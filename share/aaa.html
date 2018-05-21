@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .bcColor{
+            background-color: red;
+        }
+    </style>
+    <script>
+        // JavaScript代码块1
+        alert(a);//会报错啊。因为JavaScript标签是按照块执行的。也就是说每一个script标签就是一个代码块，JavaScript解释器
+        //会对改代码块进行预编译、再执行。完毕之后，浏览器会继续进行html解析，同时JavaScript解释器也准备好处理下一个代码块。
+        //而此时的a还未定义
+        f();
+    </script>
+
+    <script>
+        // JavaScript代码块2
+        var a =1;
+
+        function f(){
+
+            alert(1);
+
+        }
+
+    </script>
+    <script src="../common/js/jquery-1.9.1.min.js"></script>
+    <script>
+        window.onload=function () {
+            console.log(1)
+        }
+        window.onload=function () {
+            console.log(11)
+        }//当有多个的时候，只有最后一个有效果
+        /*$(document).ready(function () {
+            alert('1243');
+        })*/
+    </script>
+</head>
+<body>
+<div id="obj1" >
+    <input  type="text"/>
+</div>
+<ul id="obj2">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+</body>
+<script>
+    $("#obj1>input").on('blur',function () {
+        var inputValue=$(this).val();
+        $('ul li').each(function () {
+            if ($(this).text()==inputValue){
+                $(this).addClass('bcColor').siblings().removeClass('bcColor');
+            }
+        })
+    })
+</script>
+</html>
+<!--在输入框输入一个值，当光标离开输入框时，检测输入的值和下面某个li的值是否一样，当一样时让这个li背景颜色变成红色.(要求用jQuery实现)-->
