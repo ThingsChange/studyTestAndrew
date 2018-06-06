@@ -35,3 +35,5 @@ $(function(){
         }
     });
 })
+
+$("div[instanceid='25455506'] div.J_htmlContent a").click();

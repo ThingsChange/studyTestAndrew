@@ -1,0 +1,12 @@
+<div>
+  <form id="fileForm" enctype="multipart/form-data">
+    <div class='control-label ng-binding' style="padding-top:14px;">{{myData.labelName}}</div>
+    <div class='controls checkbox-group checkbox-box'>
+      <input type="text" ng-model="uploadfile">{{uploadfile}}
+      <input id="chooseFileBtn" type="file" multiple="multiple" />
+
+      <input class="btn btn-bigger btn-primary" type="button" ng-model="uploadfile" ng-click="chooseFile()" name="" id="" value="选择">
+      <input class="btn btn-bigger btn-primary" type="button" name="" id="" value="上传" ng-click="startUploadFile()">
+    </div>
+  </form>
+</div>
