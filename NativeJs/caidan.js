@@ -56,7 +56,8 @@ $(document).shortcuts({
             if(userSelection=='abc'){
                 console.log('牛逼');
             }
-            findInPage('abc');
+
+/*            findInPage('abc');
             function findInPage(str)
             {
                 var txt, i, found,n = 0;
@@ -91,7 +92,7 @@ $(document).shortcuts({
                     }
                 }
                 return false;
-            }
+            }*/
         }
     }
 });
