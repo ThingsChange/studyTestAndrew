@@ -33,7 +33,7 @@ module.exports = {
 //Eslint总是推荐用ES6的字符串模板来拼接字符串，而不能用加号，此处关闭了
     'prefer-template': 'off',
     'spaced-comment':[2,"always"],
-    "semi": 0,
+    // "semi": 0,
     // don't require .vue extension when importing
     'import/extensions': [
       'error',

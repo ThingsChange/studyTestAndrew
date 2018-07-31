@@ -12,24 +12,24 @@
 *        当参数被累积修改到复合临界条件时，递归就结束。
  *        关键词：临界值、跳出口、入口
  **/
-var quickSort=function (arr) {
-  let length=arr.length;
-  //数组长度为1  或者数组长度为0的时候返回当前数组，
+var quickSort = function (arr) {
+  let length = arr.length
+  // 数组长度为1  或者数组长度为0的时候返回当前数组，
   // 记得返回的是数组，这个地方就是跳出递归的地方。
-  if(length<=1){
-    return arr;
+  if (length <= 1) {
+    return arr
   }
-  let middle=Math.floor(length/2);
-  //这个地方返回的是截取掉的数组，理论上应该取第一个值，但是数组跟数字比较的时候，数组会转换成数字，先调用 toString
-  let midValue=arr.splice(middle,1);
-  let leftArray=[],rightArray=[];
-  for(let i =0;i<arr.length;i++){
-    let temp=arr[i];
-    if(temp>midValue){
-      rightArray.push(temp);
-    }else{
-      leftArray.push(temp);
+  let middle = Math.floor(length / 2)
+  // 这个地方返回的是截取掉的数组，理论上应该取第一个值，但是数组跟数字比较的时候，数组会转换成数字，先调用 toString
+  let midValue = arr.splice(middle, 1)
+  let leftArray = [], rightArray = []
+  for (let i = 0; i < arr.length; i++) {
+    let temp = arr[i]
+    if (temp > midValue) {
+      rightArray.push(temp)
+    } else {
+      leftArray.push(temp)
     }
   }
-  return [].concat(quickSort(leftArray),midValue,quickSort(rightArray))
+  return [].concat(quickSort(leftArray), midValue, quickSort(rightArray))
 }
