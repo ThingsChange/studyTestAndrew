@@ -2,7 +2,7 @@
  *
  * @author  56477
  * @create 2018-03-29 16:09
- * @note 快速排序法
+ * @note 快速排序法 log(n)
  **/
 //快速排序（Quicksort）的Javascript实现
 let   quickSort=function(arr){
