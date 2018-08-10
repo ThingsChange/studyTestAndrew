@@ -22,7 +22,7 @@
 * e.g.  美国有硬币 d1=1,d2=5,d3=10,d4=25
 * 如果要找零36美分，请问至少需要几个硬币，用算法解出
 * */
-var coins=[1,5,10,25]
+/*var coins=[1,5,10,25]
 var dol=35
 function MinCoinChange(coins){
   var coins=coins;
@@ -55,4 +55,35 @@ function MinCoinChange(coins){
 }
 
 var minCoinChange=new MinCoinChange(coins)
-minCoinChange.makeChange(36)
+minCoinChange.makeChange(36)*/
+
+
+var coins=[1,5,10,25]
+var dol=35
+function MinCoinChangeNew(coins){
+  var cache=[];
+  let me=this;
+  this.makeChange=function (amount) {
+    if(!amount ){
+      return [];
+    }
+    if(cache[amount]){
+      return  cache[amount]
+    }
+    let min =[],newMin,newAmount
+    for (let i =0;i<coins.length;i++){
+      let coin=coins[i]
+        newAmount=amount-coin;
+      if(newAmount>=0){
+        newMin=me.makeChange(newAmount);
+      }
+      if((newMin.length<min.length-1||!min.length)&&(!newAmount||newMin.length)&&newAmount>=0){
+        min=[coin].concat(newMin)
+        console.log('new Min '+min+' for '+amount)
+      }
+    }
+    return (cache[amount]=min)
+  }
+}
+var minCoinChange=new MinCoinChangeNew(coins)
+minCoinChange.makeChange(dol)

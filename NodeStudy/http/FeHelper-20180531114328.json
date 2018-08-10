@@ -1,0 +1,67 @@
+{
+    "code": "00000",
+    "message": "成功",
+    "data": {
+        "content": [
+            {
+                "id": "182490b3-d14d-408b-a7d4-ed513c564140",
+                "createTime": "2018-01-11 03:59:30",
+                "updateTime": "2018-01-11 03:59:30",
+                "version": 1515643170968,
+                "logicalDel": 0,
+                "reportName": "借款查询-已违约",
+                "reportDescription": "借款查询-已违约",
+                "reportUrl": "jkywy",
+                "dataBaseMsg": "源库:qyd qyd qyd qyd qyd 源表:kypayaccount mt_loan_billing mt_loan mt_loan_reduce mt_loan_billing_detail ",
+                "reportSql": "SELECT DISTINCT ml.product_type, ml.close_time, ml.id, ml.id AS rowkey, ml.borrower, ml.file_number, ml.actual_repay_time, mlr.`status` AS derate_status, ml.`status` AS loan_status, ml.audit_type, ml.amount / 10000 AS amount, ml.sponsor_fee / 10000 AS sponsor_fee, mlb.due_principal / 10000 AS due_principal, mlb.due_interest / 10000 AS due_interest, mlb.due_penalty / 10000 AS due_penalty, mlb.due_late_fee / 10000 AS due_late_fee, mlb.repaid_amount / 10000 AS repaid_amount, mlb.principal / 10000 AS principal, mlb.interest / 10000 AS interest, mlbd.actual_principal / 10000 AS actual_principal, mlbd.actual_interest / 10000 AS actual_interest, mlbd.actual_penalty / 10000 AS actual_penalty, mlbd.actual_late_fee / 10000 AS actual_late_fee, mlr.reduce_penalty AS reduce_penalty, mlr.reduce_late_fee AS reduce_late_fee, ml.repay_date FROM qyd.mt_loan_reduce mlr LEFT JOIN qyd.mt_loan ml ON ml.id = mlr.loan_id AND mlr.type = 1 LEFT JOIN qyd.kypayaccount kp ON ml.borrower = kp.user_id LEFT JOIN qyd.mt_loan_billing mlb ON mlb.loan_id = ml.id LEFT JOIN qyd.mt_loan_billing_detail mlbd ON mlbd.billing_id = mlb.id WHERE mlr.logical_del = '0'",
+                "quartzTime": "30 16",
+                "quartzType": "everyDay",
+                "bsDb": "kydcdata",
+                "customMadeReportFields": null,
+                "bsTable": "jkinfods"
+            },
+            {
+                "id": "1b133f8e-a14c-4fe9-ab70-8396f26cc40d",
+                "createTime": "2018-01-10 07:57:56",
+                "updateTime": "2018-01-10 07:57:56",
+                "version": 1515571076578,
+                "logicalDel": 0,
+                "reportName": "轻易贷用户10",
+                "reportDescription": "轻易贷用户10",
+                "reportUrl": "userlimit1",
+                "dataBaseMsg": "源库:qyd 源表:user ",
+                "reportSql": "select * from qyd.user limit 10",
+                "quartzTime": null,
+                "quartzType": null,
+                "bsDb": "kydcdata",
+                "customMadeReportFields": null,
+                "bsTable": "test"
+            },
+            {
+                "id": "6509df07-3bcd-4d4a-8dd3-112649b6dae6",
+                "createTime": "2018-04-09 09:51:37",
+                "updateTime": "2018-04-09 09:51:37",
+                "version": 1523267497607,
+                "logicalDel": 0,
+                "reportName": "垫付宝会员名称与轻易贷kypayaccount表不一致的列表",
+                "reportDescription": "垫付宝会员名称与轻易贷kypayaccount表不一致的列表",
+                "reportUrl": "notsamewithqydanddfb",
+                "dataBaseMsg": "源库:qyd kpay_backend 源表:kypayaccount IndexUser ",
+                "reportSql": "select kk.kyFullName, uu.FullName,uu.SsoId from qyd.kypayaccount kk left join kb.IndexUser uu on kk.kyuserid = uu.UserId where kk.kyFullName <> uu.FullName ",
+                "quartzTime": null,
+                "quartzType": null,
+                "bsDb": "kydcdata",
+                "customMadeReportFields": "",
+                "bsTable": ""
+            }
+        ],
+        "last": true,
+        "totalPages": 1,
+        "totalElements": 3,
+        "numberOfElements": 3,
+        "sort": null,
+        "first": true,
+        "size": 10,
+        "number": 0
+    }
+}
