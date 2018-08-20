@@ -38,6 +38,9 @@ var obj={
   q:obj
 }
 async function  f() {
-  var a=await structuralClone(obj)
-console.log(a);
+  var a=await structuralClone(obj).then(data=>{
+    Promise.resolve(data);
+  })
+  return a;
 }
+var b=f();
