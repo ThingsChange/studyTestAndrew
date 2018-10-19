@@ -1,0 +1,44 @@
+[
+    {
+        "loggedInUser": 1000,
+        "date": "2018-09-28",
+        "investmentNum": 865,
+        "loanUserNum": 442
+    },
+    {
+        "loggedInUser": 900,
+        "date": "2018-09-29",
+        "investmentNum": 468,
+        "loanUserNum": 268
+    },
+    {
+        "loggedInUser": 649,
+        "date": "2018-09-30",
+        "investmentNum":598,
+        "loanUserNum": 354
+    },
+    {
+        "loggedInUser": 459,
+        "date": "2018-10-01",
+        "investmentNum": 102,
+        "loanUserNum": 402
+    },
+    {
+        "loggedInUser": 753,
+        "date": "2018-10-02",
+        "investmentNum": 465,
+        "loanUserNum": 215
+    },
+    {
+        "loggedInUser": 696,
+        "date": "2018-10-03",
+        "investmentNum": 269,
+        "loanUserNum": 384
+    },
+    {
+      "loggedInUser": 892,
+      "date": "2018-10-04",
+      "investmentNum":456,
+      "loanUserNum": 386
+    }
+]
