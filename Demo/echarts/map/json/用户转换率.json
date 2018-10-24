@@ -1,0 +1,22 @@
+[
+    {
+      "type":"注册",
+      "expected":100,
+      "actual":80
+    },
+  {
+    "type":"认证",
+    "expected":75,
+    "actual":60
+  },
+  {
+    "type":"交易",
+    "expected":50,
+    "actual":30
+  },
+  {
+    "type":"二次交易",
+    "expected":25,
+    "actual":10
+  }
+]

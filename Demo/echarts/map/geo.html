@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script type="text/javascript" src="./js/echarts.min.js" ></script>
+  <script type="text/javascript" src="./js/china.js" ></script>
+  <script type="text/javascript" src="./js/jquery-1.11.3.js" ></script>
+
+  <style type="text/css">
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    @font-face{
+      font-family: 'DINAlternate-Bold';
+      src : url('./fonts/DIN Alternate Bold(1).ttf');
+    }
+    @font-face {
+      font-family: 'PingFangSC-Regular';
+      src: url('./fonts/PingFang SC Regular.ttf');
+    }
+    #top{
+      background: url("./img/上边框.png");
+    }
+    .footer{
+      height: 40px;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left:0;
+      background: url("./img/上边框.png");
+      transform: rotate(180deg);
+      -ms-transform: rotate(180deg); /* IE 9 */
+      -webkit-transform: rotate(180deg); /* Safari and Chrome */
+      -o-transform: rotate(180deg); /* Opera */
+      -moz-transform: rotate(180deg); /* Firefox */
+    }
+    .turn-180{
+      transform: rotate(180deg);
+      -ms-transform: rotate(180deg); /* IE 9 */
+      -webkit-transform: rotate(180deg); /* Safari and Chrome */
+      -o-transform: rotate(180deg); /* Opera */
+      -moz-transform: rotate(180deg); /* Firefox */
+    }
+    .turn-90{
+      transform: rotate(90deg);
+      -ms-transform: rotate(90deg); /* IE 9 */
+      -webkit-transform: rotate(90deg); /* Safari and Chrome */
+      -o-transform: rotate(90deg); /* Opera */
+      -moz-transform: rotate(90deg); /* Firefox */
+    }
+    .turn-270{
+      transform: rotate(270deg);
+      -ms-transform: rotate(270deg); /* IE 9 */
+      -webkit-transform: rotate(270deg); /* Safari and Chrome */
+      -o-transform: rotate(270deg); /* Opera */
+      -moz-transform: rotate(270deg); /* Firefox */
+    }
+    .left-table{
+      background: url("./img/左侧表格.png");
+      height: 322px;
+      width: 380px;
+      color: white;
+      /*margin: 0 auto;*/
+      text-align: center;
+      margin: 0  0 20px;
+    }
+    .left-wrap{
+      /*width: 380px;*/
+      float: left;
+      width: 380px;
+      height: 999px;
+      margin: 0 20px ;
+    }
+    .left-table-title{
+      color:white;
+      font-family: 'PingFangSC-Regular';
+      text-align: center;
+      line-height:40px ;
+      font-size:20px;
+    }
+    #loginChange{
+      /*margin: 44px 15px 33px 11px ;*/
+      margin-top: 20px;
+      width: 380px;
+      height: 280px;
+    }
+    #userConversionRate{
+      /*margin: 44px 25px 33px 21px ;*/
+      /*width: 334px;*/
+      width: 380px;
+      height: 280px;
+    }
+    #backImg{
+      position: relative;
+      padding-bottom:41px;
+      background: url("./img/底色.png");
+      width:100%;
+      height:100%;
+      background-size: cover;
+      -moz-background-size: cover;
+      overflow: hidden
+    }
+    #middle-up{
+      position: inherit;
+      width:1080px;
+      height:680px;
+    }
+    .middle-wrap{
+      width:1080px;
+      height:680px;
+      position:relative;
+      float: left;
+    }
+    .middle-down{
+      width: 1080px;
+      height: 320px;
+      position:relative;
+      bottom:-4px;
+      background: url("./img/底部表格.png");
+    }
+    #provinceMsg{
+      width:220px;
+      height:150px;
+      /*float: left;*/
+      position: relative;
+      left:0;
+      top:514px;
+      background: url("./img/地图数据.png");
+      text-align: center;
+      vertical-align: middle;
+    }
+    #increasePercent{
+      width: 1080px;
+      height: 264px;
+    }
+    .now-province{
+      color:white;
+      line-height: 48px;
+      display: table-cell;
+      width:220px;
+      height:48px;
+      font-size: 20px;
+      padding-top:10px;
+
+    }
+    .now-province-total{
+      height: 92px;
+      line-height: 92px;
+      vertical-align: middle;
+      text-align: center;
+      color:#34FFF1;
+      font-size: 30px;
+      font-family:'DINAlternate-Bold' ;
+    }
+    .ranking-list{
+      position: absolute;
+      top: 66px;
+      left: 26px;
+      width: 164px;
+      height: 269px;
+      font-size: 12px;
+      font-family: PingFangSC-Regular;
+      font-weight: 400;
+      color: rgba(241,241,241,1);
+      line-height: 27px;
+      opacity: 0.8;
+    }
+    .ranking-list ul>li{
+      list-style-type:none;
+      overflow: hidden;
+    }
+    .ranking-list .list-province{
+      float: left;
+    }
+    .ranking-list .list-money{
+      float: right;
+    }
+    .color-p{
+      color:#28DDFD;
+      font-family: 'PingFangSC-Regular';
+      text-align: center;
+      line-height:40px ;
+      font-size:16px;
+      padding-top: 8px;
+    }
+    /*#china-map{
+      width:781px;
+      height:575px;
+      margin-left: 105px;
+      bottom:100px;
+    }*/
+    #china-map{
+      width:961px;
+      height:575px;
+      /*margin-left: 105px;*/
+      bottom:111px;
+    }
+    #provinceList{
+      width:220px;
+      height:360px;
+      position:absolute;
+      bottom: 20px;
+      right: 0;
+/*421*/
+      /*float:left;*/
+      background:url('./img/地图数据2.png')
+    }
+    #onInvestment{
+      height: 280px;
+      width: 380px;
+      background: transparent !important;
+    }
+    .right-wrap{
+      float: right;
+      width: 400px;
+      height: 999px;
+    }
+    .right-tab-280{
+      width: 380px;
+      height: 280px;
+      background: rgba(0,4,65,.5);
+      /*box-shadow: 0px 0px 30px #06146e inset*/
+      box-shadow: 0px 0px 25px #2bdff7 inset
+    }
+    .right-tab-190{
+      width:380px;
+      height: 190px;
+      /*background: #000441;*/
+      /*opacity:0.5;*/
+      background: rgba(0,4,65,.5);
+      box-shadow: 0px 0px 25px #2bdff7 inset;
+      position:relative;
+    }
+    .border-r{
+      background: url(./img/右侧发光角.png);
+      display: inline-block;
+      width: 31px;
+      height: 31px;
+      position: relative;
+    }
+    .r1{
+      top: -282px;
+      left: -2px;
+    }
+    .r4{
+      left: 245px;
+      top: -28px;
+    }
+    .r2{
+      left: 316px;
+      top: -282px;
+    }
+    .r3{
+      left: -73px;
+      top: -29px;
+    }
+    .right-tab{
+      margin-bottom: -15px;
+    }
+    .r11{
+      top: -193px;
+      left: -2px;
+    }
+    .r12{
+      left: 316px;
+      top: -193px;
+    }
+    .right-type{
+/*      width: 160px;
+      height: 32px;
+      opacity: 1;
+      background: #083572;
+      position: relative;
+      top: 24px;
+      left: 31px;*/
+      width: 106px;
+      height: 32px;
+      background: linear-gradient(90deg,rgba(6,22,81,1),rgba(11,70,167,1),rgba(6,22,81,1));
+      /*opacity: 0.8;*/  /*这个导致借款余额的金额数字颜色不够亮*/
+      border-radius: 4px;
+      position: relative;
+      top:24px;
+      left:31px;
+    }
+    .right-type-2{
+      width: 146px;
+      height: 32px;
+      background: linear-gradient(90deg,rgba(6,22,81,1),rgba(11,70,167,1),rgba(6,22,81,1));
+    /*  opacity: 0.8;*/ /*这个导致借款余额的金额数字颜色不够亮*/
+      border-radius: 4px;
+      position: relative;
+      top:24px;
+      left:31px;
+    }
+    .type-title{
+      line-height: 32px;
+      letter-spacing:2px;
+      font-size: 20px;
+      vertical-align: middle;
+      text-align: center;
+      font-family: PingFangSC-Regular;
+      font-weight: 400;
+      color: rgba(241,241,241,1);
+      opacity: .8;/*借款余额等加上模糊感*/
+    }
+    .type-money{
+      width: 380px;
+      height: 40px;
+      font-size: 40px;
+      font-family: DINAlternate-Bold;
+      font-weight: bold;
+      color: rgba(241,241,241,1);
+      margin-top: 5px;
+    }
+    .type-money>span{
+      display: inline-block;
+      width:19px;
+      height:19px;
+      font-size:20px;
+      font-family:PingFangSC-Regular;
+      font-weight:400;
+      color:rgba(241,241,241,1);
+      margin-top: 22px;
+    }
+    .type-num{
+      width: 380px;
+      height: 16px;
+      font-size: 16px;
+      font-family: PingFangSC-Regular;
+      font-weight:400;
+      color:rgba(40,221,253,1);
+      margin-top: 13px;
+    }
+    .type-num>span{
+      display: inline-block;
+    }
+    .type-num>.type-num-value{
+      width:73px;
+      height:13px;
+      font-size:16px;
+      font-family:PingFangSC-Regular;
+      font-weight:400;
+      color:rgba(64,195,125,1);
+    }
+    .type-num>.type-num-valueOrange{
+      width:73px;
+      height:13px;
+      font-size:16px;
+      font-family:PingFangSC-Regular;
+      font-weight:400;
+      color:rgba(251,104,6,1);
+    }
+    .right-title-decorate-top{
+      background: url("./img/右侧标题装饰（左）.png");
+      display: inline-block;
+      width: 51px;
+      height: 15px;
+      position: relative;
+      top: -13px;
+      left: 28px;
+    }
+    .decorate-top-2{
+      background: url("./img/右侧标题装饰（左）.png");
+      display: inline-block;
+      width: 51px;
+      height: 15px;
+      position: relative;
+      top: -13px;
+      left: 28px;
+    }
+    .decorate-bottom-2{
+      background: url(./img/右侧标题装饰（右）.png) no-repeat;
+      display: inline-block;
+      width: 51px;
+      height: 15px;
+      position: relative;
+      top: 10px;
+      left: 92px;
+    }
+    .right-title-decorate-bottom{
+      background: url(./img/右侧标题装饰（右）.png) no-repeat;
+      display: inline-block;
+      width: 51px;
+      height: 15px;
+      position: relative;
+      top: 10px;
+      left: 53px;
+    }
+
+    .right-text-title{
+      position: relative;
+      top: 24px;
+      left: 29px;
+      width: 97px;
+      height: 16px;
+      font-size: 16px;
+      font-family: PingFangSC-Regular;
+      font-weight: 400;
+      color: rgba(241,241,241,1);
+    }
+    .right-3-top-text{
+      width:300px;
+      height: 21px;
+      font-size: 26px;
+      font-family: DINAlternate-Bold;
+      font-weight: bold;
+      color: rgba(52,255,241,1);
+      /* margin-top: 31px; */
+      position: absolute;
+      top: 52px;
+      left: 30px;
+    }
+    .zhexian{
+      width: 320px;
+      height: 1px;
+      background: rgba(54,92,151,1);
+      position: absolute;
+      left: 30px;
+      top: 95px;
+    }
+    .right-3-down {
+      position: absolute;
+      width: 100%;
+      top: 95px;
+      left: 29px;
+    /* height: 15px; */
+      font-size: 16px;
+      font-family: PingFangSC-Regular;
+      font-weight: 400;
+      color: rgba(241,241,241,1);
+    }
+    .right-3-down span{
+      display: inline-block;
+    }
+    .right-3-down>p:first-child{
+      margin-top: 20px;
+    }
+    .right-3-down-title-2{
+      margin-left: 85px;
+    }
+    .right-3-down-content1{
+      width: 45%;
+      height: 21px;
+      font-size: 26px;
+      font-family: DINAlternate-Bold;
+      font-weight: bold;
+      color: rgba(52,255,241,1);
+      margin-top: 4px;
+    }
+    .right-3-down-content2{
+      margin-left: 10px;
+      width: 45%;
+      height: 21px;
+      font-size: 26px;
+      font-family: DINAlternate-Bold;
+      font-weight: bold;
+      color: rgba(52,255,241,1);
+    }
+    .right-4-up{
+      position: relative;
+      width: 100%;
+      top: 24px;
+    }
+    .right-4-up p>span{
+      display: inline-block;
+    }
+    .right-4-up span.title{
+      padding-left: 29px;
+      width: 41%;
+      height: 15px;
+      font-size: 16px;
+      font-family: PingFangSC-Regular;
+      font-weight: 400;
+      color: rgba(241,241,241,1);
+    }
+    .right-4-up span.content{
+      padding-left: 29px;
+      width: 41%;
+      height: 21px;
+      font-size: 26px;
+      font-family: 'DINAlternate-Bold';
+      font-weight: bold;
+      color: rgba(52,255,241,1);
+    }
+    .right-4-up .content-p{
+      margin-top: 7px;
+    }
+    .right-4-up .content-p{
+      margin-top: 7px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="backImg" style="">
+  <div id="top" style="height: 40px">
+  </div>
+  <div>
+    <div class="left-wrap" style="">
+      <div class="left-table">
+        <div class="left-table-title">登录交易转化</div>
+        <div id="loginChange"></div>
+      </div>
+      <div class="left-table">
+        <div class="left-table-title">用户转化率</div>
+        <div id="userConversionRate"></div>
+      </div>
+      <div class="left-table">
+        <div class="left-table-title">在投金额占比</div>
+        <div id="onInvestment"></div>
+      </div>
+    </div>
+    <div class="middle-wrap">
+      <div id="middle-up" >
+        <div id="provinceMsg">
+          <div class="now-province"><span>河北省</span></div>
+          <div class="now-province-total"><span>97,334.34 元</span></div>
+        </div>
+        <div id="china-map" ></div>
+        <div id="provinceList" >
+          <div class="left-table-title color-p">资金管理排行</div>
+          <div class="ranking-list">
+                <ul>
+                  <li> <p class="list-province">1.河北省</p> <p class="list-money">210000（万）</p></li>
+                  <li> <p class="list-province">2.北京市</p> <p class="list-money">190000（万）</p></li>
+                  <li> <p class="list-province">3.黑龙江省</p> <p class="list-money">160000（万）</p></li>
+                  <li> <p class="list-province">4.河南省</p> <p class="list-money">120000（万）</p></li>
+                  <li> <p class="list-province">5.河南省</p> <p class="list-money">110000（万）</p></li>
+                  <li> <p class="list-province">6.河南省</p> <p class="list-money">9000（万）</p></li>
+                  <li> <p class="list-province">7.河南省</p> <p class="list-money">8000（万）</p></li>
+                  <li> <p class="list-province">8.河南省</p> <p class="list-money">6000（万）</p></li>
+                  <li> <p class="list-province">9.河南省</p> <p class="list-money">4000（万）</p></li>
+                  <li> <p class="list-province">10.河南省</p> <p class="list-money">3000（万）</p></li>
+                </ul>
+          </div>
+        </div>
+      </div>
+      <div class="middle-down">
+        <div class="left-table-title">借款金额/月环比日增长率</div>
+        <div id="increasePercent"></div>
+      </div>
+    </div>
+    <div  class="right-wrap">
+        <div class="right-tab">
+          <div class="right-tab-280">
+            <div style="height: 116px;">
+              <div class="right-type">
+                <p class="type-title"> 在投金额</p>
+                <p class="type-money">9,215,697,334.88 <span>元</span></p>
+                <p class="type-num">
+                  <span class="type-num-rate">日增长率</span>
+                  <span class="type-num-value">3.65%</span>
+                  <span>月增长率</span>
+                  <span class="type-num-value">6.65%</span>
+                </p>
+              </div>
+              <span class="right-title-decorate-top"></span>
+              <span class="right-title-decorate-bottom"></span>
+            </div>
+            <div  style="margin-top: 28px;">
+              <div class="right-type-2">
+                <p class="type-title"> 在投交易用户</p>
+                <p class="type-money">97,334 <span>人</span></p>
+              </div>
+              <span class="decorate-top-2"></span>
+              <span class="decorate-bottom-2"></span>
+            </div>
+          </div>
+          <span class="border-r r1"></span>
+          <span class="border-r r2 turn-90"></span>
+          <span class="border-r r3 turn-270"></span>
+          <span class="border-r r4 turn-180"></span>
+        </div>
+        <div class="right-tab">
+          <div class="right-tab-280">
+            <div style="height: 116px;">
+              <div class="right-type">
+                <p class="type-title"> 借款余额</p>
+                <p class="type-money">9,215,697,334.88 <span>元</span></p>
+                <p class="type-num">
+                  <span class="type-num-rate">日增长率</span>
+                  <span class="type-num-valueOrange">3.65%</span>
+                  <span>月增长率</span>
+                  <span class="type-num-valueOrange">6.65%</span>
+                </p>
+              </div>
+              <span class="right-title-decorate-top"></span>
+              <span class="right-title-decorate-bottom"></span>
+            </div>
+            <div  style="margin-top: 28px;">
+              <div class="right-type-2">
+                <p class="type-title"> 借款中用户</p>
+                <p class="type-money">97,334 <span>人</span></p>
+              </div>
+              <span class="decorate-top-2"></span>
+              <span class="decorate-bottom-2"></span>
+            </div>
+          </div>
+          <span class="border-r r1"></span>
+          <span class="border-r r2 turn-90"></span>
+          <span class="border-r r3 turn-270"></span>
+          <span class="border-r r4 turn-180"></span>
+        </div>
+        <div class="right-tab">
+          <div class="right-tab-190">
+            <p class="right-text-title">
+              <span>累计交易金额</span>
+            </p>
+            <p class="right-3-top-text">
+              <span>79,494,606,399.63</span>
+            </p>
+            <p class="zhexian">
+
+            </p>
+            <div class="right-3-down">
+              <p>
+                <span class="right-3-down-title-1">累计交易笔数</span>
+                <span class="right-3-down-title-2">累计注册用户</span>
+              </p>
+              <p>
+                <span class="right-3-down-content1">9,606,399</span>
+                <span class="right-3-down-content2">8,351</span>
+              </p>
+            </div>
+          </div>
+          <span class="border-r r11"></span>
+          <span class="border-r r12 turn-90"></span>
+          <span class="border-r r3 turn-270"></span>
+          <span class="border-r r4 turn-180"></span>
+        </div>
+        <div class="right-tab">
+          <div class="right-tab-190">
+            <div class="right-4-up">
+              <p>
+                <span class="title">今日新增借款</span>
+                <span class="title">今日新增还款</span>
+              </p>
+              <p class="content-p">
+                <span class="content">212606,399.63</span>
+                <span class="content">12606,399.63</span>
+              </p>
+            </div>
+            <p class="zhexian">
+
+            </p>
+            <div class="right-3-down">
+              <p>
+                <span class="right-3-down-title-1">新增注册用户</span>
+              </p>
+              <p>
+                <span class="right-3-down-content1">79,494</span>
+              </p>
+            </div>
+          </div>
+          <span class="border-r r11"></span>
+          <span class="border-r r12 turn-90"></span>
+          <span class="border-r r3 turn-270"></span>
+          <span class="border-r r4 turn-180"></span>
+        </div>
+
+
+    </div>
+  </div>
+  <div class="footer"></div>
+</div>
+</body>
+<script>
+  $('#sub').prop('disabled',true)
+  $('#sub2').click(function () {
+    $('#sub').css('border','1px solid red')
+    $('#sub').removeAttr('disabled')
+    return false
+    $('#sub').css('border','')
+
+  })
+
+</script>
+<script>
+  function randomData() {
+    return Math.round(Math.random()*500);
+  }
+  let planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
+  let SHData = [
+    [{name: '上海'}, {name: '北京',selected:true}],
+    [{name: '上海'}, {name: '杭州'}],
+    [{name: '上海'}, {name: '舟山'}]
+  ];
+  /*let _self={
+    geoCoord:{
+      '海门':[121.15,31.89],
+      '鄂尔多斯':[109.781327,39.608266],
+      '招远':[120.38,37.35],
+      '舟山':[122.207216,29.985295],
+      '齐齐哈尔':[123.97,47.33],
+      '盐城':[120.13,33.38],
+      '赤峰':[118.87,42.28],
+      '青岛':[120.33,36.07],
+      '乳山':[121.52,36.89],
+      '金昌':[102.188043,38.520089],
+      '泉州':[118.58,24.93],
+      '莱西':[120.53,36.86],
+      '日照':[119.46,35.42],
+      '胶南':[119.97,35.88],
+      '南通':[121.05,32.08],
+      '拉萨':[91.11,29.97],
+      '云浮':[112.02,22.93],
+      '梅州':[116.1,24.55],
+      '文登':[122.05,37.2],
+      '上海':[121.48,31.22],
+      '攀枝花':[101.718637,26.582347],
+      '威海':[122.1,37.5],
+      '承德':[117.93,40.97],
+      '厦门':[118.1,24.46],
+      '汕尾':[115.375279,22.786211],
+      '潮州':[116.63,23.68],
+      '丹东':[124.37,40.13],
+      '太仓':[121.1,31.45],
+      '曲靖':[103.79,25.51],
+      '烟台':[121.39,37.52],
+      '福州':[119.3,26.08],
+      '瓦房店':[121.979603,39.627114],
+      '即墨':[120.45,36.38],
+      '抚顺':[123.97,41.97],
+      '玉溪':[102.52,24.35],
+      '张家口':[114.87,40.82],
+      '阳泉':[113.57,37.85],
+      '莱州':[119.942327,37.177017],
+      '湖州':[120.1,30.86],
+      '汕头':[116.69,23.39],
+      '昆山':[120.95,31.39],
+      '宁波':[121.56,29.86],
+      '湛江':[110.359377,21.270708],
+      '揭阳':[116.35,23.55],
+      '荣成':[122.41,37.16],
+      '连云港':[119.16,34.59],
+      '葫芦岛':[120.836932,40.711052],
+      '常熟':[120.74,31.64],
+      '东莞':[113.75,23.04],
+      '河源':[114.68,23.73],
+      '淮安':[119.15,33.5],
+      '泰州':[119.9,32.49],
+      '南宁':[108.33,22.84],
+      '营口':[122.18,40.65],
+      '惠州':[114.4,23.09],
+      '江阴':[120.26,31.91],
+      '蓬莱':[120.75,37.8],
+      '韶关':[113.62,24.84],
+      '嘉峪关':[98.289152,39.77313],
+      '广州':[113.23,23.16],
+      '延安':[109.47,36.6],
+      '太原':[112.53,37.87],
+      '清远':[113.01,23.7],
+      '中山':[113.38,22.52],
+      '昆明':[102.73,25.04],
+      '寿光':[118.73,36.86],
+      '盘锦':[122.070714,41.119997],
+      '长治':[113.08,36.18],
+      '深圳':[114.07,22.62],
+      '珠海':[113.52,22.3],
+      '宿迁':[118.3,33.96],
+      '咸阳':[108.72,34.36],
+      '铜川':[109.11,35.09],
+      '平度':[119.97,36.77],
+      '佛山':[113.11,23.05],
+      '海口':[110.35,20.02],
+      '江门':[113.06,22.61],
+      '章丘':[117.53,36.72],
+      '肇庆':[112.44,23.05],
+      '大连':[121.62,38.92],
+      '临汾':[111.5,36.08],
+      '吴江':[120.63,31.16],
+      '石嘴山':[106.39,39.04],
+      '沈阳':[123.38,41.8],
+      '苏州':[120.62,31.32],
+      '茂名':[110.88,21.68],
+      '嘉兴':[120.76,30.77],
+      '长春':[125.35,43.88],
+      '胶州':[120.03336,36.264622],
+      '银川':[106.27,38.47],
+      '张家港':[120.555821,31.875428],
+      '三门峡':[111.19,34.76],
+      '锦州':[121.15,41.13],
+      '南昌':[115.89,28.68],
+      '柳州':[109.4,24.33],
+      '三亚':[109.511909,18.252847],
+      '自贡':[104.778442,29.33903],
+      '吉林':[126.57,43.87],
+      '阳江':[111.95,21.85],
+      '泸州':[105.39,28.91],
+      '西宁':[101.74,36.56],
+      '宜宾':[104.56,29.77],
+      '呼和浩特':[111.65,40.82],
+      '成都':[104.06,30.67],
+      '大同':[113.3,40.12],
+      '镇江':[119.44,32.2],
+      '桂林':[110.28,25.29],
+      '张家界':[110.479191,29.117096],
+      '宜兴':[119.82,31.36],
+      '北海':[109.12,21.49],
+      '西安':[108.95,34.27],
+      '金坛':[119.56,31.74],
+      '东营':[118.49,37.46],
+      '牡丹江':[129.58,44.6],
+      '遵义':[106.9,27.7],
+      '绍兴':[120.58,30.01],
+      '扬州':[119.42,32.39],
+      '常州':[119.95,31.79],
+      '潍坊':[119.1,36.62],
+      '重庆':[106.54,29.59],
+      '台州':[121.420757,28.656386],
+      '南京':[118.78,32.04],
+      '滨州':[118.03,37.36],
+      '贵阳':[106.71,26.57],
+      '无锡':[120.29,31.59],
+      '本溪':[123.73,41.3],
+      '克拉玛依':[84.77,45.59],
+      '渭南':[109.5,34.52],
+      '马鞍山':[118.48,31.56],
+      '宝鸡':[107.15,34.38],
+      '焦作':[113.21,35.24],
+      '句容':[119.16,31.95],
+      '北京':[116.46,39.92],
+      '徐州':[117.2,34.26],
+      '衡水':[115.72,37.72],
+      '包头':[110,40.58],
+      '绵阳':[104.73,31.48],
+      '乌鲁木齐':[87.68,43.77],
+      '枣庄':[117.57,34.86],
+      '杭州':[120.19,30.26],
+      '淄博':[118.05,36.78],
+      '鞍山':[122.85,41.12],
+      '溧阳':[119.48,31.43],
+      '库尔勒':[86.06,41.68],
+      '安阳':[114.35,36.1],
+      '开封':[114.35,34.79],
+      '济南':[117,36.65],
+      '德阳':[104.37,31.13],
+      '温州':[120.65,28.01],
+      '九江':[115.97,29.71],
+      '邯郸':[114.47,36.6],
+      '临安':[119.72,30.23],
+      '兰州':[103.73,36.03],
+      '沧州':[116.83,38.33],
+      '临沂':[118.35,35.05],
+      '南充':[106.110698,30.837793],
+      '天津':[117.2,39.13],
+      '富阳':[119.95,30.07],
+      '泰安':[117.13,36.18],
+      '诸暨':[120.23,29.71],
+      '郑州':[113.65,34.76],
+      '哈尔滨':[126.63,45.75],
+      '聊城':[115.97,36.45],
+      '芜湖':[118.38,31.33],
+      '唐山':[118.02,39.63],
+      '平顶山':[113.29,33.75],
+      '邢台':[114.48,37.05],
+      '德州':[116.29,37.45],
+      '济宁':[116.59,35.38],
+      '荆州':[112.239741,30.335165],
+      '宜昌':[111.3,30.7],
+      '义乌':[120.06,29.32],
+      '丽水':[119.92,28.45],
+      '洛阳':[112.44,34.7],
+      '秦皇岛':[119.57,39.95],
+      '株洲':[113.16,27.83],
+      '石家庄':[114.48,38.03],
+      '莱芜':[117.67,36.19],
+      '常德':[111.69,29.05],
+      '保定':[115.48,38.85],
+      '湘潭':[112.91,27.87],
+      '金华':[119.64,29.12],
+      '岳阳':[113.09,29.37],
+      '长沙':[113,28.21],
+      '衢州':[118.88,28.97],
+      '廊坊':[116.7,39.53],
+      '菏泽':[115.480656,35.23375],
+      '合肥':[117.27,31.86],
+      '武汉':[114.31,30.52],
+      '大庆':[125.03,46.58]
+    },
+    converData:function  (data) {
+       console.log(data.length);
+      let res = []
+      for (let i = 0; i <  data.length; i ++) {
+        let dataItem = data[i]
+        //  获取 来去 地址的 经纬度
+        console.log(this.geoCoord,dataItem[0].name);
+        let fromCoord = this.geoCoord[dataItem[0].name]
+        let toCoord = this.geoCoord[dataItem[1].name]
+        debugger;
+        if (fromCoord && toCoord) {
+          res.push({
+            fromName: dataItem[0].name,
+            toName: dataItem[1].name,
+            coords: [fromCoord, toCoord],
+            selected:dataItem[1].selected
+          })
+        }
+      }
+      return res
+    },
+    getScatter (data) {
+      let _self = this
+      let scatter = []
+      //  获取目的地和 出发地 的 名称 和 经纬度，用来 作为点 的数据
+      scatter = data.map(function(dataItem) {
+        return {
+          name: dataItem[1].name,
+          value: _self.geoCoord[dataItem[1].name]
+        }
+      })
+      scatter.push({
+        name: data[0][0].name,
+        value: _self.geoCoord[data[0][0].name]
+      })
+      return scatter
+    }};*/
+  var optionMap = {
+    // backgroundColor: '#FFFFFF',
+    title: {
+      text: '资金管理规模分布',
+      subtext: '',
+      x:'left',
+      textStyle:{
+        fontFamily:'PingFangSC-Regular',
+        fontSize:24,
+        color:'#FFFFFF',
+        fontWeight:'normal'
+      }
+    },
+    tooltip : {
+      trigger: 'item'
+    },
+  geo: {       //  使用地图 作为 图表的 坐标
+    top:130,
+    left:404,
+/*
+    top:136,
+    left:294,
+*/
+      center: [121.4648,31.2891],
+      // aspectScale:0.8,
+      aspectScale:0.785,
+      zoom: 1.24,          // 放大 倍数
+      name: '全国',
+      type: 'map',
+      // roam: true,  //  鼠标缩放和 平移漫游
+      map: 'china',
+      selectedMode:true,
+      regions: [
+        // {name: '南海诸岛', value: 0, itemStyle: {normal: {opacity: 0, label: {show: false}}}},
+        {name:'河南',selected:true}
+      ],
+      itemStyle:{
+          normal:{
+              borderColor:'#00E3FB',
+                borderWidth: 1,
+                areaColor: '#081F34',
+                opacity:0.6
+          },
+          emphasis: {
+              areaColor: '#00E3FB'
+            }
+          },
+      label:{
+        emphasis:{
+          show:true,
+          position:['50%', '50%'],
+          rotate:90,
+          offset:[30,40]
+          // distance:100
+        }
+      }
+  },
+    //配置属性
+/*      {       	name: '用户行程',
+     						type: 'lines',           //  飞行的路径线
+     						zlevel: 1,
+        effect: {                //  尾迹特效 需要单独 放在一个层
+     							show: true,
+       							period: 6,           // 动画时间
+       							trailLength: 0.7,    // 特效尾迹的长度
+       							color: '#fff',
+       							symbolSize: 3
+     						},
+   						lineStyle: {
+     							normal: {
+       								color: '#3f73a8',
+         								width: 0,
+         								curveness: 0.2      // 边的 曲度
+       							}
+     						},
+   						data: _self.converData(SHData)
+   					},
+      {
+     						name: '用户行程',
+       						type: 'lines',           //  飞机飞行路线的运行效果
+       						zlevel: 2,
+       						symbolSize: 10,
+       						effect: {
+       							show: true,
+         							period: 6,
+         							trailLength: 0,
+         							symbol:planePath ,
+         							symbolSize: 15,
+         						},
+     						lineStyle: {
+       							normal: {
+         								color: '#3f73a8',
+           								width: 4,
+           								opacity: 0.6,
+           								curveness: 0.2
+         							}
+       						},
+     						data: _self.converData(SHData)
+     					},
+      {
+     						name: '用户行程',
+       						type: 'effectScatter',   //  行程目标地点的 标注
+       						coordinateSystem: 'geo',  // 使用的坐标系
+       						zlevel: 3,
+       						rippleEffect: {          // 涟漪特效相关配置
+       							brushType: 'stoke'
+       						},
+     						label: {
+       							normal: {
+         								show: true,
+           								position: 'right',
+           								formatter: '{b}'
+         							}
+       						},
+     						symbolSize: 10,
+       						itemStyle: {
+       							normal: {
+         								color: '#3f73a8'
+         							}
+       						},
+     						data: _self.getScatter(SHData)
+     					}*/
+    // ]
+  };
+
+  //初始化echarts实例
+  var myChart = echarts.init(document.getElementById('china-map'));
+  var loginChange = echarts.init(document.getElementById('loginChange'));
+  loginChange.showLoading();
+  //登录柱形图
+  $.get('./json/近七日登录的数据.json', function (data) {
+    loginChange.hideLoading();
+    var optionLoginChange={
+      tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+          type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+      },
+      legend: {
+        data:['登录用户数','投资用户数','借款用户数'],
+        textStyle:{
+          fontWeight:'lighter',
+          fontSize:12,
+          color:'#F1F1F1'
+        }
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+      },
+      xAxis : [
+        {
+          type : 'category',
+          data :data.map((item)=>{
+            return item.date
+          }),
+          boundaryGap:true,
+          axisLabel: {
+            interval:0,
+            color:(value)=>{
+              return 'white'
+            },
+            formatter:  function (value, index) {
+              // 格式化成月/日，只在第一个刻度显示年份
+              var date = new Date(value);
+              var texts = [(date.getMonth() + 1), date.getDate()];
+          /*    if (index === 0) {
+                texts.unshift(date.getFullYear());
+              }*/
+              return texts.join('-');
+            }
+          },
+          splitLine:{
+            show:false
+          }
+        }
+      ],
+      yAxis : [
+        {
+          type : 'value',
+          splitLine:{
+            show:false
+          }
+        }
+      ],
+      series : [
+        {
+          symbol:'circle',
+          name:'登录用户数',
+          data: data.map((item)=>{
+            return item.loggedInUser
+          }),
+          lineStyle:{
+            normal:{
+              smooth:true,
+              width:1.5
+            }
+          },
+          itemStyle:{
+            normal:{
+              color:'yellow'
+            }
+          },
+          type: 'line',
+          smooth: true
+        },
+        {
+          name:'投资用户数',
+          barWidth : 18,
+          type:'bar',
+          stack: '人数',
+          data:data.map((item)=>{
+            return item.investmentNum
+          }),
+          label: {
+            normal: {
+              show: true,
+              position: 'insideTop',
+              fontSize:10,
+              fontWeight:'lighter'
+            }
+          },
+          itemStyle:{
+            normal:{
+              color:'#53A8E2',
+              borderColor:'#53A8E2'
+            }
+          }
+        },
+        {
+          name:'借款用户数',
+          type:'bar',
+          stack: '人数',
+          label: {
+            normal: {
+              show: true,
+              fontSize:10,
+              fontWeight:'lighter',
+              position: 'insideTop'
+            }
+          },
+          data:data.map((item)=>{
+            return item.loanUserNum
+          }),
+          itemStyle:{
+            normal:{
+              color:'#76DDFB',
+              borderColor:'#76DDFB'
+            }
+          }
+        }
+      ]
+    };
+
+    loginChange.setOption(optionLoginChange);
+  })
+  //使用制定的配置项和数据显示图表
+  myChart.setOption(optionMap);
+//转化率漏斗图
+  var userConversionRate=echarts.init(document.getElementById('userConversionRate'));
+  let leftColor=['#2C82BE','#53A8E2','#76DDFB','#DBECF8']
+  $.get('./json/用户转换率.json',function(data){
+    let optionMap = {
+/*      title: {
+        text: '漏斗图',
+      },*/
+      tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c}%"
+      },
+      legend: {
+        data: ['注册','认证','交易','二次交易'],
+        top:'13.5%',
+        textStyle:{
+          fontWeight:'lighter',
+          fontSize:12,
+          color:'#F1F1F1'
+        }
+      },
+      series: [
+        {
+          name: '预期',
+          type: 'funnel',
+          top:'27%',
+          left: '15%',
+          width: '68%',
+          height:'60%',
+          label: {
+            normal: {
+              formatter: '{b}预期'
+            },
+            emphasis: {
+              position:'inside',
+              formatter: '{b}预期: {c}%'
+            }
+          },
+          labelLine: {
+            normal: {
+              show: false
+            }
+          },
+          itemStyle: {
+            normal: {
+              opacity: 0.7,
+              color:(params)=>{
+                return leftColor[params.dataIndex]
+              }
+            }
+          },
+          data:data.map(v=>{
+            return {name:v.type,value:v.expected}
+          })
+        },
+        {
+          name: '实际',
+          type: 'funnel',
+          top:'27%',
+          left: '15%',
+          width: '68%',
+          height:'60%',
+          maxSize: '80%',
+          label: {
+            normal: {
+              position: 'inside',
+              formatter: '{c}%',
+              textStyle: {
+                color: '#fff'
+              }
+            },
+            emphasis: {
+              position:'inside',
+              formatter: '{b}实际: {c}%'
+            }
+          },
+          itemStyle: {
+            normal: {
+              opacity: 0.5,
+              color:(params)=>{
+                return leftColor[params.dataIndex]
+              },
+              borderColor: '#fff',
+              borderWidth: 2
+            }
+          },
+          data: data.map(v=>{
+            return {name:v.type,value:v.actual}
+          })
+        }
+      ]
+    };
+    userConversionRate.setOption(optionMap);
+  })
+  //在投人数的饼状图
+  var onInvestment=echarts.init(document.getElementById('onInvestment'));
+  $.get('./json/在投金额占比.json',function(data){
+    let optionMap = {
+      backgroundColor: '#2c343c',
+      title: {
+        left: 'center',
+        top: 20,
+        textStyle: {
+          color: '#ccc'
+        }
+      },
+
+      tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+      },
+
+      visualMap: {
+        show: false,
+        min: 80,
+        max: 600,
+        inRange: {
+          colorLightness: [0, 1]
+        }
+      },
+      series : [
+        {
+          name:'在投金额占比',
+          type:'pie',
+          radius : '62%',
+          center: ['50%', '50%'],
+          data:data.sort(function (a, b) { return a.value - b.value; }),
+          roseType: 'radius',
+          label: {
+            normal: {
+              formatter: "{per|{b}}  {per|{d}%}\n  {c|{c}}（万）",
+              textStyle: {
+                color: 'rgba(255, 255, 255, 0.5)',
+              },
+              rich:{
+                per: {
+                  color: 'rgba(255, 255, 255, 1)',
+                },
+                c:{
+                  padding:4,
+                  color: 'rgba(255, 255, 255, 0.5)'
+                }
+              }
+            }
+          },
+          labelLine: {
+            normal: {
+              lineStyle: {
+                color: 'rgba(255, 255, 255, 0.5)'
+              },
+              smooth: 0.2,
+              length: 10,
+              length2: 6
+            }
+          },
+          itemStyle: {
+            normal: {
+              color: '#194869',
+              shadowBlur: 200,
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            }
+          },
+          animationType: 'scale',
+          animationEasing: 'elasticOut',
+          animationDelay: function (idx) {
+            return Math.random() * 200;
+          }
+        }
+      ]
+    };;
+    onInvestment.setOption(optionMap);
+  })
+  //月环比日增长率
+  var increasePercent=echarts.init(document.getElementById('increasePercent'));
+  $.get('./json/月环比日增长率.json',function(data){
+    let optionMap ={
+      tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+          type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+      },
+      legend: {
+        left:'72',
+        top:'14',
+        data:['轻易贷借款','消费贷','分期贷'],
+        textStyle:{
+          fontFamily:'PingFangSC-Regular',
+          fontWeight:400,
+          color:'rgba(241,241,241,.8)',
+          lineHeight:16,
+        }
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      xAxis : [
+        {
+          axisLabel: {
+            color:(value)=>{
+              return 'rgba(241,241,241,.5)';
+            }
+          },
+          type : 'category',
+          data :data.map(v=>v.date)
+        }
+      ],
+      yAxis : [
+        {
+          axisLabel: {
+            color:(value)=>{
+              return 'rgba(241,241,241,.5)';
+            }
+          },
+          type : 'value'
+        }
+      ],
+      series : [
+        {
+          name:'轻易贷借款',
+          type:'bar',
+          data:[320, 332, 301, 334, 390, 330, 320],
+          itemStyle:{
+            normal:{
+              color:'#00E9FF'
+            }
+          }
+        },
+        {
+          name:'消费贷',
+          type:'bar',
+          data:[150, 232, 201, 154, 190, 330, 410],
+          itemStyle:{
+            normal:{
+              color:'#00464D'
+            }
+          }
+        },
+        {
+          name:'分期贷',
+          type:'bar',
+          data:[862, 1018, 964, 1026, 1679, 1600, 1570],
+          itemStyle:{
+            normal:{
+              color:'#80F4FF'
+            }
+          }
+        }
+      ]
+    };
+
+    increasePercent.setOption(optionMap);
+  })
+ /* $.get('./json/1.json',function (data) {
+    let result=data.items.map(v=>{
+      return {
+        date:v.tjdate,
+        qydNum:v.xyyborrowAdd,
+        xfdNum:v.xyyborrow,
+        fqdNum:v.xyycjHold
+      }
+    })
+    // document.write(JSON.stringify(result));
+  })*/
+</script>
+</html>

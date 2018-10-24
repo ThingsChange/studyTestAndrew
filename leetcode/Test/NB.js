@@ -77,7 +77,7 @@ var inline_src = (<><![CDATA[
             ['YY']: 8.8
         },
         QY: {
-            remainingPeriod: 81,
+            remainingPeriod: 25,
             tryBuyAmount: 200
         },
         YY: {
@@ -440,7 +440,7 @@ var inline_src = (<><![CDATA[
 
                 // 当前不为空，并且项目编号不一致,并满足购买条件
                 // 前面部分数据可能不更新
-                if (r && lastCache && (r[0].projectNumber !== lastCache[0].projectNumber
+                if (r&&r.length>0 && lastCache && (r[0].projectNumber !== lastCache[0].projectNumber
                     || r[r.length - 1].projectNumber !== lastCache[lastCache.length - 1].projectNumber)) {
 
                     refreshList.push(new Date().toLocaleString())
@@ -471,7 +471,8 @@ var inline_src = (<><![CDATA[
                     lastCache = r
                 }
             } catch (err) {
-                appendMessage(`发生未知错误${err.message || 'xxxxxx'},尝试恢复`)
+              console.log(r,lastCache);
+              appendMessage(`发生未知错误${err.message || 'xxxxxx'},尝试恢复`)
                 this.intelligenceBuy(productType)
             }
         },
