@@ -1,8 +1,11 @@
 // https://www.jb51.net/article/124321.htm
+// https://segmentfault.com/a/1190000007535316
 /* 解释可以参考*/
 async function testSometing() {
   console.log('执行testSometing')
-  return 'testSometing'
+  // 妈的两种写法还有区别，卧槽
+  // return 'testSometing'
+  return Promise.resolve('testSometing')
 }
 
 async function testAsync() {
@@ -10,7 +13,7 @@ async function testAsync() {
   return Promise.resolve('hello async')
 }
 async function testV3() {
-  console.log('testV3')
+  console.log('执行testV3')
   return Promise.resolve('hello testV3')
 }
 
