@@ -58,7 +58,7 @@
       -moz-transform: rotate(270deg); /* Firefox */
     }
     .left-table{
-      background: url("./img/左侧表格.png");
+      background: url("./img/左侧表格.png") 0 -1px;
       height: 322px;
       width: 380px;
       color: white;
@@ -118,7 +118,7 @@
       height: 320px;
       position:relative;
       bottom:-4px;
-      background: url("./img/底部表格.png");
+      background: url("./img/底部表格.png") 0 -2px;
     }
     #provinceMsg{
       width:220px;
@@ -157,7 +157,8 @@
     .ranking-list{
       position: absolute;
       top: 66px;
-      left: 26px;
+      /*left: 26px;*/
+      left:39px;
       width: 164px;
       height: 269px;
       font-size: 12px;
@@ -205,7 +206,7 @@
       right: 0;
 /*421*/
       /*float:left;*/
-      background:url('./img/地图数据2.png')
+      background:url('./img/地图数据2.png') no-repeat 20px 0;
     }
     #onInvestment{
       height: 280px;
@@ -241,31 +242,43 @@
       position: relative;
     }
     .r1{
-      top: -282px;
-      left: -2px;
+/*      top: -282px;
+      left: -2px;*/
+      top: -284px;
+      left: -4px;
     }
     .r4{
-      left: 245px;
-      top: -28px;
+ /*     left: 245px;
+      top: -28px;*/
+      left: 247px;
+      top: -26px;
     }
     .r2{
-      left: 316px;
-      top: -282px;
+    /*  left: 316px;
+      top: -282px;*/
+      left: 317px;
+      top: -284px;
     }
     .r3{
-      left: -73px;
-      top: -29px;
+/*      left: -73px;
+      top: -29px;*/
+      left: -75px;
+      top: -26px;
     }
     .right-tab{
       margin-bottom: -15px;
     }
     .r11{
-      top: -193px;
-      left: -2px;
+/*      top: -193px;
+      left: -2px;*/
+      top: -195px;
+      left: -4px;
     }
     .r12{
-      left: 316px;
-      top: -193px;
+/*      left: 316px;
+      top: -193px;*/
+      left: 317px;
+      top: -195px;
     }
     .right-type{
 /*      width: 160px;
@@ -681,12 +694,12 @@
   function randomData() {
     return Math.round(Math.random()*500);
   }
-  let planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
+/*  let planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
   let SHData = [
     [{name: '上海'}, {name: '北京',selected:true}],
     [{name: '上海'}, {name: '杭州'}],
     [{name: '上海'}, {name: '舟山'}]
-  ];
+  ];*/
   /*let _self={
     geoCoord:{
       '海门':[121.15,31.89],
@@ -1176,7 +1189,7 @@
 
     loginChange.setOption(optionLoginChange);
   })
-  //使用制定的配置项和数据显示图表
+  //使用制定的配置项和数据显示图表animationDelay
   myChart.setOption(optionMap);
 //转化率漏斗图
   var userConversionRate=echarts.init(document.getElementById('userConversionRate'));
@@ -1232,7 +1245,7 @@
           data:data.map(v=>{
             return {name:v.type,value:v.expected}
           })
-        },
+        }/*,
         {
           name: '实际',
           type: 'funnel',
@@ -1267,7 +1280,7 @@
           data: data.map(v=>{
             return {name:v.type,value:v.actual}
           })
-        }
+        }*/
       ]
     };
     userConversionRate.setOption(optionMap);
