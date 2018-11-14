@@ -1,0 +1,11 @@
+{
+  "name": "sa",
+  "version": "1.0.0",
+  "description": "获取美女或者帅哥照片",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "晴云",
+  "license": "ISC"
+}
