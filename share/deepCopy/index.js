@@ -24,3 +24,5 @@ b = _.assign({}, a)
 a.b = function(x) { console.log(x + 1) }
 console.log(a.b(1), b.b(2))
 // lodash 实现的很好，那么是怎么实现的呢？
+console.log(typeof function () {
+})
