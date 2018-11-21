@@ -24,6 +24,7 @@
   "homepage": "https://github.com/ThingsChange/studyTestAndrew#readme",
   "dependencies": {
     "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "lodash": "^4.17.11"
   }
 }

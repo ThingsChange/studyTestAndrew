@@ -35,14 +35,14 @@ module.exports = {
     'spaced-comment':[2,"always"],
     // "semi": 0,
     // don't require .vue extension when importing
-    'import/extensions': [
+   /* 'import/extensions': [
       'error',
       'always',
       {
         js: 'never',
         vue: 'never',
       },
-    ],
+    ],*/
     'linebreak-style': ['off', 'windows'],
     // disallow reassignment of function parameters
     // disallow parameter object manipulation except for specific exclusions
