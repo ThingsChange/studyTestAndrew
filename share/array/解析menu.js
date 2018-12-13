@@ -104,7 +104,7 @@ var a = [{
           meta: {
             id: '20203',
             type: 3,
-            context: '新增字段',
+            context: '修改字段',
             preBread: {
               context: '字段管理',
               name: 'FieldMList'
@@ -299,3 +299,19 @@ var a = [{
     context: '自助报表'
   }
 }]
+
+function getMenu(menuList,parentId) {
+  let result = [];
+  result = menuList.map((menu, index, array) => {
+    let temp = [{id: menu.meta.id, parentId,type:menu.meta.type, name: menu.meta.context, level: Math.floor((menu.meta.id + '').length/2+1)}]
+    if (menu.children && menu.children.length > 0) {
+      temp=temp.concat(getMenu(menu.children,menu.meta.id))
+    }
+    return temp
+  })
+
+  return result;
+}
+
+var result = getMenu(a,-1).flat(Infinity).filter(v=>v.type!='3');
+console.log(result);
