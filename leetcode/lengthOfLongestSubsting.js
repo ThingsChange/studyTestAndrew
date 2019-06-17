@@ -3,7 +3,7 @@
  * @author  56477
  * @create 2018-05-18 14:44
  * @PROJECT_NAME staff - wlj
- * @note 请阐述当前文件的作用
+ * @note 计算字符串中   最长的连续不重复的  截取片段长度
  **/
 var lengthOfLongestSubstring = function(s) {
     let result = 0, t = []

@@ -15,22 +15,28 @@ function nixiang(n){
   var  yuan=[];
   var shuchu=[];// 输出1,2,3,4,5,6
   shuchu=new Array(n);
-  shuchu.forEach((v,i,a)=>{
+  for(let i=0;i<shuchu.length;i++){
+    shuchu[i]=i+1
+  }
+/*  shuchu.forEach((v,i,a)=>{
     a[i]=i+1
-  })
+  })*/
+  console.log('这里是 shuchu 的结果-------------', shuchu)
   fantui(yuan,shuchu);
 }
 function fantui(a,b) {
   console.log(a,b);
-  a[0]=b[b.length-1];
-  b.splice(b.length-1,1)
-  //将a的堆底的牌，放到a的堆顶
-  var cmp = a[a.length-1];
-  a[0] = cmp;
+  a.unshift(b[b.length-1])
+  b.pop()
   if(b.length==0){
     return  a;
   }
+  //将a的堆底的牌，放到a的堆顶
+  var cmp = a[a.length-1];
+  a.unshift(cmp)
+  a.pop()
   //递归
-  fantui(a, b);
+  console.log('这里是 a,b 的结果-------------', a,b)
+  return fantui(a, b);
 }
 nixiang(5)
