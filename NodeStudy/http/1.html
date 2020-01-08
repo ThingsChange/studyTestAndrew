@@ -1,0 +1,74 @@
+<!doctype html><html lang="en"><head><title></title><meta charset="utf-8"><!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />--><!--<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">--><meta name="format-detection" content="telephone=no"><meta content="email=no" name="format-detection"><!-- antd 插件 高清解决方案 --><script type="text/javascript" src="//static.xinrenxinshi.com/plugins/antd-hd.js"></script><!--挂载移动端调试工具--><!--<script type="text/javascript" src="//static.xinrenxinshi.com/plugins/vconsole.min.js"></script>--><!--<script type="text/javascript" src="./plugins/vconsole.min.js"></script>--><!--智齿引入--><!--<script src="//www.sobot.com/chat/frame/js/entrance.js?sysNum=bdfdc640ac6843ec9bbf1bd9c2bfbd28" id="zhichiScript" class="zhiCustomBtn"  async="async" data-args="manual=true"></script>--><script>function handlerMobileDevToolSwitch(){
+  // console.info(window.__MobileDevTool__)
+  document.querySelector("#__vconsole .vc-switch").innerHTML = 'xrxsMobileConsole';
+  if(window.__MobileDevTool__<10){
+    window.__MobileDevTool__++;
+  }else if(window.__MobileDevTool__ == 10){
+    window.__MobileDevTool__++;
+    document.querySelector("#__vconsole").style.display = 'block';
+  }else{
+    window.__MobileDevTool__ = 1;
+    document.querySelector("#__vconsole").style.display = 'none';
+  }
+}</script><!-- <script src="https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js"></script> --><!-- <script>
+        var vConsole = new VConsole();
+        console.log('VConsole is cool');
+    </script> --><!-- 静态样式 --><style>#pre-text {
+  position: fixed;
+  left: 50%;
+  top: 30%;
+  width: 2.5rem;
+  text-align: center;
+  font-size: .32rem;
+  color: #333;
+  transform: translate(-50%, -50%);
+}</style><link rel="shortcut icon" href="//static.xinrenxinshi.com/resources/2020/shine/6/favicon.ico"><link href="//static.xinrenxinshi.com/resources/2020/shine/6/app_0c8e557465a0f2f0fdeb5712a372ca20.css" rel="stylesheet"></head><body><!--<div id="mobileDevToolSwitch" onclick="handlerMobileDevToolSwitch()"/>--><!-- oneApm --><script type="text/javascript">var versionTimestamp = '1572592839850'
+// 线上
+if (!window.__DEV__ && (window.location.href.indexOf('e.xinrenxinshi.com') > -1 || window.location.href.indexOf('etest.xinrenxinshi.com') > -1)) {
+  /**
+   * oneapm 停止续费
+   * /
+   // window.BWEUM || (BWEUM = {});
+   // BWEUM.info = {
+        //     "stand": true,
+        //     "agentType": "browser",
+        //     "agent": "browsercollector.oneapm.com/static/js/bw-send-415.6.31.js",
+        //     "beaconUrl": "browsercollector.oneapm.com/beacon",
+        //     "licenseKey": "fQuUj~EyaEUEvbz2",
+        //     "applicationID": 26130
+        // };
+   // var script = document.createElement("script");
+   // script.type = "text/javascript";
+   // script.src = "//browsercollector.oneapm.com/static/js/bw-loader-415.6.31.js";
+   // document.body.appendChild(script);
+
+
+   /**
+   * 听云已到期并暂不续费 暂停接入
+   */
+  // 听云
+  // var scriptTingYun = document.createElement("script");
+  // scriptTingYun.type = "text/javascript";
+  // scriptTingYun.src = "//static.xinrenxinshi.com/commonFile/tingyun-rum-shine.js";
+  // document.body.appendChild(scriptTingYun);
+}</script><div id="pre-text">加载中...</div><!-- 项目的容器节点 --><div id="root"></div><!-- 插件JS均在此引入 包括百度的 JS-SDK jQuery Anypicker等 --><script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script><script type="text/javascript" src="//g.alicdn.com/dingding/open-develop/0.8.4/dingtalk.js"></script><script type="text/javascript" src="//api.map.baidu.com/api?v=3.0&ak=N1rQW4jiHvKAC955F8z9cl62fsm9NhzF&s=1"></script><script type="text/javascript" src="//static.xinrenxinshi.com/plugins/jquery.min.2.1.4.js"></script><!-- 减小包体积 --><script type="text/javascript" src="//static.xinrenxinshi.com/plugins/react.min.15.4.2.js"></script><script type="text/javascript" src="//static.xinrenxinshi.com/plugins/react-dom.min.15.4.2.js"></script><script type="text/javascript" src="//static.xinrenxinshi.com/plugins/react-router.min.2.8.1.js"></script><script type="text/javascript" src="//static.xinrenxinshi.com/plugins/redux.min.3.6.0.js"></script><script type="text/javascript" src="//static.xinrenxinshi.com/plugins/moment.min.2.18.1.js"></script><script type="text/javascript" src="//static.xinrenxinshi.com/plugins/moment-with-zh-cn.2.18.1.js"></script><script src="//static.xinrenxinshi.com/plugins/sentry/raven.react.min.3.26.2.js" crossorigin="anonymous"></script><script>if (/(xinrenxinshi.com)/.test(window.location.href)) {
+  Raven.config('https://d849ce4b85534e35b50e9fc115c203fb@sentry-fe.qijiayoudao.net:9009/5',{
+    autoBreadcrumbs: {
+      'xhr': true,      // XMLHttpRequest
+      'console': true,  // console logging
+      'dom': true,       // DOM interactions, i.e. clicks/typing
+      'location': true, // url changes, including pushState/popState
+      'sentry': true     // sentry events
+    }
+  }).install();
+} else if (/(banshila.com)/.test(window.location.href)) {
+  Raven.config('https://857385f759ba4430ae509dce27a40f36@sentry-fe.qijiayoudao.net:9009/8',{
+    autoBreadcrumbs: {
+      'xhr': true,      // XMLHttpRequest
+      'console': true,  // console logging
+      'dom': true,       // DOM interactions, i.e. clicks/typing
+      'location': true, // url changes, including pushState/popState
+      'sentry': true     // sentry events
+    }
+  }).install();
+}</script><!-- 加密库 --><!--<script type="text/javascript" src="//static.xinrenxinshi.com/plugins/core.3.1.9.min.js"></script>--><!--<script type="text/javascript" src="//static.xinrenxinshi.com/plugins/hmac.3.1.9.min.js"></script>--><!--<script type="text/javascript" src="//static.xinrenxinshi.com/plugins/enc-base64.3.1.9.min.js"></script>--><!--<script type="text/javascript" src="//static.xinrenxinshi.com/plugins/hmac-sha1.3.1.9.min.js"></script>--><!--<script type="text/javascript" src="//static.xinrenxinshi.com/plugins/sha1.3.1.9.min.js"></script>--><!--<script type="text/javascript" src="//static.xinrenxinshi.com/plugins/cipher-core.3.1.9.min.js"></script>--><!--<script type="text/javascript" src="//static.xinrenxinshi.com/plugins/mode-ecb.3.1.9.min.js"></script>--><!--<script type="text/javascript" src="//static.xinrenxinshi.com/plugins/pad-pkcs7.3.1.9.min.js"></script>--><!--<script type="text/javascript" src="//static.xinrenxinshi.com/plugins/aes.3.1.9.min.js"></script>--><div id="mobileDevToolSwitch" onclick="handlerMobileDevToolSwitch()"><script type="text/javascript" src="//static.xinrenxinshi.com/resources/2020/shine/6/vendor_353f71811a6b739bc728.js"></script><script type="text/javascript" src="//static.xinrenxinshi.com/resources/2020/shine/6/app_ee1cda51f2e7a964d2c3.js"></script></body><!-- 美恰 --><!--<script>--><!--function downloadJSAtOnload() {--><!--var element = document.createElement("script");--><!--element.src = "//static.xinrenxinshi.com/plugins/meiqia-init.js?v=20161217";--><!--document.body.appendChild(element);--><!--}--><!--if (window.addEventListener)--><!--window.addEventListener("load", downloadJSAtOnload, false);--><!--else if (window.attachEvent)--><!--window.attachEvent("onload", downloadJSAtOnload);--><!--else window.onload = downloadJSAtOnload;--><!--</script>--><!-- 统计 --><script src="//static.xinrenxinshi.com/plugins/pb.js?source=employee&v=20170614"></script></html>

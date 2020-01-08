@@ -2,6 +2,7 @@
  * Created by wanglijun on 2016/12/29.
  */
 var express = require('express');
+const request = require('request')
 var bodyParser=require("body-parser");
 var url=require('url');
 let fs=require('fs');
@@ -35,7 +36,62 @@ app.post('/login',function(req,res){
     }
 })
 app.get('/lewen',function (req,res) {
+
     res.send('hello, Lewen,do you finish your work?');
+});
+app.get('/withToken',function(req,res){
+
+    request(
+      {url: 'https://api.xinrenxinshi.com/v2/login/loginWithToken?appKey=apprBPmEDqY638774&email=0rQA8B3KI%2FWWdppLL27V2nv5lUQFVqRTopMN5o7RyFI%3D&employeeId=l80yYoFvlNI4AUgVF9lmVC4a8MDsQ22MD3iY9GOeZUB7%2BZVEBVakU6KTDeaO0chS&mobile=41Guj61egdQe%2Btjaw%2BBoEg%3D%3D&timestamp='+new Date().getTime()+'&token=SRX0EkGqwRgAdxaaugPpbgIxzTeqFLqWEA3s5SGksYR7%2BZVEBVakU6KTDeaO0chS&sign=xqFfO2PK2nhlpoAWgQU%2FOpLnTd0%3D'}
+    ,function(error, response, body) {
+        console.log('这里是  response.statusCode  的结果-------------',  response.statusCode )
+        res.send(body)
+        if (!error && response.statusCode == 200) {
+          console.log(body) // 请求成功的处理逻辑
+          res.send(body)
+        }
+      }
+    )
+})
+app.get('/orh5/base/getNational',function (req,res) {
+  var url='https://e.xinrenxinshi.com/attendance/ajax-sign';
+  var requsetData={form: {"longitude":116.34656566266509,"latitude":39.940029770247655,"accuracy":"65","timestamp":1572858283530,"signature":"VSxSFNCwEz6oLDMahv0gBPyMSt8=","macAddr":"44:6a:2e:a:f1:77"}};
+  request({
+    url: url,
+    method: "POST",
+    json: true,
+    headers: {
+      "X-CSRF-TOKEN": "ZmZkNzJhNzNRBVFVAgQDBlJfVVIGVwcGXlRQUgpZAARTXgJRVgMBAg==",
+      "content-type": "application/json;charset=UTF-8",
+      Cookie:'sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2215c1e82375874aa893c55165998c4697%22%2C%22%24device_id%22%3A%2216b887206ce3b1-0ac70550a88785-215e490f-304500-16b887206cf116c%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_referrer%22%3A%22%22%2C%22%24latest_referrer_host%22%3A%22%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%7D%2C%22first_id%22%3A%2216b887206ce3b1-0ac70550a88785-215e490f-304500-16b887206cf116c%22%7D; QJYDSID=cc12a1f77f004190a8d12ddbbdc32103_15c1e82375874aa893c55165998c4697; sa_jssdk_2015_e_xinrenxinshi_com=%7B%22distinct_id%22%3A%2215c1e82375874aa893c55165998c4697%22%2C%22first_id%22%3A%2216e1c422913af4-05b1c64232e4e28-215e490f-304500-16e1c422914ff8%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%7D; sa_jssdk_2015_e=%7B%22distinct_id%22%3A%2215c1e82375874aa893c55165998c4697%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_referrer%22%3A%22%22%2C%22%24latest_referrer_host%22%3A%22%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%7D%2C%22first_id%22%3A%2216be380256381e-00ac4a76491fab-215e490f-304500-16be380256411a8%22%7D', //这里是登陆后得到的cookie,(重点
+    },
+    body: JSON.stringify(requsetData)
+  }, function(error, response, body) {
+    console.log('这里是  response.statusCode  的结果-------------',  response.statusCode )
+    res.send(body)
+    if (!error && response.statusCode == 200) {
+      console.log(body) // 请求成功的处理逻辑
+      res.send(body)
+    }
+  });
+  // request.post('https://e.xinrenxinshi.com/attendance/ajax-sign',
+  //   {form: {"longitude":116.34656566266509,"latitude":39.940029770247655,"accuracy":"65","timestamp":1572858283530,"signature":"VSxSFNCwEz6oLDMahv0gBPyMSt8=","macAddr":"44:6a:2e:a:f1:77"}},
+  //   function(error, response, body) {
+  //     console.log('这里是 error 的结果-------------', error, response, body)
+  //
+  //     let end = new Date()
+  //     if (!error && response.statusCode === 200) {
+  //       body = JSON.parse(body)
+  //       if (body.success) {
+  //       } else {
+  //       }
+  //     }
+  //   }
+  // )
+  // res.send(500,{code:'000',msg:'错了',data:{}})
+});
+app.get('/or/shop/getSkin',function (req,res) {
+  res.send(500,{code:'000',msg:'错了a',data:{}})
 });
 app.listen('3000',function () {
     console.log("app is listening  at 3000");

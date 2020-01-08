@@ -459,7 +459,9 @@ function test(){
     function drawCalendar(groupDate, displayDate, data) {
         //此处均是测试数据；
         data = testData;
+      groupDate="2019-12-23"
         var T_M_D = analyzeWeeks(groupDate);
+      console.log('这里是 T_M_D 的结果-------------', groupDate,T_M_D)
         //拼写日历表格
         var dateHtml = createDateTable(T_M_D, displayDate, data);
         $("#divParent").append(dateHtml);
@@ -500,6 +502,7 @@ function test(){
             var tem_m = ((i % 12 == 0 ? 12 : i % 12) + "").length == 2 ? (i % 12 == 0 ? 12 : i % 12) : "0" + (i % 12 == 0 ? 12 : i % 12);
             displauDate.push((start_y + 1 * t_y) + "-" + tem_m + "-" + "01");
         }
+      console.log('这里是 displauDate的结果-------------',displauDate)
         var t_m_n = displauDate.length;
         if (t_m_n > 0) {
             for (var i = 0; i < t_m_n; i++) {
