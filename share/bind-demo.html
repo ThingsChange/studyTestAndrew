@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+  <title>街景-Hello world</title><script type="text/javascript">var _speedMark = new Date();</script>
+  <script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp&key=OL2BZ-PPWHP-7DWDV-LBLIV-NSVDJ-G5FSU&libraries=place"></script>
+  <!--https://map.qq.com/api/js?v=2.exp&key=YOUR_KEY&libraries=drawing,geometry,place,convertor,visualization-->
+  <script>
+    var init = function(lat, lng, zoom = 11){
+      pano_container=document.getElementById('PanoCtn');  //街景容器
+      pano = new qq.maps.Map(pano_container, {
+        center: new qq.maps.LatLng(lat, lng),
+        zoom,
+        disableDefaultUI: true,
+        zoomControl: true,                              //缩放
+      })
+    }
+  </script>
 </head>
-<body>
-
-<script type="text/javascript" src="bind-demos.js"></script>
-</body>
+<body onload="init(51.507351,-0.127758)">
+<div id="PanoCtn" style="width:500px;height:300px"></div>
+<script>
+</script></body>
 </html>
