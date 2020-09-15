@@ -8,17 +8,19 @@
 
 let path = require("path");
 let fs = require("fs");
-
-let pathName = "E:\\workSpace\\fe-online-restaurant\\.git\\logs\\refs\\remotes\\origin";
+//根据远程分支
+// let pathName = "E:\\workSpace\\fe-online-restaurant\\.git\\logs\\refs\\remotes\\origin";
+let pathName = "E:\\workSpace\\fe-online-restaurant\\.git\\logs\\refs\\heads";
 fs.readdir(pathName, function(err, files){
   let dirs = [];
   (function iterator(i){
     if(i == files.length) {
-      dirs = dirs.filter(item=>!['dev','master','dohko','优惠券超收','浏览器','沙雕','推荐有礼四期'].includes(item))
+      dirs = dirs.filter(item=>!['dev','master','dohko'].includes(item))
       dirs.forEach(item=>{
         console.log('git branch -D  '+item)
       })
-
+      //其实就是带个回车
+      console.log()
       dirs.forEach(item=>{
         console.log('git push -d origin '+item)
       })

@@ -53,7 +53,30 @@ var inorderTraversal = function(root) {
       }
   }
   return ret;
-  //后续遍历 左儿子 右儿子 自己
+  //后续遍历 輸出顺序 左儿子 右儿子 自己
+
+  var postorderTraversal = function(root) {
+    if(!root) return []
+    let stack = [root];
+    let ret=[] ;
+    let p=root;
+    while (stack.length){
+      let top=stack[stack.length -1]
+      if(top.left===p || top.right === p || (!top.left && !top.right)){
+        p=stack.pop()
+        ret.push(top.val)
+      }else{
+        if(p.right){
+          stack.push(p.right)
+        }
+        if(p.left){
+          stack.push(p.left)
+        }
+      }
+    }
+    return ret;
+  }
+
 
 
 
