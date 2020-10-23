@@ -126,7 +126,7 @@ class MyPromise {
   }
   all(promiseArr){
     let index=0;
-    let res=[];
+    let result=[];
     return MyPromise((resolve,reject)=>{
       promiseArr.forEach((p,i)=>{
         // Promise.resolve(p)用于处理传入值不为Promise的情况
