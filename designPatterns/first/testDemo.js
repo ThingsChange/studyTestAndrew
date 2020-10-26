@@ -4,7 +4,7 @@
  */
 
 var checkName=function () {
-    console.log("这里检测当前输入的名字是否合格");
+    console.log("这里检测当前输入的名  字是否合格");
 }
 var checkPassword=function () {
     console.log("这里检测当前输入的密码是否合格");
