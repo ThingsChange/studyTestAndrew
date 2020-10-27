@@ -1,99 +1,117 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title></title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/vue/2.1.3/vue.js"></script>
+  <meta charset="UTF-8">
+  <title></title>
+  <script type="text/javascript" src="vue.min.js"></script>
 </head>
 <body>
 
-<div id="app">
-    <p>{{ message }}</p>
-    <ul>
-        <comment :is="currentView"></comment>
-        <abc></abc>
-    <!--    <li is="abc"></li>-->
-    </ul>
+<div id="app"
+     @click="shuohua" @selfEvent="selfEvent"
+     class="abc" :class="['abv']" data-name="你猜"
+     href="wlj666.cc" title="看看Vnode都有啥" :title="title"
+     style="width: 10rem" :style="{top: `${height}px`}"
+>
+  <p @click="shuohuaChild">{{ message }}</p>
+  <ul>
+    <comment :is="currentView"></comment>
+    <abc></abc>
+  </ul>
 </div>
 
 <script type="text/javascript">
 
-    var app = new Vue({
-        el: '#app',
-        data: {
-            message : "",
-            currentView:'aaa'
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: "123",
+      currentView: 'aaa',
+      title: 'Vnode属性',
+      height: 30
+    },
+    components: {
+      aaa: {
+        template: '<p>你好，这是一个示例{{message}}</p>'
+      },
+      abc: {
+        data: function () {
+          return {message: '别烦我'}
         },
-        components:{
-            aaa:{
-                template:'<p>你好，这是一个示例</p>'
-            },
-            abc:{
-                data:function(){
-                  return {message:'别烦我'}
-                },
-                template:'<h1>{{message}}</h1>'
-            }
-        },
-        beforeCreate: function () {
-            console.group('beforeCreate 创建前状态===============》');
-            console.log("%c%s", "color:red" , "el     : " + this.$el); //undefined
-            console.log("%c%s", "color:red","data   : " + this.$data); //undefined
-            console.log("%c%s", "color:red","message: " + this.message)
-        },
-        created: function () {
-            console.group('created 创建完毕状态===============》');
-            console.log("%c%s", "color:red","el     : " + this.$el); //undefined
-            console.log("%c%s", "color:red","data   : " + this.$data); //已被初始化
-            console.log("%c%s", "color:red","message: " + this.message); //已被初始化
-        },
-        beforeMount: function () {
-            console.group('beforeMount 挂载前状态===============》');
-            console.log("%c%s", "color:red","el     : " + (this.$el)); //已被初始化
-            console.log(this.$el);
-            console.log("%c%s", "color:red","data   : " + this.$data); //已被初始化
-            console.log("%c%s", "color:red","message: " + this.message); //已被初始化
-        },
-        mounted: function () {
-            console.group('mounted 挂载结束状态===============》');
-            console.log("%c%s", "color:red","el     : " + this.$el); //已被初始化
-            console.log(this.$el);
-            console.log("%c%s", "color:red","data   : " + this.$data); //已被初始化
-            console.log("%c%s", "color:red","message: " + this.message); //已被初始化
-            let self=this;
-            setTimeout(function () {
-                self.message='xuxiao is boy';
-            },3000)
-        },
-        beforeUpdate: function () {
-            console.group('beforeUpdate 更新前状态===============》');
-            console.log("%c%s", "color:red","el     : " + this.$el);
-            console.log(this.$el);
-            console.log("%c%s", "color:red","data   : " + this.$data);
-            console.log("%c%s", "color:red","message: " + this.message);
-        },
-        updated: function () {
-            console.group('updated 更新完成状态===============》');
-            console.log("%c%s", "color:red","el     : " + this.$el);
-            console.log(this.$el);
-            console.log("%c%s", "color:red","data   : " + this.$data);
-            console.log("%c%s", "color:red","message: " + this.message);
-        },
-        beforeDestroy: function () {
-            console.group('beforeDestroy 销毁前状态===============》');
-            console.log("%c%s", "color:red","el     : " + this.$el);
-            console.log(this.$el);
-            console.log("%c%s", "color:red","data   : " + this.$data);
-            console.log("%c%s", "color:red","message: " + this.message);
-        },
-        destroyed: function () {
-            console.group('destroyed 销毁完成状态===============》');
-            console.log("%c%s", "color:red","el     : " + this.$el);
-            console.log(this.$el);
-            console.log("%c%s", "color:red","data   : " + this.$data);
-            console.log("%c%s", "color:red","message: " + this.message)
-        }
-    })
+        template: '<h1>{{message}}</h1>'
+      }
+    },
+    methods: {
+      selfEvent() {
+        console.log('这里是 selfEvetn 的结果-------------', 1)
+      },
+      shuohua() {
+        console.log('这里是 this.message 的结果-------------', this.message)
+      },
+      shuohuaChild() {
+        console.log('这里是 this.message 的结果-------------', this.message)
+      }
+    },
+    beforeCreate: function () {
+      console.group('beforeCreate 创建前状态===============》');
+      console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
+      console.log("%c%s", "color:red", "data   : " + this.$data); //undefined
+      console.log("%c%s", "color:red", "message: " + this.message)
+    },
+    created: function () {
+      console.group('created 创建完毕状态===============》');
+      console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
+      console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
+      console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+    },
+    beforeMount: function () {
+      console.group('beforeMount 挂载前状态===============》');
+      console.log("%c%s", "color:red", "el     : " + (this.$el)); //已被初始化
+      console.log(this.$el);
+      console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
+      console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+    },
+    mounted: function () {
+      console.group('mounted 挂载结束状态===============》');
+      console.log("%c%s", "color:red", "el     : " + this.$el); //已被初始化
+      console.log(this.$el);
+      console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
+      console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+      let self = this;
+      setTimeout(function () {
+        self.message = 'xuxiao is boy';
+      }, 3000)
+    },
+    beforeUpdate: function () {
+      console.group('beforeUpdate 更新前状态===============》');
+      console.log("%c%s", "color:red", "el     : " + this.$el);
+      console.log(this.$el);
+      console.log("%c%s", "color:red", "data   : " + this.$data);
+      console.log("%c%s", "color:red", "message: " + this.message);
+    },
+    updated: function () {
+      console.group('updated 更新完成状态===============》');
+      console.log("%c%s", "color:red", "el     : " + this.$el);
+      console.log(this.$el);
+      console.log("%c%s", "color:red", "data   : " + this.$data);
+      console.log("%c%s", "color:red", "message: " + this.message);
+    },
+    beforeDestroy: function () {
+      console.group('beforeDestroy 销毁前状态===============》');
+      console.log("%c%s", "color:red", "el     : " + this.$el);
+      console.log(this.$el);
+      console.log("%c%s", "color:red", "data   : " + this.$data);
+      console.log("%c%s", "color:red", "message: " + this.message);
+    },
+    destroyed: function () {
+      console.group('destroyed 销毁完成状态===============》');
+      console.log("%c%s", "color:red", "el     : " + this.$el);
+      console.log(this.$el);
+      console.log("%c%s", "color:red", "data   : " + this.$data);
+      console.log("%c%s", "color:red", "message: " + this.message)
+    }
+  })
+  console.log('这里是 app 的结果-------------', app)
 </script>
 </body>
 </html>
