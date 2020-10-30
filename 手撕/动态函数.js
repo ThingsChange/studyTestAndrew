@@ -18,6 +18,11 @@ function get(data,...args){
     (new Function(`try { return ${res}.${item} } catch(e) {}`))()
   )
 }
+function get(data,...args){
+  return args.map(v => {
+    return new Function('data','v', `return data.${v}`)(data,v)
+  })
+}
 console.log(get(obj, 'selector.to.toutiao', 'target[0]', 'target[2].name'));
 
 

@@ -247,9 +247,13 @@ Function.prototype.bind = function (context) {
 
 var func = {
     func1: function (x, y) {
+      this.x=x;
+      this.y=y
+      console.log('这里是 xy 的结果-------------', x, y)
         this.func2();
     },
-    func2: function () {
+    func2: function (z) {
+      this.z=z*2;
         console.log("Im func2");
     }
 };

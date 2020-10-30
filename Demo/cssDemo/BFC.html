@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .parent{
+      width: 80%;
+      background-color: #ccc9c3;
+      height: 100vh;
+      text-align: center;
+      /*margin: 5rem auto;*/
+      overflow:hidden;
+    }
+    .child{
+      width: 5rem;
+      height: 5rem;
+    }
+    .child1{
+      position: relative;
+      background-color: yellowgreen;
+      border: 1px solid greenyellow ;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+    }
+    .child2{
+      /*float:left;*/
+      background-color: #1f6377;
+      margin-bottom: 1rem;
+    }
+    .child3{
+/*      margin-top: 1rem;
+      float:left;
+      background-color: #4c3000;*/
+      width: 100px;
+      height: 150px;
+      float: left;
+      background: rgb(139, 214, 78);
+      text-align: center;
+      line-height: 150px;
+      font-size: 20px;
+    }
+    .child4{
+   /*   float:right;
+      width: 5rem;
+      height: 5rem;
+      background-color: #ad9df1;*/
+      /*overflow: hidden;*/
+      position: absolute;
+      top:10rem;
+      left: 100px;
+      height: 300px;
+      width: 500px;
+      background: rgb(170, 54, 236);
+      text-align: center;
+      line-height: 300px;
+      font-size: 40px;
+      /*display: inline-block;*/
+    }
+    .geli{
+      /*display: flex;
+      background-color: #98af8f;*/
+      width: 100%;
+      /*position: relative;*/
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+      <div class="parent">
+        <!--<div class="child child1"></div>-->
+        <div class="child child2"></div>
+        <div class="geli">
+          <div class="child child3"></div>
+          <div class=" child4"></div>
+        </div>
+      </div>
+</body>
+</html>

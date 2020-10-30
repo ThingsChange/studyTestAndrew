@@ -46,3 +46,24 @@ function throttle(func,wait,options={}){
       return result;
     }
 }
+
+
+function throttle(func,wait){
+  let timer=null;
+  let pre=0;
+  let remain=0;
+  return function anonymous(...params){
+        let now=new Date();
+        remain=wait-(now-pre);
+        if(remain<=0){
+          clearTimeout(timer)
+          timer=null;
+          pre=Date.now();;
+          func.apply(this,params)
+        }else if(!timer){
+          clearTimeout(timer)
+          timer=null;
+          timer=setTimeout(func,remain)
+        }
+  }
+}
