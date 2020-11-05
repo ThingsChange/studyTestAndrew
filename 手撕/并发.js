@@ -20,8 +20,8 @@ function requestData(urls, max, callBack) {
       }
     }).catch(e => result.push(e))
     if (reqQueue.push(req) < max) {
-      handleRequest(urls[++i])
+      handleRequest(urls[++count])
     }
   }
-  handleRequest(urls[i])
+  handleRequest(urls[count])
 }
