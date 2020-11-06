@@ -46,6 +46,7 @@ function add(...arg){
 console.log('这里是  的结果-------------', one(add(two(add(one())))))
 console.log('这里是  的结果-------------', two(add(one(add(two(),one())))))
 //  3
-one(add(two()))
+one(add(two()
+))
 two(add(one()))
 //  3
