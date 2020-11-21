@@ -35,10 +35,6 @@ app.post('/login',function(req,res){
         })
     }
 })
-app.get('/lewen',function (req,res) {
-
-    res.send('hello, Lewen,do you finish your work?');
-});
 app.get('/withToken',function(req,res){
 
     request(
@@ -96,19 +92,25 @@ app.get('/or/shop/getSkin',function (req,res) {
 app.listen('3000',function () {
     console.log("app is listening  at 3000");
 })
-app.get('/qy',function (req,res) {
-    let callback=req.query['callback'];
-    console.log(req.query['callback']);
-    res.send(callback+'('+new Date().getTime()+')');
-})
 app.all('*', function(req, res, next) {
-    res.set("Access-Control-Allow-Origin", "http://localhost:8080");
-    res.set("Access-Control-Allow-Headers", "X-Custom-Header");
+    res.set("Access-Control-Allow-Origin", "https://dohko.m.hualala.com");
+    res.set("Access-Control-Allow-Credentials", true);
+    res.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-token,x-abc");
     res.set("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.set("X-Powered-By",' 3.2.1')
-    res.set("Content-Type", "application/json;charset=utf-8");
+    res.set("Content-Type", "application/json;charset=UTF-8");
+    // res.set("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
     next();
 });
+app.get('/qy',function (req,res) {
+
+  res.send('hello, Lewen,do you finish your work?');
+});
+app.get('/abc',function (req,res) {
+  let callback=req.query['callback'];
+  console.log(req.query['callback']);
+  res.send(callback+'('+new Date().getTime()+')');
+})
 app.put('/qyNative',function (req,res) {
     console.log(req);
     let callback=req.query['callback'];
@@ -117,11 +119,29 @@ app.put('/qyNative',function (req,res) {
     res.send(callback+'('+new Date().getTime()+',2)');
 })
 app.get('/qyNativeJquery',function (req,res) {
-    res.set("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.set("Access-Control-Allow-Origin", "https://dohko.m.hualala.com");
     let callback=req.query['callback'];
     console.log(callback);
     // console.log(res);
     res.send(callback+'('+new Date().getTime()+',2)');
+})
+app.get('/shop/info',function (req,res) {
+  fs.readFile('./shopInfo.json','utf8',function (err, data) {
+    console.log(123);
+    if(err) console.log(err);
+    const shopInfo= JSON.parse(data);
+    res.send(shopInfo);
+
+  })
+})
+app.put('/shop/info',function (req,res) {
+  fs.readFile('./shopInfo.json','utf8',function (err, data) {
+    console.log(123);
+    if(err) console.log(err);
+    const shopInfo= JSON.parse(data);
+    delete shopInfo.data.shopPromotions;
+    res.send(shopInfo);
+  })
 })
 app.get('/admin/api/staging/companyAudit',function (req,res) {
 /*    console.log(1234);

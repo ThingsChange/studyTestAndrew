@@ -12,9 +12,9 @@
 
 <script>
     window.addEventListener('message', function(e) {
-    // window.document.write('收到消息：'+e.data);
+        window.document.write('收到消息：'+e.data);
         window.document.getElementById('abc').innerHTML=e.data.text;
-    window.parent.postMessage("{'data':'hello demo1'}", 'http://localhost:8080');
+        window.parent.postMessage("{'data':'hello demo1'}", 'https://dohko.m.huala.com');
     }, false);
 </script>
 </html>

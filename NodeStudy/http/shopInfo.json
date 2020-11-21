@@ -1,0 +1,153 @@
+{
+  "code": "000",
+  "rc": "000",
+  "message": "执行成功",
+  "traceID": "208f025f0a80f1d006b8498869e3b30e",
+  "data": {
+    "shopStatus": {
+      "msg": "店铺正常开启",
+      "openDays": 2,
+      "closed": false,
+      "open": true
+    },
+    "shopPromotions": [
+      {
+        "promotionName": "先涨价再降价（指定菜）",
+        "promotionType": 3,
+        "cardTypeFilter": [],
+        "userType": 0,
+        "cardLevelFilter": [],
+        "promotionID": "149958451881145"
+      },
+      {
+        "promotionName": "多规格-特价菜（指定菜），限10:00-23:59",
+        "promotionType": 3,
+        "cardTypeFilter": [],
+        "userType": 1,
+        "cardLevelFilter": [],
+        "promotionID": "686586074541280"
+      },
+      {
+        "promotionName": "syw打2折",
+        "promotionType": 7,
+        "cardTypeFilter": [],
+        "userType": 0,
+        "cardLevelFilter": [],
+        "promotionID": "5945412671124007"
+      },
+      {
+        "promotionName": "加价换购NEW",
+        "promotionType": 21,
+        "cardTypeFilter": [],
+        "userType": 0,
+        "cardLevelFilter": [],
+        "promotionID": "7238730001616659"
+      },
+      {
+        "promotionName": "买赠-利军",
+        "promotionType": 4,
+        "cardTypeFilter": [],
+        "userType": 0,
+        "cardLevelFilter": [],
+        "promotionID": "21508556251780746"
+      },
+      {
+        "promotionName": "满赠别动",
+        "promotionType": 5,
+        "cardTypeFilter": [],
+        "userType": 0,
+        "cardLevelFilter": [],
+        "promotionID": "4119108128444506"
+      }
+    ],
+    "shopSetting": {
+      "showNotSellingFood": 1,
+      "foodImageScale": 0.44,
+      "minAmount": 0,
+      "packingFeeActive": 1,
+      "shopBaseSetting": {
+        "showFoodSaleTime": true,
+        "showRecommendedFood": true,
+        "showSoldQuantity": true,
+        "showFoodStock": true,
+        "recommendedFoodSortBy": 2,
+        "recommendedFoodQuantity": 2
+      },
+      "smallPictureModeDetail": 1,
+      "foodNameDisplayMode": 1,
+      "takeAwaySetting": {
+        "freightPaymentMethod": 1,
+        "delivers": []
+      },
+      "showAssessment": 1,
+      "needCheckMember": false,
+      "orderMethod": 0,
+      "supportCombinationOrder": true,
+      "operationMode": "0",
+      "allowFoodRemark": 1,
+      "payBeforeCommit": false,
+      "serviceFeatures": "1,3,5,2,4,66",
+      "payMethod": 0,
+      "showShoppingCartMoney": 1,
+      "packageText": "包装费",
+      "showSellOutFood": 1,
+      "foodUiTemplate": 1,
+      "needPhoneNum": false
+    },
+    "shopBase": {
+      "address": "北京市西城区积水潭-地铁站",
+      "shopName": "新微信餐厅正餐店1",
+      "shopNotice": "店铺公告滚动播放测试！~……",
+      "logoUrl": "http://res.hualala.com/group3/M00/E2/53/wKgVbV0dadyN6cY6AAB3oBFxB6o591.png"
+    },
+    "shopScore": {
+      "wholeScore": "5"
+    },
+    "shopMedia": {
+      "posters": [
+        {
+          "img": "http://res.hualala.com/basicdoc/f556183c-fe3c-4358-a2bc-263ea6b719e8.jpg",
+          "link": "https://dohko.m.hualala.com/order/newm_vipQuotaRecharge?groupID=11157&mpID=9cYF3yQ18U65594e",
+          "linkType": 0,
+          "selected": "link"
+        }
+      ],
+      "banners": [
+        {
+          "img": "http://res.hualala.com/basicdoc/6e70768c-ede7-41f4-a2c0-32295ab20541.png",
+          "link": "6836236742907923349",
+          "linkType": 1,
+          "selected": "link"
+        },
+        {
+          "img": "http://res.hualala.com/basicdoc/c6ffb88d-351f-476a-9396-f45761026aa1.png",
+          "link": "https://dohko.m.hualala.com/buy/shop.htm?s=76311650&g=11157&mpid=9cYF3yQ18U65594e",
+          "linkType": 0,
+          "selected": "link"
+        },
+        {
+          "img": "http://res.hualala.com/basicdoc/49947aca-d398-4d99-a5ec-da655eb4bbc0.jpg",
+          "link": "6836272030342450069",
+          "linkType": 1,
+          "selected": "link"
+        },
+        {
+          "img": "http://res.hualala.com/basicdoc/bef834a9-23ee-4cf0-92e3-61c2147daec3.jpg",
+          "linkType": 0,
+          "food": {
+            "foodName": "水煮鱼",
+            "unit": "套"
+          },
+          "selected": "addToCart"
+        },
+        {
+          "img": "http://res.hualala.com/basicdoc/1b07d937-49b0-4eff-9bf2-4126784392a0.jpg",
+          "link": "6893316239804861333",
+          "linkType": 1,
+          "selected": "link"
+        }
+      ]
+    }
+  },
+  "records": null
+}
