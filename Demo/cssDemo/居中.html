@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .box {
+      position: relative;
+      width: 500px;
+      height: 300px;
+      background: yellowgreen;
+      margin: 0 auto;
+    }
+
+    .wanan-center {
+      width: 100px;
+      height: 80px;
+      background: #00D0BC;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: auto;
+    }
+
+    .box2 {
+      position: relative; /* //     父元素定位方式*/
+      width: 600px; /*宽*/
+      height: 400px; /*高*/
+      background-color: rgba(212, 66, 33, .86);
+      margin: 0 auto;
+    }
+
+    .wanan-center2 {
+      position: relative;
+      width: 300px;
+      background: #00D0BC;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .box3{
+      position: relative; /* //     父元素定位方式*/
+      width: 600px; /*宽*/
+      height: 400px; /*高*/
+      background-color: yellowgreen;
+      /*margin: 0 auto;*/
+    }
+    .floater{
+      width: 100px;
+      /*background: red;*/
+      float: left;
+      height: 50%;
+      margin-bottom: -50px;
+    }
+    .wanan-center3{
+      clear: both;
+      margin:0  auto;
+      height: auto;
+      width: 300px;
+      background: #00D0BC;
+    }
+    .box4{
+      position: relative; /* //     父元素定位方式*/
+      width: 600px; /*宽*/
+      height: 400px; /*高*/
+      background-color: slategrey;
+      /*margin: 0 auto;*/
+    }
+    .wanan-center4{
+      height: 100px;
+      width: 300px;
+      background: red;
+      /*上下居中*/
+      position: absolute;
+      top: 50%;
+      margin-top: -50px;
+      /*左右居中*/
+      left:0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+
+    }
+  </style>
+</head>
+<body>
+<div class="box">
+  <div class="wanan-center">
+    -->. 优点：设置起来比较简单，使用范围较广；
+
+    　　　　-->. 缺点：需要子容器有一个固定的高，或百分比自适应于外部。它的高度不能是height:auto； 兼容性 IE8+；
+  </div>
+</div>
+<div class="box2">
+  <div class="wanan-center2">
+    -->. 子容器相对定位，top:50%，translateY(-50%)
+
+    　　　　即，父元素 用相对定位，子元素 用相对定位(relative --> relative)，上代码：
+
+    　　　　-->. 优点：只设置子元素的属性即可，无需过多计算；
+
+    　　　　-->. 缺点：应用到了CSS3的translateY,所以 兼容性 IE9+
+  </div>
+
+</div>
+<div class="box3">
+  <div class="floater"></div>
+      <div class="wanan-center3">
+        　-->. 子元素1：float, 子元素2：clear:both;  floter元素的margin-bottom值 = content的height的值的负一半
+
+        　　-->. 优点：position:relative;时，无需声明 父元素的定位
+
+        　　-->. 缺点：需要一个同子元素 同级的 float元素辅助；需要手动计算 float元素的 margin-bottom 的值；
+      </div>
+</div>
+<div class="box4">
+      <div class="wanan-center4">
+        　-->. 子元素1：float, 子元素2：clear:both;  floter元素的margin-bottom值 = content的height的值的负一半
+
+        　　-->. 优点：position:relative;时，无需声明 父元素的定位
+
+        　　-->. 缺点：需要一个同子元素 同级的 float元素辅助；需要手动计算 float元素的 margin-bottom 的值；
+      </div>
+</div>
+</body>
+</html>
