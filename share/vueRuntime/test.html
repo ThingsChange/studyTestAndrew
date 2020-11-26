@@ -14,6 +14,7 @@
      style="width: 10rem" :style="{top: `${height}px`}"
 >
   <p @click="shuohuaChild">{{ message }}</p><ul><comment :is="currentView"></comment></ul> <abc @abcEvent="shuohuaChild" :real-value="abcText"></abc>
+  <button v-pre-button="canDo">指令</button>
 </div>
 
 <script type="text/javascript">
@@ -27,12 +28,18 @@
         title: 'Vnode属性',
         height: 30,
         abcText:123,
+        canDo:{
+          yes:1,
+          no:0,
+          text:'点我',
+          type:2
+        }
       }
     },
     components: {
-      aaa: {
+/*      aaa: {
         template: '<p>你好，这是一个示例{{message}}</p>'
-      },
+      },*/
       abc: {
         data: function () {
           return {message: '别烦我'}
@@ -41,6 +48,35 @@
         template: '<h1>{{message}}</h1>',
         mounted(){
           console.log('这里是 this 的结果-------------', this)
+        }
+      }
+    },
+    directives:{
+      preButton:{
+        inserted:function (el,binding){
+          console.log('这里是 这里是指令 的结果-------------', 123)
+          console.log('这里是 binding 的结果-------------', binding)
+          let bckColor='#ccc';
+          let cb;
+          switch (binding.value.type){
+            case 1:
+              bckColor='#b2d1f1';
+              cb=function (){
+                console.log('这里是 bckColor 的结果-------------', bckColor)}
+              break
+              case 2:
+                bckColor='red'
+                cb=function (){
+                  console.log('这里是 bckColor 的结果-------------', bckColor)}
+                  break
+            case 3:
+              bckColor='yellowGreen'
+                  break
+            default:
+              bckColor='#ccc'
+          }
+          el.style.background=bckColor;
+          el.addEventListener('click',cb);
         }
       }
     },
