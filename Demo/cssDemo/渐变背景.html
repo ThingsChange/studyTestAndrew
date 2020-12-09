@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>属于自己的渐变小黑盒</title>
+  <style>
+    /* 清除默认样式 */
+    * { padding: 0; margin: 0 }
+
+    header {
+      /* 设置一个控制背景色位置的CSS变量，方便JS控制 */
+      --position: 100;
+
+      /* 居中靠下显示子元素 */
+      display: grid;
+      place-items: end center;
+
+      /* 设置为固定定位 */
+      position: fixed;
+
+      /* 距离上边左边为0 */
+      top: 0;
+      left: 0;
+
+      /* 宽度铺满屏幕 */
+      width: 100%;
+
+      /* 给个合适的高度 */
+      height: 40px;
+
+      /* 白色字体 */
+      color: white;
+
+      /* 字体大小 */
+      font-size: 16px;
+
+      /* 让字体细一点 */
+      font-weight: 100;
+
+      /* 增加下内变局，防止文字过于靠下 */
+      padding-bottom: 10px;
+
+      /* 设置过渡效果 */
+      transition: background-position .2s;
+
+      /* 黑色渐变背景 */
+      /*默认从上到下*/
+    /*linear-gradient([ [ [ <angle> | to [top | bottom] || [left | right] ],]? <color-stop>[, <color-stop>]+);
+    1、方向   默认情况下，是从上到下进行线性渐变，相当于180deg to bottom
+      angle:代表角度值，正值达标顺时针，负值代表逆时针
+      to left top 到左上渐变  to left
+      2、后面就是颜色了，以逗号间隔，代表不同的颜色链接起来的渐变
+      每个颜色后面还可以跟百分比值，是一个当前方向的距离位置，相当于该渐变色是从  百分比位置处 开始
+    */
+      background: linear-gradient(black, rgba(148, 88, 88, 0.3) 80%, rgba(0, 0, 0, 0)) 0 calc(var(--position) * 1%) / 100% 300%;
+    }
+
+    main {
+      /* 给个合适的高度 */
+      height: 1000px;
+      background-color: cadetblue;
+    }
+    .bcg{
+      /*height: 800px;*/
+      /*width: 100%;*/
+      width: 500px;
+      height: 500px;
+      /*background-color: cadetblue;*/
+      background: url("../image/timg.jpg") no-repeat;
+      background-position: 50% 100%;
+      background-size: cover;
+    }
+  </style>
+</head>
+<body>
+<header>咱们自己的小黑盒</header>
+<main>
+<!--  <Img  class="bcg" src="../image/timg.jpg">-->
+  <div class="bcg"></div>
+</main>
+
+<script>
+  // 获取header
+  const header = document.getElementsByTagName('header')[0]
+
+  addEventListener('scroll', () => {
+    // 获取偏移值
+    const top = document.documentElement.scrollTop
+    console.log('这里是 top 的结果-------------', top)
+
+    // 设置一个合适的范围
+    if (top <= 200) {
+      // 令header的渐变色位置变成计算后的渐变位置
+      header.style.setProperty('--position', 100 - Math.min(100, top))
+    } else {
+      // 在移动一定范围后令其完全不透明
+      header.style.setProperty('--position', 0)
+    }
+  })
+</script>
+</body>
+</html>
+

@@ -81,7 +81,24 @@
       right: 0;
       margin-left: auto;
       margin-right: auto;
-
+    }
+    .box5{
+      position: relative; /* //     父元素定位方式*/
+      width: 600px; /*宽*/
+      height: 400px; /*高*/
+      background-color: greenyellow;
+      /*margin: 0 auto;*/
+    }
+    .wanan-center5{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: auto;
+      background: rebeccapurple;
+      width: 172px;
+      height: 20px;
     }
   </style>
 </head>
@@ -124,5 +141,15 @@
         　　-->. 缺点：需要一个同子元素 同级的 float元素辅助；需要手动计算 float元素的 margin-bottom 的值；
       </div>
 </div>
+<div class="box5">
+      <div class="wanan-center5">
+        　-->. 子元素1：float, 子元素2：clear:both;  floter元素的margin-bottom值 = content的height的值的负一半
+
+        　　-->. 优点：position:relative;时，无需声明 父元素的定位
+
+        　　-->. 缺点：需要一个同子元素 同级的 float元素辅助；需要手动计算 float元素的 margin-bottom 的值；
+      </div>
+</div>
+
 </body>
 </html>

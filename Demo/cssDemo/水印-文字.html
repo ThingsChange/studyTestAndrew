@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .water{
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      fontSize: 16px;
+      color: #000;
+      lineHeight: 1.5;
+      opacity: 0.1;
+      transform: rotate(-15deg);
+      transformOrigin: 0 0;
+      userSelect: none;
+      whiteSpace: nowrap;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+      <div class="app">
+        <h1>我是来尝试着做水印的，文字版</h1>
+        <p>嘿嘿</p>
+      </div>
+<script>
+/*  const item =document.createElement('div');
+  item.innerHTML='恰闻二月春'
+  item.className='water';*/
+  function cssHelper(el, prototype) {
+    for (let i in prototype) {
+      el.style[i] = prototype[i]
+    }
+  }
+
+function createItem(){
+  const item = document.createElement('div')
+  item.innerHTML = '恰闻二月春'
+  cssHelper(item, {
+    position: 'absolute',
+    top: `50px`,
+    left: `50px`,
+    fontSize: `16px`,
+    color: '#000',
+    lineHeight: 1.5,
+    opacity: 0.1,
+    transform: `rotate(-15deg)`,
+    transformOrigin: '0 0',
+    userSelect: 'none',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+  })
+  return item
+}
+  const waterHeight = 100;
+  const waterWidth = 180;
+  const { clientWidth, clientHeight } = document.documentElement || document.body;
+  const column = Math.ceil(clientWidth / waterWidth);
+  const rows = Math.ceil(clientHeight / waterHeight);
+  const waterWrapper =document.createElement('div')
+  for (let i = 0; i < column * rows; i++) {
+    const wrap = document.createElement('div');
+    cssHelper(wrap, Object.create({
+      position: 'relative',
+      width: `${waterWidth}px`,
+      height: `${waterHeight}px`,
+      flex: `0 0 ${waterWidth}px`,
+      overflow: 'hidden',
+    }));
+    wrap.appendChild(createItem());
+    waterWrapper.appendChild(wrap)
+  }
+  document.body.appendChild(waterWrapper)
+
+</script>
+</body>
+</html>
