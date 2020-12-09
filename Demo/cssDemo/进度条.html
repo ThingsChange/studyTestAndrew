@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>进度条</title>
+  <style>
+    /* 清除默认样式 */
+    * { padding: 0; margin: 0 }
+
+    header {
+      /* 设置一个控制位置的CSS变量，方便JS控制 */
+      --position: 0;
+
+      /* 设置为固定定位 */
+      position: fixed;
+
+      /* 距离上边左边为0 */
+      top: 0;
+      left: 0;
+
+      /* 宽度铺满屏幕 */
+      width: 100%;
+
+      /* 给个合适的高度 */
+      height: 10px;
+
+      /* 设置过渡效果 */
+      transition: transform .1s;
+
+      /* 渐变背景 */
+      background: linear-gradient(to right,#4481eb,#04befe);
+
+      /* 设置形变效果 */
+      transform: scaleX(var(--position));
+
+      /* 设置变形参照点 */
+      transform-origin: left;
+    }
+
+    main {
+      /* 给个合适的高度 */
+      height: 10000px;
+
+      /* 渐变背景 */
+      background: linear-gradient(#30cfd0,#330867)
+    }
+  </style>
+</head>
+<body>
+<header></header>
+<main></main>
+
+<script>
+  // 获取header
+  const header = document.getElementsByTagName('header')[0]
+
+  addEventListener('scroll', () => {
+    // 获取偏移值
+    const top = document.documentElement.scrollTop
+    console.log('这里是 top 的结果-------------', top)
+
+    // 获取页面总高度
+    const height = document.documentElement.scrollHeight
+
+    // 设置CSS变量
+    header.style.setProperty('--position', top / (height - document.documentElement.clientHeight))
+  })
+</script>
+</body>
+</html>
