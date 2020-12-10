@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    /* 按钮文字变化 */
+    :disabled ~ button {
+      -webkit-text-fill-color: transparent;
+    }
+    :disabled ~ button::before {
+      position: absolute;
+      content: attr(value);
+      -webkit-text-fill-color: currentColor;
+    }
+  </style>
+</head>
+<body>
+<input id="input"> <button id="button" value="启用">禁用</button>
+<script>
+  button.addEventListener('click', _ => {
+    input.toggleAttribute('disabled');
+  });
+</script>
+</body>
+</html>
