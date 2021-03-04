@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script type="text/javascript" src="vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+  {{fullName}}
+  {{age}}
+</div><!-- 模板不要显示逻辑，就直接显示页面内容 -->
+<script>
+  var vm = new Vue({
+    el: "#app",
+    data: {
+      a: "12",
+      b: "3",
+      fullName: "123",
+      age: 22
+    },
+    watch: {
+      a: function(){   //监听a改变
+        console.log("计算了一次a");
+        this.fullName = this.a + " " + this.b
+      },
+      b: function(){   //监听b改变
+        console.log("计算了一次b");
+        this.fullName = this.a + " " + this.b
+        // if((this.a + " " + this.b) ===this.fullName){
+        //   this.Handle();
+        // }
+      },
+      'a+b':{
+        handle(newVal,oldVal){
+          console.log('这里是 newVal,oldVal 的结果-------------', newVal,oldVal)
+        }
+      }
+    },
+    computed:{
+      // fullName(){
+      //   return this.a + " " + this.b
+      // }
+    },
+    methods:{
+      Handle(){
+
+      }
+    }
+  })
+</script>
+</body>

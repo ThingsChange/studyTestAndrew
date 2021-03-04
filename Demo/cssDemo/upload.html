@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<body>
+<!--accept可以控制选择的文件类型-->
+<input type="file" hidden multiple accept="image/*">
+<button>点击上传图片</button>
+<div></div>
+</body>
+</html>
+<script>
+  $('button').click(function () {
+    $('input').click() // 通过手动调用input的点击，可以任意定义UI
+  })
+  $('input').change(function (e) { // 通过change事件可以获取到选中的文件
+    // 一：第一种获取地址回显
+    // 如果需要回显功能则可以通过手动创建img标签的形式或者通过拼接字符串
+    for(var i = 0; i < e.target.files.length; i++) { // 如果需要对文件大小类型进行验证，可以将e.target.files[i]打印出来，对其中的键值进行逻辑判断
+      var img_url = window.URL.createObjectURL(e.target.files[i]) // 通过该方法可以获取到文件的路径，可以用于图片回显
+      console.log(img_url) // blob:http://localhost:8080/557d2808-c433-4c2c-aa87-dbe13222a572
+      var html = '<img src="'+ img_url +'"  width="100px" height="100px"/> ';
+      $('div').append(html)
+    }
+    // 如需要添加删除功能，则点击对应删除图标，获取其下标，删除对应img标签即可
+    // 二：第二种转成base64回显
+    for (let i = 0; i < e.target.files.length; i++) {
+      var reader = new FileReader();
+      var file = e.target.files[i]
+      reader.readAsDataURL(file); // 转码
+      reader.onload = function (el) { // 在此处可以循环获取转成的base64为编码（异步）
+        var html = '<img src="'+ el.target.result +'"  width="100px" height="100px"/> ';
+        $('div').append(html)
+      }
+    }
+
+
+  })
+</script>
