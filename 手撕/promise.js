@@ -15,7 +15,7 @@ const REJECTED = 'REJECTED'
 
 class MyPromise {
   // executor()内部的异步任务被放入宏/微任务队列，等待执行
-  constructor(executor) {
+  constructor(executor)  {
     this._status = PENDING; // Promise状态
     this._value = undefined // 储存then回调return的值
     this._resolveQueue = [];// 成功队列, resolve时触发

@@ -11,6 +11,7 @@
     <div class="clear-button">
       <button class="liti-button" @click="clearCache(sessionType)">清除 <span style="color: red">{{sessionType}}</span> </button>
       <button class="liti-button clearAll" @click="clearCache">一键清除缓存</button>
+      <button class="liti-button clearAll" @click="GO">一键清除缓存</button>
     </div>
   </div>
   </section>
@@ -70,6 +71,10 @@ export default {
       MessageBox.alert('清除成功', '提示').then(() => {
         closeWindow.exec();
       });
+    },
+    GO(){
+      this.$router.push({path:'https://dohko.m.hualala.com/newm/menu/76058319?menuType=1&groupID=11157&mpID=' +
+          '9cYF3yQ18U65594e&brandIDs=&businessType=2&lat=39.94157&lng=116.352432',query:{x:1}})
     },
     // 删除cookie中所有定变量函数
     delAllCookie() {

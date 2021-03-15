@@ -67,3 +67,23 @@ function throttle(func,wait){
         }
   }
 }
+
+function throttle(func,wait){
+  let timer=null;
+  let last=0
+  let remain=0;
+  return function(...params){
+    let now = Date.now();
+    remain=wait-(now-last)
+    if(remain<=0){
+      clearTimeout(timer);
+      timer=null;
+      last=Date.now();
+      return func.apply(this,params);
+    }else{
+      clearTimeout(timer)
+      timer=null
+      timer=setTimeout(func,remain)
+    }
+  }
+}

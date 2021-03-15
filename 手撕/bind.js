@@ -24,3 +24,13 @@
 
       return bound;
     }
+
+    Function.prototype.myBind=function (context,...params){
+    let fnThis=this;
+    if(typeof  fnThis!=="function") throw 'bind  first-param should be a function';
+    let fn=function(){};
+    fn.prototype=Object.create(fnThis.prototype || Function.prototype);
+    return function (...otherParams){
+      return  fnThis.apply(this instanceof  fn ?this:context,params.concat(otherParams))
+    }
+    }
