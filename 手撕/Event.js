@@ -56,7 +56,7 @@ class Event {
     }
 
     on.fn = fn;
-    this.on(event, fn);
+    this.on(event, on);
     return this;
   }
 

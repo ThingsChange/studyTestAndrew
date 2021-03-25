@@ -38,14 +38,17 @@
       }
     },
     computed:{
-      // fullName(){
-      //   return this.a + " " + this.b
-      // }
+      fullName(){
+        return this.a + " " + this.b
+      }
     },
     methods:{
       Handle(){
 
       }
+    },
+    mounted(){
+      console.log('这里是 this 的结果-------------', this)
     }
   })
 </script>
