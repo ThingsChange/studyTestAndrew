@@ -6,21 +6,23 @@
 
 async function testSometing() {
   console.log("执行testSometing");
-/*  return new Promise(function(resolve){
-    console.log('我到底在哪儿执行')
-    resolve("testSometing");
-  })*/
-  return  Promise.resolve('testSometing')
+  /*  return new Promise(function(resolve){
+      console.log('我到底在哪儿执行')
+      resolve("testSometing");
+    })*/
+  return Promise.resolve('testSometing')
 }
 
 async function testAsync() {
   console.log("执行testAsync");
   return Promise.resolve("hello async");
 }
+
 async function testAsync2() {
   console.log("执行testAsync2");
   return Promise.resolve("hello async2");
 }
+
 async function test() {
   console.log("test start...");
   const v1 = await testSometing();
@@ -29,7 +31,7 @@ async function test() {
   console.log(v2);
   const v3 = await testAsync2();
   console.log(v3);
-  console.log(v1, v2,v3);
+  console.log(v1, v2, v3);
 }
 
 test();
@@ -49,75 +51,79 @@ test();
 //13  v2   的await 后面的表达式返回值是一个Promise ,将其推入队列尾部
 //14 执行12步的promise的回调函数，然后生成一个Promise.resolve(4）推入尾部  给v2          3
 //15 v2 赋值为hello async  并输出，接着进入v3 await 后面的函数
-var promise = new Promise((resolve)=> { console.log("promise start.."); resolve("promise");});
-var a1=promise.then((val)=>
-{console.log(val)
-  return Promise.resolve(undefined)});
-console.log(a1)
-console.log('我是Promise a1 a   ----------' , a1)
+var promise = new Promise((resolve) => {
+  console.log("promise start..");
+  resolve("promise");
+});
+var a1 = promise.then((val) => {
+  console.log(val)
+  return Promise.resolve(undefined)
+});
+// console.log(a1)
+// console.log('我是Promise a1 a   ----------', a1)
 
-var a2=a1.then(function(res) {
+var a2 = a1.then(function (res) {
   console.log(res);
   // return 2;
   return Promise.resolve(2)
 })
-console.log(a1,a2)
+console.log(a1, a2)
 
-var a3=a2.then(function(res) {
+var a3 = a2.then(function (res) {
   console.log(res);
   return Promise.resolve(3)
 //   return 3;
 })
-var a4=a3.then(function(res) {
+var a4 = a3.then(function (res) {
   console.log(res);
   return Promise.resolve(4)
 //   return 4;
 })
-var a5=a4.then(function(res) {
+var a5 = a4.then(function (res) {
   console.log(res);
   return 5
 })
-var a6=a5.then(function(res) {
+var a6 = a5.then(function (res) {
   console.log(res);
   return 6;
 })
-var a7=a6.then(function(res) {
+var a7 = a6.then(function (res) {
   console.log(res);
   return 7;
 })
-var a8=a7.then(function(res) {
+var a8 = a7.then(function (res) {
   console.log(res);
   return 8;
 })
-var a9=a8.then(function(res) {
+var a9 = a8.then(function (res) {
   console.log(res);
   return 9
 })
-var a10=a9.then(function(res) {
+var a10 = a9.then(function (res) {
   console.log(res);
   return 10;
 })
-var a11=a10.then(function(res) {
+var a11 = a10.then(function (res) {
   console.log(res);
   return 11;
 })
-var a12=a11.then(function(res) {
+var a12 = a11.then(function (res) {
   console.log(res);
   return 12;
 })
-var a13=a12.then(function(res) {
+var a13 = a12.then(function (res) {
   console.log(res);
   return 13
 })
-var a14=a13.then(function(res) {
+var a14 = a13.then(function (res) {
   console.log(res);
   return 14;
 })
-var a15=a14.then(function(res) {
+var a15 = a14.then(function (res) {
   console.log(res);
   return 15;
 })
-var a16=a15.then(function(res) {
+var a16 = a15.then(function (res) {
   console.log(res);
   return 16;
 });
