@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    html{
+      font-size: 50px;
+    }
+    .content-wrap {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+    .food-wrap {
+      width: 2.19rem;
+      margin-right: .17rem;
+      margin-top: .32rem;
+    }
+    .food-wrap:nth-child(3n){
+       margin-right: 0;
+     }
+    .food-img{
+      box-sizing: border-box;
+      width: 2.19rem;
+      height: 2.19rem;
+      background: #eff0f3;
+      border-radius: .22rem;
+    }
+    img{
+      height: 2.19rem;
+      width: 2.19rem;
+      border-radius: .22rem;
+    }
+    .name-unit {
+      display: flex;
+      align-items: baseline;
+      margin-top: .17rem;
+    }
+    .food-name{
+      flex: 0 1 auto;
+      height: 0.36rem;
+      font-size: 0.35rem;
+      font-weight: 500;
+      line-height: 0.35rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-break: break-all;
+      overflow: hidden;
+    }
+    .unit{
+      white-space: nowrap;
+      height: 0.36rem;
+      font-size: 0.35rem;
+      font-weight: 500;
+      line-height: 0.35rem;
+    }
+    .price-wrap{
+      display: flex;
+      align-items: baseline;
+      margin-top: .12rem;
+    }
+    .price1{
+      font-weight: 800;
+      font-size: .4rem;
+    }
+    .little{
+      font-size: .29rem;
+    }
+    .price2{
+      margin-left: .14rem;
+      font-size: .25rem;
+    }
+    .abc-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      right: .48rem;
+      margin-top: .17rem;
+    }
+    .disabled {
+      background-color: #ccc;
+    }
+    .food-counter {
+      min-width: 25px;
+      text-align: center;
+      font-size: 0.32rem;
+    }
+    .hll-comp-plus,
+    .hll-comp-minus {
+      display: flex;
+      width: 0.52rem;
+      height: 0.52rem;
+      position: relative;
+      border-radius: 50%;
+    }
+    .menu-btn_svg {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .hll-comp-minus {
+      border-width: 1px;
+      border-style: solid;
+      box-sizing: border-box;
+    }
+    .hll-comp-minus .minus {
+      display: block;
+      width: 0.34rem;
+      height: 0.08rem;
+      border-radius: 0.4rem;
+    }
+    .hll-comp-plus .plus-across {
+      display: block;
+      width: 0.34rem;
+      height: 0.06rem;
+      border-radius: 0.4rem;
+    }
+    .hll-comp-plus .plus-vertical {
+      display: block;
+      width: 0.06rem;
+      height: 0.34rem;
+      border-radius: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+<div data-v-4bc7d575="" data-v-01687c48="" class="content-wrap"
+     style="transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); transition-duration: 0ms; transform: translate(0px, 0px) scale(1) translateZ(0px);">
+  <div data-v-4bc7d575="" data-v-01687c48="" class="food-wrap">
+    <div data-v-4bc7d575="" data-v-01687c48="" class="food-img"><img data-v-4bc7d575="" data-v-01687c48="" alt=""
+                                                                     src="https://res.hualala.com/basicdoc/acaacd47-c5ba-449e-aa09-d1f735e4c3eb.jpeg?x-oss-process=image/resize,limit_0,m_fill,h_167,w_167">
+    </div>
+    <div data-v-4bc7d575="" data-v-01687c48="" class="name-unit _c2"><span data-v-4bc7d575="" data-v-01687c48=""
+                                                                           class="food-name">糖果套装</span><span
+      data-v-4bc7d575="" data-v-01687c48="" class="unit _c3">/组</span></div>
+    <div data-v-4bc7d575="" data-v-01687c48="" class="price-wrap _c1"><span data-v-4bc7d575="" data-v-01687c48=""
+                                                                            class="price1 "><span data-v-4bc7d575=""
+                                                                                                  data-v-01687c48=""
+                                                                                                  class="little">￥</span><span
+      data-v-4bc7d575="" data-v-01687c48="">1</span></span>
+      <del data-v-4bc7d575="" data-v-01687c48="" class="price2 _c3"><span data-v-4bc7d575="" data-v-01687c48="">￥</span><span
+        data-v-4bc7d575="" data-v-01687c48="">40</span></del>
+    </div>
+    <div data-v-4bc7d575="" data-v-01687c48="" class="abc-right"><p data-v-4bc7d575="" data-v-01687c48=""
+                                                                    class="hll-comp-minus _mb" style="display: none;">
+      <span data-v-4bc7d575="" data-v-01687c48="" class="menu-btn_svg minus _mbg_jb"></span></p><span data-v-4bc7d575=""
+                                                                                                      data-v-01687c48=""
+                                                                                                      class="food-counter _c1"
+                                                                                                      style="display: none;">0</span>
+      <p data-v-4bc7d575="" data-v-01687c48="" class="hll-comp-plus _mbg_jb"><span data-v-4bc7d575="" data-v-01687c48=""
+                                                                                   class="menu-btn_svg plus-across _bg4"></span><span
+        data-v-4bc7d575="" data-v-01687c48="" class="menu-btn_svg plus-vertical _bg4"></span></p></div>
+  </div>
+  <div data-v-4bc7d575="" data-v-01687c48="" class="food-wrap">
+    <div data-v-4bc7d575="" data-v-01687c48="" class="food-img"><img data-v-4bc7d575="" data-v-01687c48="" alt=""
+                                                                     src="https://res.hualala.com/basicdoc/80d30a5c-0b54-4c6e-b681-043a7ade80c4.jpeg?x-oss-process=image/resize,limit_0,m_fill,h_167,w_167">
+    </div>
+    <div data-v-4bc7d575="" data-v-01687c48="" class="name-unit _c2"><span data-v-4bc7d575="" data-v-01687c48=""
+                                                                           class="food-name">科罗娜啤酒</span><span
+      data-v-4bc7d575="" data-v-01687c48="" class="unit _c3">/瓶</span></div>
+    <div data-v-4bc7d575="" data-v-01687c48="" class="price-wrap _c1"><span data-v-4bc7d575="" data-v-01687c48=""
+                                                                            class="price1 "><span data-v-4bc7d575=""
+                                                                                                  data-v-01687c48=""
+                                                                                                  class="little">￥</span><span
+      data-v-4bc7d575="" data-v-01687c48="">28</span></span>
+      <del data-v-4bc7d575="" data-v-01687c48="" class="price2 _c3"><span data-v-4bc7d575="" data-v-01687c48="">￥</span><span
+        data-v-4bc7d575="" data-v-01687c48="">30</span></del>
+    </div>
+    <div data-v-4bc7d575="" data-v-01687c48="" class="abc-right"><p data-v-4bc7d575="" data-v-01687c48=""
+                                                                    class="hll-comp-minus _mb" style="display: none;">
+      <span data-v-4bc7d575="" data-v-01687c48="" class="menu-btn_svg minus _mbg_jb"></span></p><span data-v-4bc7d575=""
+                                                                                                      data-v-01687c48=""
+                                                                                                      class="food-counter _c1"
+                                                                                                      style="display: none;">0</span>
+      <p data-v-4bc7d575="" data-v-01687c48="" class="hll-comp-plus _mbg_jb"><span data-v-4bc7d575="" data-v-01687c48=""
+                                                                                   class="menu-btn_svg plus-across _bg4"></span><span
+        data-v-4bc7d575="" data-v-01687c48="" class="menu-btn_svg plus-vertical _bg4"></span></p></div>
+  </div>
+  <div data-v-4bc7d575="" data-v-01687c48="" class="food-wrap">
+    <div data-v-4bc7d575="" data-v-01687c48="" class="food-img"><img data-v-4bc7d575="" data-v-01687c48="" alt=""
+                                                                     src="https://res.hualala.com/basicdoc/91c75a67-3425-46f4-a4a8-7e10a2ffe7e2.jpg?x-oss-process=image/resize,limit_0,m_fill,h_167,w_167">
+    </div>
+    <div data-v-4bc7d575="" data-v-01687c48="" class="name-unit _c2"><span data-v-4bc7d575="" data-v-01687c48=""
+                                                                           class="food-name">百威啤酒</span><span
+      data-v-4bc7d575="" data-v-01687c48="" class="unit _c3">/瓶</span></div>
+    <div data-v-4bc7d575="" data-v-01687c48="" class="price-wrap _c1"><span data-v-4bc7d575="" data-v-01687c48=""
+                                                                            class="price1 "><span data-v-4bc7d575=""
+                                                                                                  data-v-01687c48=""
+                                                                                                  class="little">￥</span><span
+      data-v-4bc7d575="" data-v-01687c48="">18</span></span>
+      <del data-v-4bc7d575="" data-v-01687c48="" class="price2 _c3"><span data-v-4bc7d575="" data-v-01687c48="">￥</span><span
+        data-v-4bc7d575="" data-v-01687c48="">22</span></del>
+    </div>
+    <div data-v-4bc7d575="" data-v-01687c48="" class="abc-right"><p data-v-4bc7d575="" data-v-01687c48=""
+                                                                    class="hll-comp-minus _mb" style="display: none;">
+      <span data-v-4bc7d575="" data-v-01687c48="" class="menu-btn_svg minus _mbg_jb"></span></p><span data-v-4bc7d575=""
+                                                                                                      data-v-01687c48=""
+                                                                                                      class="food-counter _c1"
+                                                                                                      style="display: none;">0</span>
+      <p data-v-4bc7d575="" data-v-01687c48="" class="hll-comp-plus _mbg_jb"><span data-v-4bc7d575="" data-v-01687c48=""
+                                                                                   class="menu-btn_svg plus-across _bg4"></span><span
+        data-v-4bc7d575="" data-v-01687c48="" class="menu-btn_svg plus-vertical _bg4"></span></p></div>
+  </div>
+</div>
+</body>
+</html>

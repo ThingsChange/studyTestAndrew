@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .box-out{
+      padding: 50px;
+      width: 200px;
+      height: 200px;
+      box-sizing: border-box;
+    }
+    .circle-box{
+      width: 100px;
+      height: 100px;
+      position: relative;
+    }
+    .out-circle{
+      width: 100px;
+      height: 100px;
+      background-color: #1080de;
+      border-radius: 50%;
+      position: absolute;
+    }
+    .in-circle{
+      width: 80px;
+      height: 80px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+    .text-area{
+      width: 80px;
+      height: 80px;
+      background-color: #FFFFFF;
+      position: absolute;
+      border-radius: 50%;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+      font-size: 13px;
+      text-align: center;
+      padding: 20px 5px;
+      box-sizing: border-box;
+    }
+    .hide-right{
+      width: 100px;
+      height: 200px;
+      position: absolute;
+      overflow: hidden;
+      top: -50px;
+      left: -50px;
+    }
+    .rotate1{
+      width: 100px;
+      height: 100px;
+      margin-top: 50px;
+      margin-left: 50px;
+      transform: rotate(0deg);
+    }
+    .blocker1{
+      width: 100px;
+      height: 200px;
+      position: relative;
+      top: -50px;
+      left: -50px;
+      background-color: #FFFFFF;
+    }
+    .hide-left{
+      width: 100px;
+      height: 200px;
+      margin-left: 100px;
+      transform: rotate(180deg);
+      overflow: hidden;
+    }
+    .rotate2{
+      width: 100px;
+      height: 100px;
+      position: relative;
+      left: 50px;
+      top: 50px;
+      transform: rotate(0deg);
+    }
+    .blocker2{
+      width: 100px;
+      height: 200px;
+      position: relative;
+      top: -50px;
+      left: 50px;
+      background-color: #FFFFFF;
+    }
+    .less50 .hide-right{
+      overflow: visible;
+    }
+
+    .example-box{
+      padding: 25px 0 0 25px;
+    }
+    .example-box ul{
+      overflow: hidden;
+    }
+    .example-box ul li{
+      float: left;
+      margin-right: 25px;
+      list-style: none;
+    }
+    .example-box ul li h3{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="example-box">
+  <ul>
+    <li>
+      <h3>25%(90°圆环)</h3>
+      <div class="box-out">
+        <div class="circle-box less50">
+          <div class="out-circle"></div>
+          <div class="in-circle"></div>
+          <div class="hide-right">
+            <div class="rotate1">
+              <div class="blocker1">
+                <div class="hide-left">
+                  <div class="rotate2" style="transform: rotate(-90deg)">
+                    <div class="blocker2"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+</body>
+</html>
