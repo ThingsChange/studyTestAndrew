@@ -7,6 +7,7 @@
 
 function newFunc() {
   let constr = Array.prototype.shift.call(arguments);
+  if(!constr.prototype) throw new Error(constr+ 'is not a constructor')
   var obj = Object.create(constr.prototype)
   let result = constr.apply(obj, params);
   return typeof ret === 'Object' && result !== null ? result : obj
@@ -17,32 +18,14 @@ function Food(foodName){
 }
 new Food('土豆丝');
 
-
-
-function deepCopy(target,map=new WeakMap()){
-  if(map.has(target))return map.has(target)
-  let obj;
-  if(target instanceof Object){
-    if(Array.isArray(target)){
-      obj=[]
-    }
-    if(typeof target === 'function') {
-      obj=function (...args){
-        return target.apply(this,args)
-      }
-    }
-    if(target instanceof  Date) return new Date(target)
-    if(target instanceof RegExp) return new RegExp(target.source,target.flags)
-    let keys=Reflect.ownKeys(target);
-    for(let key of  keys){
-      if(Object.getOwnPropertyDescriptor(target,key).enumerable){
-        obj[key]=target[key]
-      }
-    }
-    return obj
-  }else{
-    return target
-  }
-
-
+function Person(){
+  return {x:1}
 }
+function Student(){
+  return null
+}
+
+console.log('这里是 new Person() 的结果-------------', new Person());
+console.log('这里是 new Student() 的结果-------------', new Student());
+console.assert(23>22,'对1')
+console.assert(23<22,'对2')
