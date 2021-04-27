@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .out{
+      background-color: #2d6987;
+    }
+    .inner{
+      background-color: greenyellow;
+    }
+    .hehe{
+      display: inline-flex;
+      max-width:100%;
+      overflow: hidden;
+    //text-align: center;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      word-break: break-all;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+    }
+  </style>
+</head>
+<body>
+    <div class="out">
+      <div class="inner">1</div>
+      <div class="inner">
+          <div class="hehe">次奥</div>
+        </div>
+    </div>
+</body>
+</html>
