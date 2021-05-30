@@ -16,21 +16,32 @@
       border: 1px solid indianred;
       box-sizing: border-box;
     }
+    .item{
+      width: 33.3%;
+    }
+/*    .item:not(:nth-child(n+4)){
+      width: 33.33%;
+    }*/
     /*div 第一个div 并且是倒数第二个div*/
     /*该div是 第一个div 并且是倒数第二个div ，后面的div兄弟节点  */
-    div:first-child:nth-last-child(2),
-    div:first-child:nth-last-child(2) ~ div {
+    .item:first-child:nth-last-child(2),
+    .item:first-child:nth-last-child(2) ~ .item {
       width: 50%;
     }
-    div:first-child:nth-last-child(3),
-    div:first-child:nth-last-child(3) ~ div {
+
+    .item:first-child:nth-last-child(3),
+    .item:first-child:nth-last-child(3) ~ .item {
       width: 33.33%;
+    }
+    .item:first-child:nth-last-child(4),
+    .item:first-child:nth-last-child(4) ~ .item {
+      width: 50%;
     }
   </style>
 </head>
 <body>
 <section>
-  <!--<div class="item">item1</div>-->
+  <div class="item">item1</div>
   <div class="item">item2</div>
   <div class="item">item3</div>
 </section>

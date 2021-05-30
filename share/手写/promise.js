@@ -158,4 +158,41 @@ class MyPromise {
       }
     })
   }
+  allSettled(promiseArr){
+    let result=[];
+    let len = promiseArr.length;
+      return new MyPromise((resolve,reject)=>{
+        let count = len;
+        promiseArr.forEach((pro,index)=>{
+          Promise.resolve(pro).then(
+            res=>{
+              count++;
+              result[index] ={ status: 'fulfilled', value: res };
+            },
+            error=>{
+              count++;
+              result[index] ={ status: 'rejected', reason: error };
+            }
+          ).finally(()=>{
+            if(!--count) resolve(result);
+          })
+        })
+      })
+  }
+  allSettledNew(promiseArr){
+    return MyPromise.all(promiseArr.map(v=>MyPromise.resolve(v).then(res=>({status:'fulfilled',value:res}),err=>({status:'rejected',reason:err}))))
+  }
+  any(promiseArr) {
+    return new MyPromise((resolve,reject)=>{
+      let result = [] ,len =promiseArr.length;
+      promiseArr.forEach((p,i)=>{
+        MyPromise.resolve(p).then(
+        value =>resolve(value),
+        error=>{
+          result[i] = error;
+          if(!--len) reject(result)
+        })
+      })
+    })
+  }
 }
