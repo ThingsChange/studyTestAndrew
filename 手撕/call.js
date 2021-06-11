@@ -25,7 +25,7 @@ function f(x, y,z) {
   console.log('这里是 this.a 的结果-------------', this.a, x, y,z)
 }
 
-// f.call(obj, 2, 3)
+f.call(obj, 2, 3,4,5)
 
 Function.prototype._apply = function (thisTarget, args) {
   thisTarget = thisTarget == null ? window : thisTarget;
@@ -40,4 +40,4 @@ Function.prototype._apply = function (thisTarget, args) {
   delete thisTarget[temp]
   return result;
 }
-f._apply(obj,[2,3],4)
+f._apply(obj,[2,3,4])
