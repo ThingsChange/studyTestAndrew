@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>$Title$</title>
+</head>
+<body>
+<div id="a"></div>
+<script>
+  console.time('a')
+  for(let i=0;i<10000000;i++){
+    document.querySelector('#a').innerHTML=i%5
+  }
+  console.log('这里是 结束 的结果-------------', '结束')
+  console.timeEnd('a')
+</script>
+</body>
+</html>
