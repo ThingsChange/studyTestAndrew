@@ -8,6 +8,7 @@
 function timer(time){
   return new Promise(resolve => {
     setTimeout(()=>{
+      console.time('abc')
       resolve(time)
     },time)
   })
@@ -16,6 +17,7 @@ async  function  test(){
   const proList=[timer(2000),timer(5000),timer(1000)]
   for await (let  pro of proList){
     console.log('这里是 pro 的结果-------------', pro)
+    console.timeEnd('abc')
   }
 }
 test();
