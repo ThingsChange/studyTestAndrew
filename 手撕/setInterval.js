@@ -14,6 +14,7 @@ let mySetInterval = function (fn, wait) {
       exec(fn, wait)
     }, wait)
   }
+  timers[key] = exec(fn,1000);
   return key;
 }
 let myCearInterval = function (timer){
@@ -22,3 +23,8 @@ let myCearInterval = function (timer){
     delete timers[timer]
   }
 }
+
+let a =function (){
+  console.log('这里是 1 的结果-------------', 1)
+}
+mySetInterval(a,1000)
