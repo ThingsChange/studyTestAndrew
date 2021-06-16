@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .father[class] {
+      background-color: #00BC8C;
+      height: 64px;
+      border: 1px solid #444;
+    }
+    .father{
+      background-color: red;
+    }
+    .float {
+      float:left;
+    }
+    .float img {
+      width: 60px; height: 64px;
+    }
+  </style>
+</head>
+<body>
+<div class="father">
+  <div class="float">
+    <img src="zxx.jpg">
+  </div>
+  我是帅哥，好巧啊，我也是帅哥，原来看这本书的人都是帅哥~
+</div>
+<div>虽然你很帅，但是我对你不感兴趣。</div>
+<script>
+  window.onload=function(){
+    console.log('这里是  的结果-------------', document.querySelector('.float'))
+    console.log('这里是 2 的结果-------------', 2)
+    for(let i=0;i<999999;i++){
+      document.querySelector('.float').innerHTML=i;
+    }
+    setTimeout(()=>{
+      console.log('这里是 1234 的结果-------------', 1234)
+    },0)
+  }
+</script>
+</body>
+</html>
