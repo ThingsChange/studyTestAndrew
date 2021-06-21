@@ -15,7 +15,7 @@ fs.readdir(pathName, function(err, files){
   let dirs = [];
   (function iterator(i){
     if(i == files.length) {
-      dirs = dirs.filter(item=>!['dev','master','dohko','dohkoTest','0527分支','放弃吧','企业微信'].includes(item))
+      dirs = dirs.filter(item=>!['dev','master','dohko','dohkoTest'].includes(item))
       dirs.forEach(item=>{
         console.log('git branch -D  '+item)
       })
