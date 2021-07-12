@@ -7,7 +7,7 @@
  **/
 
 let b=[3,0,7]
-let a=[5,0]
+let a=[5,0];
 //53271
 let ans=[]
 while(a.length && b.length){

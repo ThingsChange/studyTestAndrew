@@ -4,7 +4,13 @@
   "description": "日常工作中的一些demo    学习练手的地方",
   "main": "jquery-3.1.0.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "lint-staged"
+  },
+  "lint-staged":{
+    "./someTimes/*.js":[
+      "eslint"
+    ]
   },
   "repository": {
     "type": "git",
@@ -26,5 +32,10 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "eslint": "^7.30.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.0.0"
   }
 }
