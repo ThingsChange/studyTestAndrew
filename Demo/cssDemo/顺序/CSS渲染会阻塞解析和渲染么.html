@@ -26,12 +26,17 @@
   <script>
     console.log('before css')
     var startDate = new Date()
+    function err(err){
+      console.log('这里是  的结果-------------', err)
+    }
+    window.addEventListener('error',err,false)
   </script>
   <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 <h1>这是红色的</h1>
 <script>
+  const m = n;
   var endDate = new Date()
   console.log('after css')
   console.log('经过了' + (endDate -startDate) + 'ms')
