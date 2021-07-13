@@ -9,8 +9,8 @@ let b =[3, 0, 7];
 let a = [5, 0];
 //53271
 let ans = []
-while (a.length && b.length) {
-  if (a > b) ans.push(a.shift())
+        while (a.length && b.length) {
+          if (a > b) ans.push(a.shift())
   else ans.push(b.shift())
 }
 ans = ans.concat(a, b);
