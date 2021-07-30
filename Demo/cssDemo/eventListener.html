@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #inner{
+      width: 50px;
+      height: 30px;
+      background-color: #00BC8C;
+      position: absolute;
+      /*right: 0;*/
+    }
+    #outer{
+      width: 100px;
+      height: 100px;
+      background-color: yellowgreen;
+    }
+  </style>
+</head>
+<body>
+      <div id="outer">
+                <div id="inner">内部</div>
+      </div>
+<script>
+  function outFn(){
+    console.log('这里是 outFn 的结果-------------', 1)
+  }
+  function innerFn(){
+    console.log('这里是 innerFn 的结果-------------', 1)
+  }
+  document.querySelector('#outer').addEventListener('click',outFn,{capture:false})
+  document.querySelector('#inner').addEventListener('click',innerFn,{capture:false})
+</script>
+</body>
+</html>
