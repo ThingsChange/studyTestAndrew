@@ -9,6 +9,7 @@ let fs=require('fs');
 var  doSomeThing=function () {
     new Date().getTime();
 }
+const router = express.Router();
 var app=new express();
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
@@ -86,14 +87,18 @@ app.get('/orh5/base/getNational',function (req,res) {
   // )
   // res.send(500,{code:'000',msg:'错了',data:{}})
 });
-app.get('/or/shop/getSkin',function (req,res) {
-  res.send(500,{code:'000',msg:'错了a',data:{}})
+app.get('/or1/shop/getSkin',function (req,res) {
+  res.set("Access-Control-Allow-Origin", "https://m.hualala.com");
+  res.set("Access-Control-Allow-Credentials", true);
+  // res.send(500,{code:'000',msg:'错了a',data:{}})
+  // res.send(302,'www.baidu.com')
+  res.redirect('/qyNativeJquery')
 });
 app.listen('3000',function () {
     console.log("app is listening  at 3000");
 })
 app.all('*', function(req, res, next) {
-    res.set("Access-Control-Allow-Origin", "https://dohko.m.hualala.com");
+    res.set("Access-Control-Allow-Origin", "https://m.hualala.com");
     res.set("Access-Control-Allow-Credentials", true);
     res.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-token,x-abc");
     res.set("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
@@ -103,7 +108,6 @@ app.all('*', function(req, res, next) {
     next();
 });
 app.get('/qy',function (req,res) {
-
   res.send('hello, Lewen,do you finish your work?');
 });
 app.get('/abc',function (req,res) {
@@ -119,11 +123,11 @@ app.put('/qyNative',function (req,res) {
     res.send(callback+'('+new Date().getTime()+',2)');
 })
 app.get('/qyNativeJquery',function (req,res) {
-    res.set("Access-Control-Allow-Origin", "https://dohko.m.hualala.com");
+    res.set("Access-Control-Allow-Origin", "https://m.hualala.com");
     let callback=req.query['callback'];
     console.log(callback);
     // console.log(res);
-    res.send(callback+'('+new Date().getTime()+',2)');
+    res.send(callback+'('+new Date().getTime()+',3)');
 })
 app.get('/shop/info',function (req,res) {
   fs.readFile('./shopInfo.json','utf8',function (err, data) {
@@ -157,3 +161,22 @@ app.get('/admin/api/staging/companyAudit',function (req,res) {
 
     })
 })
+router.get('/test',(req,res,next)=>{
+  console.log('这里是 test1 的结果-------------', 'test1')
+  next();
+  // res.end()
+})
+router.get('/test',(req,res,next)=>{
+  console.log('这里是 test2 的结果-------------', 'test2')
+  // next('345')
+  // res.send('123')
+  next()
+},function (req,res,next){
+  console.log('这里是 test2-2 的结果-------------', 1)
+  next(!'route');
+})
+router.get('/test',(req,res,next)=>{
+  console.log('这里是 test3 的结果-------------', 123)
+  next()
+})
+app.use('/',router)

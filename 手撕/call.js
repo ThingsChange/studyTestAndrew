@@ -11,6 +11,7 @@ Function.prototype._call = function (thisTarget, ...args) {
     thisTarget = Object(thisTarget)
   }
   let result;
+//  此处也可以用缓存替换
   let temp = Symbol.for('1')
   thisTarget[temp] = this;
   result = thisTarget[temp](...args);

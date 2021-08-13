@@ -18,6 +18,7 @@ let handler = {
     console.log('defineProperty',attribute);
     attribute = {value :'B'}
     Reflect.defineProperty(target, key, attribute);
+    console.log('这里是 1 的结果-------------', 1)
   }
 };
 
