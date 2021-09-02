@@ -1,10 +1,10 @@
 /**
  * Created by Andrew on 2017/1/11.
  */
-var http=require('http');
+var http=require('https');
 var cheerio=require('cheerio');//html解析load 之后类似jQuery
 var fs=require('fs');
-var queryHref='http://www.haha.mx/topic/1/new/';//被查询的目标网址
+var queryHref='https://www.zhihu.com/question/29575441/answer/272424814';//被查询的目标网址
 
 var querySearch=1;
 var urls=[];//所有待下载的图片的地址
@@ -21,21 +21,22 @@ var downCount = 0;		// 实际下载的
 function getHtml(href,serach) {
     console.log("正在获取第 "+serach + " 页的图片");
     var pageData="";
-    var req=http.get(href+serach,function (res) {
+    var req=http.get(href,function (res) {
         res.setEncoding('utf8');
         res.on('data',function (chunk) {
             pageData+=chunk;
         })
         res.on('end',function () {
+          // console.log('这里是 pageData 的结果-------------', pageData)
             $ = cheerio.load(pageData);
-            var html = $(".joke-list-item .joke-main-content a img");
-
+            var html = $(".RichContent-inner img");
             for(var i = 0; i < html.length; i++) {
-                var src = html[i].attribs.src;
+                var src = html[i].attribs['data-actualsrc'];
+              console.log('这里是 src 的结果-------------', src)
                 // 筛选部分广告，不是真的段子
-                if (src.indexOf("http://image.haha.mx") > -1) {
-                    urls.push(html[i].attribs.src)
-                }
+                // if (src.indexOf("zhihu.com") > -1) {
+                    urls.push(html[i].attribs['data-actualsrc'])
+                // }
             }
             // 递归调用
             if (serach < pagemax) {
@@ -57,6 +58,7 @@ function getHtml(href,serach) {
  * @param {String} imgurl：图片地址
  */
 function downImg(imgurl) {
+  if(!imgurl) return ;
     var narr = imgurl.replace("http://image.haha.mx/", "").split("/")
     // 做一步优化，如果存在文件，则不下载
     var filename = "./upload/topic1/" + narr[0]  + narr[1] + narr[2] + "_" + narr[4];

@@ -4,9 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .abc{
+      height: 100vh;
+    }
+  </style>
 </head>
 <body>
 <div id = "app">
+  <div class="abc" v-waterMarker></div>
   <p>{{ form }}</p>
   <ul>
     <li v-for = "item in arr" :key = "item">{{ item }}</li>
@@ -14,9 +20,9 @@
   <button @click="add">暗黑</button>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script>
-  import shuiyin from './水印'
-  // Vue.directive('waterMarker',shuiyin);
+<script type="module" src='./指令/水印.js'></script>
+<script type="module">
+  Vue.directive('waterMarker',shuiyin);
   const ins = new Vue({
     data () {
       return {
