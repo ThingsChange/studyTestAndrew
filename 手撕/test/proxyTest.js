@@ -47,7 +47,7 @@ console.log('这里是   Object.keys(res)  ------------', Object.keys(res),Objec
 
 for(let i in res){
   console.log('这里是 i 的结果-------------', i)
-  console.log('这里是   Object.getOwnPropertyDescriptor(res,i)  ------------', res.hasOwnProperty(i))
+  // console.log('这里是   Object.getOwnPropertyDescriptor(res,i)  ------------', res.hasOwnProperty(i))
 }
 
 console.log('这里是   Object.keys(obj)  ------------', Object.keys(res))

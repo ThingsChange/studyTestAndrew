@@ -15,7 +15,7 @@ const REJECTED = 'REJECTED'
 
 class MyPromise {
   // executor()内部的异步任务被放入宏/微任务队列，等待执行
-  constructor(executor)  {
+  constructor(executor) {
     this._status = PENDING; // Promise状态
     this._value = undefined // 储存then回调return的值
     this._resolveQueue = [];// 成功队列, resolve时触发
@@ -29,6 +29,7 @@ class MyPromise {
         this._status = FULFILLED;
         // 这里之所以使用一个队列来储存回调,是为了实现规范要求的 "then 方法可以被同一个 promise 调用多次"
         // 如果使用一个变量而非队列来储存回调,那么即使多次p1.then()也只会执行一次回调
+        this._value = val;
         while (this._resolveQueue.length) {
           const callback = this._resolveQueue.shift()
           callback(val)
@@ -43,6 +44,7 @@ class MyPromise {
         this._status = REJECTED;
         while (this._rejectQueue.length) {
           const callback = this._rejectQueue.shift();
+          this._value = val;
           callback(val);
         }
       }
@@ -95,15 +97,15 @@ class MyPromise {
       switch (this._status) {
         //把后续then收集的依赖都push进当前Promise的回调队列中(_resolveQueue,_rejectQueue), 这是为了保证顺序调用
         case PENDING:
-            this._resolveQueue.push(fulFilledFn);
-            this._rejectQueue.push(rejectedFn);
-            break;
+          this._resolveQueue.push(fulFilledFn);
+          this._rejectQueue.push(rejectedFn);
+          break;
         case FULFILLED:
-            fulFilledFn(this._value)
-            break
+          fulFilledFn(this._value)
+          break
         case REJECTED:
-            rejectFn(this._value)
-            break;
+          rejectedFn(this._value)
+          break;
       }
     })
   }
@@ -114,18 +116,9 @@ class MyPromise {
   finally(callback){
     return this.then(
       value=>MyPromise.resolve(callback()).then(()=>value), // MyPromise.resolve执行回调,并在then中return结果传递给后面的Promise
-      reason=>MyPromise.resolve(callback()).then(()=> {throw reason})
+      reason=>MyPromise.resolve(callback()).then(()=>{throw reason})
     )
   }
-  finally(callback) {
-    return this.then(value=>{
-      callback()
-    },
-      reason=>{
-
-      })
-  }
-
   static resolve(value){
     if(value instanceof  MyPromise) return value
     return new MyPromise(resolve=>resolve(value))
@@ -133,19 +126,19 @@ class MyPromise {
   static reject(error){
     return new MyPromise((resolve,reject)=>reject(error))
   }
-  all(promiseArr){
+  static all(promiseArr){
     let index=0;
-    let result=[];
-    return MyPromise((resolve,reject)=>{
+    let res=[];
+    return new MyPromise((resolve,reject)=>{
       promiseArr.forEach((p,i)=>{
         // Promise.resolve(p)用于处理传入值不为Promise的情况
         MyPromise.resolve(p).then(
           val=>{
             index++;
-            result[i]=val;
+            res[i]=val;
             //所有then执行后, resolve结果
             if(index === promiseArr.length){
-              resolve(result)
+              resolve(res)
             }
           },
           err=>{
@@ -156,7 +149,7 @@ class MyPromise {
       })
     })
   }
-  race(promiseArr){
+  static race(promiseArr){
     return new MyPromise((resolve,reject)=>{
       //同时执行Promise,如果有一个Promise的状态发生改变,就变更新MyPromise的状态
       for(let p of promiseArr){
@@ -167,6 +160,58 @@ class MyPromise {
       }
     })
   }
+  static allSettled(promiseArr){
+    let result=[];
+    let len = promiseArr.length;
+    return new MyPromise((resolve,reject)=>{
+      let count = 0;
+      promiseArr.forEach((pro,index)=>{
+        MyPromise.resolve(pro).then(
+          res=>{
+            console.log(res)
+            count++;
+            result[index] ={ status: 'fulfilled', value: res };
+          },
+          error=>{
+            console.log(error)
+            count++;
+            result[index] ={ status: 'rejected', reason: error };
+          }
+        ).finally(()=>{
+          if(!--count) resolve(result);
+        })
+      })
+    })
+  }
+  static allSettledNew(promiseArr){
+    return MyPromise.all(promiseArr.map(v=>MyPromise.resolve(v).then(res=>({status:'fulfilled',value:res}),err=>({status:'rejected',reason:err}))))
+  }
+  any(promiseArr) {
+    return new MyPromise((resolve,reject)=>{
+      let result = [] ,len =promiseArr.length;
+      promiseArr.forEach((p,i)=>{
+        MyPromise.resolve(p).then(
+          value =>resolve(value),
+          error=>{
+            result[i] = error;
+            if(!--len) reject(result)
+          })
+      })
+    })
+  }
 }
-let a = MyPromise.resolve(123).finally(v=>MyPromise.reject(234)).then(v=> v)
 
+function func(timer){
+  return new MyPromise((resolve,reject)=>{
+    setTimeout(()=>{
+      if(timer&1){
+        resolve(timer)
+      }
+      reject(timer)
+    },timer*1000)
+  })
+}
+var a=[1,2,3].map(v=>func(v))
+var c= MyPromise.allSettled(a).then((res)=>{
+  console.log('这里是 res 的结果-------------', res)
+})
