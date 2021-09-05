@@ -9,6 +9,7 @@ let fs=require('fs');
 var  doSomeThing=function () {
     new Date().getTime();
 }
+let urlPre= 'https://dohko.m.hualala.com'
 const router = express.Router();
 var app=new express();
 app.use(bodyParser.urlencoded({extended:true}))
@@ -87,20 +88,21 @@ app.get('/orh5/base/getNational',function (req,res) {
   // )
   // res.send(500,{code:'000',msg:'错了',data:{}})
 });
-app.get('/or1/shop/getSkin',function (req,res) {
-  res.set("Access-Control-Allow-Origin", "https://m.hualala.com");
+app.post('/orh5/shop/getBusinessSetting',function (req,res) {
+  res.set("Access-Control-Allow-Origin", "https://dohko.m.hualala.com");
   res.set("Access-Control-Allow-Credentials", true);
-  // res.send(500,{code:'000',msg:'错了a',data:{}})
+  res.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-token,x-abc,x-b3-spanid");
+  res.status(200).send({code:'000',msg:'错了a',data:{}})
   // res.send(302,'www.baidu.com')
-  res.redirect('/qyNativeJquery')
+  // res.redirect('/qyNativeJquery')
 });
 app.listen('3000',function () {
     console.log("app is listening  at 3000");
 })
 app.all('*', function(req, res, next) {
-    res.set("Access-Control-Allow-Origin", "https://m.hualala.com");
+    res.set("Access-Control-Allow-Origin", "https://dohko.m.hualala.com");
     res.set("Access-Control-Allow-Credentials", true);
-    res.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-token,x-abc");
+    res.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-token,x-abc,x-b3-spanid,auth-type,x-b3-traceid");
     res.set("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.set("X-Powered-By",' 3.2.1')
     res.set("Content-Type", "application/json;charset=UTF-8");
@@ -123,7 +125,7 @@ app.put('/qyNative',function (req,res) {
     res.send(callback+'('+new Date().getTime()+',2)');
 })
 app.get('/qyNativeJquery',function (req,res) {
-    res.set("Access-Control-Allow-Origin", "https://m.hualala.com");
+    res.set("Access-Control-Allow-Origin", "https://dohko.m.hualala.com");
     let callback=req.query['callback'];
     console.log(callback);
     // console.log(res);
@@ -170,7 +172,9 @@ router.get('/test',(req,res,next)=>{
   console.log('这里是 test2 的结果-------------', 'test2')
   // next('345')
   // res.send('123')
-  next()
+  next('route')//如果用了这个，test2-2不会输出;
+  // next(!'route')//如果用了这个，后续正常
+  // next('da')//如果用了这个，'da'会被error捕获
 },function (req,res,next){
   console.log('这里是 test2-2 的结果-------------', 1)
   next(!'route');
@@ -180,3 +184,18 @@ router.get('/test',(req,res,next)=>{
   next()
 })
 app.use('/',router)
+app.use(function(err, req, res, next) {
+  let result =
+    process.env.NODE_ENV === "development"
+      ? {
+        error: {
+          message: err.message,
+          name: error.name,
+          stack: err.stack
+        }
+      }
+      : {};
+  console.log('这里是 err 的结果-------------', err)
+  res.status(err.status || 500);
+  res.json(result);
+});
