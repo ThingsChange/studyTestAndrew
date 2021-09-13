@@ -116,3 +116,57 @@ let merge = function (left,right){
   return result.concat(left).concat(right)
 }
 console.log('这里是   mergeSort(arr)  ------------', mergeSort(arr))
+
+//用setTimeout实现setInterval
+let timers = {};
+let mySetInterval= function (func,wait,...args){
+  let content = this;
+  let key = Symbol();
+  let  exec = function (){
+    func.apply(content,args)
+    timers[key] = setTimeout(()=>{
+      exec();
+    },wait)
+  }
+  timers[key] =exec(func,wait)
+  return key
+}
+let clearMyInterval = function (timerId){
+  if(timerId in timers){
+    clearTimeout(timers[timerId]);
+  }
+  delete  timers[timerId]
+}
+
+function debounce(func,delay){
+  let timer = null;
+  return function (...args){
+    let content = this;
+    if(timer) clearTimeout(timer);
+    timer = setTimeout(()=>{
+      func.apply(content,args)
+    },delay)
+  }
+}
+
+let throttle = function (func,delay){
+  let timer  = null , last = 0,remain = 0;
+  return function(...args){
+    let context = this;
+    let now = + new Date();
+    remain = delay - (now - last)
+    if(remain<=0){
+      if(timer){
+      clearTimeout(timer)
+      timer = null;
+      }
+      func.apply(context,args)
+      last = Date.now();
+    }else{
+      clearTimeout(timer)
+      timer = null
+      timer = setTimeout(func,remain)
+    }
+  }
+
+}
