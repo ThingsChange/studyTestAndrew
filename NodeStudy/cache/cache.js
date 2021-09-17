@@ -17,7 +17,7 @@ const port =5999;
 
 app.use(async (ctx,next)=>{
   ctx.set({
-    'Cache-control':'max-age=15'
+    'Cache-control':'only-if-cached'
     // 'Cache-control':'no-cache'
   })
   await next()
