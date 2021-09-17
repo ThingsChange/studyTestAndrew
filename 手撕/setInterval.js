@@ -6,11 +6,12 @@
  **/
 
 let timers = {};
-let mySetInterval = function (fn, wait) {
+let mySetInterval = function (fn, wait,...args) {
   let key = Symbol();
+  let content = this;
   let exec = function (fn, wait) {
     timers[key] = setTimeout(function () {
-      fn();
+      fn.apply(content,args);
       exec(fn, wait)
     }, wait)
   }

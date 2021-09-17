@@ -186,15 +186,16 @@ class MyPromise {
   static allSettledNew(promiseArr){
     return MyPromise.all(promiseArr.map(v=>MyPromise.resolve(v).then(res=>({status:'fulfilled',value:res}),err=>({status:'rejected',reason:err}))))
   }
-  any(promiseArr) {
+  static any(promiseArr) {
     return new MyPromise((resolve,reject)=>{
       let result = [] ,len =promiseArr.length;
+      if(!len) return reject(new Error(new AggregateError('All promises were rejected')))
       promiseArr.forEach((p,i)=>{
         MyPromise.resolve(p).then(
           value =>resolve(value),
           error=>{
             result[i] = error;
-            if(!--len) reject(result)
+            if(!--len) reject(new AggregateError(result))
           })
       })
     })
