@@ -1,14 +1,15 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true
+    env: {
+        browser: true,
+        es2021: true,
     },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": 12,
-        "sourceType": "module"
+    plugins: ['prettier'],
+    extends: ['eslint:recommended', 'plugin:prettier/recommended', 'prettier'],
+    parserOptions: {
+        ecmaVersion: 12,
+        sourceType: 'module',
     },
-    "rules": {
-      'spaced-comment':[2,"always"],
-    }
-};
+    rules: {
+        'spaced-comment': [2, 'always'],
+    },
+}
