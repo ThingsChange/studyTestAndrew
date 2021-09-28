@@ -22,22 +22,24 @@
     },
     "homepage": "https://github.com/ThingsChange/studyTestAndrew#readme",
     "dependencies": {
-        "eslint-plugin-import": "^2.7.0",
-        "eslint-plugin-standard": "^3.0.1",
+        "eslint": "^7.1.0",
+        "eslint-plugin-prettier": "^3.4.1",
         "lodash": "^4.17.11"
     },
     "devDependencies": {
-        "eslint": "^7.30.0",
         "eslint-config-prettier": "^8.3.0",
-        "lint-staged": "^11.0.0",
+        "husky": "^7.0.2",
+        "lint-staged": "^10.5.4",
         "prettier": "2.4.1"
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
     "lint-staged": {
-        "**/*": "prettier --write --ignore-unknown"
+        "*.{js,jsx,ts,tsx}": [
+            "eslint --fix",
+            "git add"
+        ],
+        "*.{html,css,less,ejs,json}": [
+            "prettier --write",
+            "git add"
+        ]
     }
 }
