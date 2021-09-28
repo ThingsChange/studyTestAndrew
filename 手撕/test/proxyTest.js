@@ -9,7 +9,7 @@ let objPro = { zhiye: '卖萌' }
 let obj = Object.create(objPro, {
     name: {
   value: '滚滚',
-        writable: true,
+    writable: true,
         enumerable: false,
         configurable: true,
     },
