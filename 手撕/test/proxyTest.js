@@ -27,6 +27,8 @@ let res = new Proxy(obj, {
         return Reflect.get(target, proxyKey, receiver)
     },
     set(target, p, value, receiver) {
+        console.log('这里是 value 的结果-------------', value)
+        console.log('这里是 value 的结果-------------', receiver)
         console.log('这里是 瞎比改 的结果-------------', '√')
         target[p] = '别瞎改。'
     },
@@ -35,6 +37,7 @@ let res = new Proxy(obj, {
     // for in 自身加原型链的  所有可枚举属性
     // Object.keys() 自身可枚举的属性
     ownKeys(target) {
+        console.log('这里是 value 的结果-------------', target)
         console.log('这里是 1111 的结果-------------', 1111)
         return ['x', 'type']
     },
