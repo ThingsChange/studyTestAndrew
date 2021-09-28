@@ -1,4 +1,5 @@
 let a = '2'
+var v=3;
 
 function b(x) {
     switch (x) {
